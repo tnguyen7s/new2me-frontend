@@ -1,0 +1,28 @@
+<div class="new2me-appname-heading">Welcome to <span class="semo-color">New-2-Me!</span></div>
+
+<div class="new2me-form-container" style="width: 34%;">
+  <form class="new2me-form" #loginForm="ngForm" (ngSubmit)="onLogin()">
+    <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control new2me-input" id="Username" ngModel  name="username" required>
+    </div>
+    <div class="form-group">
+      <label for="password" ngModel>Password</label>
+      <input type="password"  class="form-control new2me-input " id="password" ngModel name="password" required>
+    </div>
+
+    <div id="auth-container">
+      <span class="help-block mb-2" style="color:red" *ngIf="!validLogin">Password or username is invalid.</span>
+
+      <div id="main-auth-container">
+        <button class="new2me-btn-nonfilled" type="button" (click)="onSwitchSignUp()">Sign Up</button>
+        <button class="new2me-btn" type="submit"  [disabled]="!loginForm.valid">Login </button>
+      </div>
+
+      <button class="new2me-btn-nonfilled" type="button" (click)="onSwitchResetPassword()">Reset Password</button>
+
+    </div>
+  </form>
+</div>
+<!-- mat-raised-button matTooltip="Info about the action"  matTooltipPosition="above" -->
+

@@ -1,14 +1,13 @@
 <div id="nav-layout">
   <div id="tools-container">
+    <div class="new2me-appname-heading semo-color">New-2-Me</div>
     <input id="search-bar" placeholder="🔍Find new things">
     <button class="tag-button" type="button" style="font-style: italic; font-weight:700">➕ Give something away!</button>
   </div>
 
   <div id="tags-container">
     <h2 id="tag-heading">Tags</h2>
-    <button *ngFor="let tag of tags"
-          class="tag-button"
-          type="button">{{tag}}</button>
+    <button *ngFor="let tag of tags" (click)="onFilterByTag(tag)" class="tag-button" type="button">{{tag}}</button>
   </div>
 
 </div>

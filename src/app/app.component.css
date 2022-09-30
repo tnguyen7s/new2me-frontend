@@ -1,0 +1,12 @@
+.top-nav{
+  background-color:  #3A3B3C;
+  height: 56px;
+  position: relative;
+}
+
+.profile-icon{
+  position: absolute;
+  top: 6px;
+  right: 24px;
+  cursor: pointer;
+}

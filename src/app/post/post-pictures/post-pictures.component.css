@@ -1,0 +1,41 @@
+.post-pic{
+  width: 280px;
+  height: 280px;
+  border-radius: 16px;
+
+}
+
+.next-pre-wrapper{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-top: 8px;
+}
+
+.nav-btn{
+  background: none;
+  color: white;
+  border-radius: 50%;
+  border-color: aliceblue;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.pic-view-wrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.pic-del{
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  background: none;
+  border: aliceblue 2px solid;
+  color: aliceblue;
+  border-radius: 50%;
+  font-size: 28px;
+}

@@ -1,7 +1,8 @@
 #nav-layout{
-  width: 20%;
+  /* width: 20%; */
   height: 100vh;
-  background-color: #18191A;
+  background-color: #121212;
+
 }
 
 #tags-container{
@@ -36,7 +37,7 @@
 }
 
 #search-bar{
-  height: 24px;
+  height: 28px;
   width: 100%;
   border-radius: 16px;
 
@@ -50,8 +51,8 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 12%;
-  padding: 20% 10% 10% 10%;
+  padding: 10% 10% 10% 10%;
+  height: 28%;
 }
 
 

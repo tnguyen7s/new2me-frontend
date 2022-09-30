@@ -1,0 +1,8 @@
+<div class="pic-view-wrapper">
+    <button class="pic-del" *ngIf="images.length>0" (click)="onRemovePic()">&times;</button>
+    <img [src]="images.length>0? images[curInx]:null" alt="" class="post-pic">
+  </div>
+  <div class="next-pre-wrapper">
+    <button type="button" class="nav-btn" (click)="onPreviousPic()">&LT;</button>
+    <button type="button" class="nav-btn " (click)="onNextPic()">&GT;</button>
+</div>

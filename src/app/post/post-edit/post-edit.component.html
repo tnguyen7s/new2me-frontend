@@ -1,0 +1,65 @@
+
+<div class="new2me-appname-heading"><span class="semo-color">New-2-Me!</span></div>
+
+<div class="new2me-form-container" style="width: 80%;">
+  <form class="new2me-form two-sided-pane" (ngSubmit)="onPublishPost()" #postForm="ngForm">
+    <!--LEFT-->
+    <div class="left-pane">
+      <div class="form-group form-inline">
+        <label for="title">Title <span class="required">&ast;</span></label>
+        <input type="text" class="form-control ml-2" id="title" name="title" ngModel required>
+      </div>
+
+      <div class="form-group form-inline">
+        <label for="location">Location <span class="required">&ast;</span></label>
+        <input type="text" class="form-control ml-2" id="location" name="location" ngModel required>
+      </div>
+
+      <div class="form-group form-inline">
+        <label for="condition">Condition<span class="required">&ast;</span></label>
+        <input type="text" class="form-control ml-2" id="condition" name="condition" ngModel required>
+      </div>
+
+      <div class="form-group form-inline">
+        <label for="email">Email <span class="required">&ast;</span></label>
+        <input type="text" class="form-control ml-2" id="email" name="email" ngModel required email>
+      </div>
+
+      <div class="form-group form-inline">
+        <label for="phone">Phone Number <span class="required"> &ast;</span></label>
+        <input type="text" class="form-control ml-2" id="phone" name="phone" ngModel required>
+      </div>
+
+      <div class="form-group form-inline">
+        <label for="tag">Tag <span class="required">&ast;</span></label>
+        <input type="text" class="form-control ml-2" id="tag" name="tag" ngModel required>
+      </div>
+
+      <div class="form-group">
+
+        <textarea name="description" id="description" cols="38" rows="4" placeholder="Description"></textarea>
+      </div>
+    </div>
+
+    <!--RIGHT-->
+    <div class="right-pane" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+      <app-post-pictures [images]="uploadedImages"></app-post-pictures>
+      <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 26%; width: 90%;">
+          <div class="upload">
+            <button type="button" class="new2me-btn">Upload image</button>
+            <input type="file" name="image" id="image" class="realupload" (change)="onUploadImage($event)"/>
+          </div>
+
+
+        <div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%;">
+          <button type="button" class="new2me-btn-nonfilled">Back</button>
+          <button type="button" class="new2me-btn" [disabled]="!postForm.valid || uploadedImages.length<3"
+          matTooltip="Please enter all information and upload at least 3 item's pictures" matTooltipPosition="above"  matTooltipClass="new2me-tooltip">
+          Preview
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>
