@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ObjectUnsubscribedError } from 'rxjs';
 import { TagEnum } from '../enums/TagEnum';
+import { EnumService } from '../services/enum.service';
 
 @Component({
   selector: 'app-left-navbar',
@@ -10,19 +10,14 @@ import { TagEnum } from '../enums/TagEnum';
 })
 export class LeftNavbarComponent implements OnInit {
   public searchBarInput = "";
-  private tagValues = {'🛋️Furniture': TagEnum.Furniture,
-          '👕Apparel': TagEnum.Apparel,
-          '📱Electronics': TagEnum.Electronics,
-          '⛰️Outdoor': TagEnum.Outdoor,
-          '🎮Gaming': TagEnum.Gaming,
-          '🏃‍♂️Sports': TagEnum.Sports,
-          '🐾Pet Supplies': TagEnum.PetSupplies}
+  private tagDict: {string: TagEnum};
+  public tagList: string[];
 
-  public tags: string[];
-  constructor(public router: Router, public route: ActivatedRoute) { }
+  constructor(public router: Router, public route: ActivatedRoute, public enumService: EnumService) { }
 
   ngOnInit(): void {
-    this.tags = Object.keys(this.tagValues);
+    this.tagDict = this.enumService.getTagDict();
+    this.tagList = this.enumService.getTagList();
   }
 
   /**
@@ -31,10 +26,10 @@ export class LeftNavbarComponent implements OnInit {
    * @param tag: the tag key
    */
   public onFilterByTag(tag){
-    console.log('onFilterByTag', tag, this.tagValues[tag])
+    console.log('onFilterByTag', tag, this.tagDict[tag])
 
     // change the route, associate with the tag
-    this.router.navigate(['/'], {queryParams: {'tag': this.tagValues[tag]}})
+    this.router.navigate(['/'], {queryParams: {'tag': this.tagDict[tag]}})
   }
 
 

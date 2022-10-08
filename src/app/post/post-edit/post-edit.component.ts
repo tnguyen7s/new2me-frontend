@@ -1,9 +1,7 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostConditionEnum } from 'src/app/shared/enums/PostConditionEnum';
-import { TagEnum } from 'src/app/shared/enums/TagEnum';
-import { Post } from 'src/app/shared/models/post.model';
+import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/shared/services/posts.service';
 
 @Component({
@@ -20,25 +18,23 @@ export class PostEditComponent implements OnInit {
   private mode = "create";
   public previewed = false;
 
-  // TO DO: get this from the BACKEND
-  public conditions: string[] = ['New', 'Like New', 'Good', 'Quite Good'];
-  public conditionValues = {
-    'New': PostConditionEnum.New,
-    'Like New': PostConditionEnum.LikeNew,
-    'Good': PostConditionEnum.Good,
-    'Quite Good': PostConditionEnum.QuiteGood
+  public conditionList: string[];
+  public conditionDict = {};
+
+  public tagDict = {}
+  public tagList: string [];
+
+  constructor(public route: ActivatedRoute,
+              public router: Router,
+              public postsService: PostService,
+              public enumService: EnumService)
+  {
+    this.conditionList = this.enumService.getConditionList();
+    this.conditionDict = this.enumService.getConditionDict();
+
+    this.tagList =  this.enumService.getTagList();
+    this.tagDict = this.enumService.getTagDict();
   }
-
-  public tagValues = {'🛋️Furniture': TagEnum.Furniture,
-  '👕Apparel': TagEnum.Apparel,
-  '📱Electronics': TagEnum.Electronics,
-  '⛰️Outdoor': TagEnum.Outdoor,
-  '🎮Gaming': TagEnum.Gaming,
-  '🏃‍♂️Sports': TagEnum.Sports,
-  '🐾Pet Supplies': TagEnum.PetSupplies}
-  public tags: string [] = ['🛋️Furniture', '👕Apparel', '📱Electronics', '⛰️Outdoor', '🎮Gaming', '🏃‍♂️Sports', '🐾Pet Supplies']
-
-  constructor(public route: ActivatedRoute, public router: Router, public postsService: PostService) { }
 
   /**
    * 1. Detect if we are in the create mode or edit mode and set the mode
