@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ErrorMessageEnum } from 'src/app/shared/enums/ErrorMessageEnum';
 
 @Component({
@@ -16,7 +17,7 @@ export class SignupComponent implements OnInit {
   strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
   strongPassRequirements = "Your password must have at least: *8 characters \ *1 uppercase letter \ *1 lowercase letter \ *1 digit"
 
-  constructor() {
+  constructor(public router: Router) {
 
   }
 
@@ -73,6 +74,11 @@ export class SignupComponent implements OnInit {
     return true;
   }
 
-
+  /**
+   * 1. switch to login route
+   */
+  onSwitchToLogin(){
+    this.router.navigate(['auth']);
+  }
 
 }

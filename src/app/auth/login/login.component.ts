@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { UserLoginModel } from 'src/app/shared/models/user-login.model';
 
 @Component({
@@ -18,7 +19,7 @@ export class LoginComponent implements OnInit {
   userLoginData: UserLoginModel;
   validLogin = true;
 
-  constructor() { }
+  constructor(public router: Router) { }
 
   ngOnInit(): void {
   }
@@ -48,11 +49,17 @@ export class LoginComponent implements OnInit {
     return username!=this.dummy_user.username || password!=this.dummy_user.password
   }
 
+  /**
+   * 1. Switch the route to auth/signup
+   */
   onSwitchSignUp(){
-
+    this.router.navigate(['auth', 'signup']);
   }
 
+  /**
+   * 1. Switch the route to auth/reset-password
+   */
   onSwitchResetPassword(){
-
+    this.router.navigate(['auth', 'reset-password'])
   }
 }

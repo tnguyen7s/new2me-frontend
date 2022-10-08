@@ -1,0 +1,57 @@
+<nav mat-tab-nav-bar >
+  <a mat-tab-link routerLink="/user/profile" routerLinkActive="active">Your Profile</a>
+  <a mat-tab-link routerLink="/user/posts" routerLinkActive="active">Your Posts</a>
+</nav>
+
+<form #userForm="ngForm" class="profile-wrapper">
+  <div class="form-group">
+    <label for="username">Username</label>
+    <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['username']}">
+      <input type="text" id="username" name="username" class="form-control" ngModel required [disabled]="!editMode['username']">
+      <button type="button" class="edit-btn" (click)="onEdit('username')">{{!editMode['username']? "Edit":"Finish"}}</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="email">Email</label>
+    <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['email']}">
+      <input type="text" id="email" name="email" class="form-control" ngModel required email [disabled]="!editMode['email']">
+      <button type="button" class="edit-btn" (click)="onEdit('email')" >{{!editMode['email']? "Edit":"Finish"}}</button>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="flex-row-start-center">
+    <h2 style="margin: 10px 0px;">Optional</h2>
+    <button type="button" class="new2me-quesmark"
+    matTooltip="Information provided here can facilitate you when creating a post." matTooltipPosition="above"  matTooltipClass="new2me-tooltip" >
+    &quest;
+    </button>
+  </div>
+
+  <div class="form-group">
+    <label for="name">Name</label>
+    <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['name']}">
+      <input type="text" id="name" name="id" class="form-control" ngModel [disabled]="!editMode['name']">
+      <button type="button" class="edit-btn" (click)="onEdit('name')" >{{!editMode['name']? "Edit":"Finish"}}</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="phone">Phone Number</label>
+    <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['phone']}">
+      <input type="text" id="phone" name="phone" class="form-control" ngModel [disabled]="!editMode['phone']" >
+      <button type="button" class="edit-btn" (click)="onEdit('phone')" >{{!editMode['phone']? "Edit":"Finish"}}</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="address" >Address</label>
+    <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['address']}">
+      <input type="text" id="address" name="address" class="form-control" ngModel [disabled]="!editMode['address']">
+      <button type="button" class="edit-btn" (click)="onEdit('address')" >{{!editMode['address']? "Edit":"Finish"}}</button>
+    </div>
+  </div>
+
+</form>

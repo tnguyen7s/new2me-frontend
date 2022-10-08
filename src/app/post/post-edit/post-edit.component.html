@@ -1,8 +1,10 @@
 
 <div class="new2me-appname-heading"><span class="semo-color">New-2-Me!</span></div>
 
-<div class="new2me-form-container" style="width: 80%;">
-  <form class="new2me-form two-sided-pane" (ngSubmit)="onPublishPost()" #postForm="ngForm">
+
+<!--Show this on not previewed-->
+<div *ngIf="!previewed" class="new2me-form-container" style="width: 80%; background-color: #282828" >
+  <form class="two-sided-pane" #postForm="ngForm">
     <!--LEFT-->
     <div class="left-pane">
       <div class="form-group form-inline">
@@ -46,15 +48,15 @@
       <app-post-pictures [images]="uploadedImages"></app-post-pictures>
       <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 26%; width: 90%;">
           <div class="upload">
-            <button type="button" class="new2me-btn">Upload image</button>
+            <button type="button" class="new2me-btn new2me-btn-t2">Upload image</button>
             <input type="file" name="image" id="image" class="realupload" (change)="onUploadImage($event)"/>
           </div>
 
 
         <div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%;">
-          <button type="button" class="new2me-btn-nonfilled">Back</button>
-          <button type="button" class="new2me-btn" [disabled]="!postForm.valid || uploadedImages.length<3"
-          matTooltip="Please enter all information and upload at least 3 item's pictures" matTooltipPosition="above"  matTooltipClass="new2me-tooltip">
+          <button type="button" class="new2me-btn-t2 new2me-btn" (click)="onBackToHome()">Back</button>
+          <button type="button" class="new2me-btn-t1 new2me-btn" [disabled]="!postForm.valid || uploadedImages.length<3"
+          [matTooltip]="!postForm.valid && uploadedImages.length<3? 'Please enter all information and upload at least 3 item pictures': ''" matTooltipPosition="above"  matTooltipClass="new2me-tooltip" (click)="onPreviewPost()">
           Preview
           </button>
         </div>
@@ -63,3 +65,13 @@
 
   </form>
 </div>
+
+<!--Show this on previewed-->
+<div *ngIf="previewed">
+  <app-post-detail></app-post-detail>
+  <button type="button" (click)="onPublishPost()" class="new2me-btn new2me-btn-t1">Publish</button>
+</div>
+
+
+
+

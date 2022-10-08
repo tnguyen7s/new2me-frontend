@@ -19,38 +19,37 @@ body {
 }
 
 .new2me-btn{
-  padding: 14px 24px;
+  padding: 12px 22px;
   border-radius: 32px;
-  border: white 1px solid;
-  background-color: #121212;
-  color: #e4e6e3;
   font-size: 14px;
 }
 
-.new2me-btn:hover{
-  cursor: pointer;
-  background-color: #282828;
-  border: white 2px solid;
-
+.new2me-btn-t1{
+  border: #fff 2px solid;
+  background-color: #121212;
+  color: #fff;
 }
 
-.new2me-btn:disabled{
+.new2me-btn-t1:hover:enabled{
+  cursor: pointer;
+  background-color: #fff;
+  color: #C8102E;
+  border: #C8102E solid 3px;
+  font-weight: 700;
+}
+
+.new2me-btn-t1:disabled{
   cursor:auto;
   background-color: #121212;
-  border: white 1px solid;
-
 }
 
-.new2me-btn-nonfilled{
-  padding: 10px 24px;
-  border-radius: 30px;
+.new2me-btn-t2{
   background-color: #242526;
-  color: white;
+  color: #fff;
   font-size: 14px;
-  font-weight: 600;
 }
 
-.new2me-btn-nonfilled:hover{
+.new2me-btn-t2:hover:enabled{
   cursor: pointer;
   background-color: #3A3B3C;
 }
@@ -99,6 +98,8 @@ body {
   border: red solid 2px;
   border-radius: 50%;
   color: red;
+  font-size: 14px;
+  margin-left: 2px;
 }
 
 .new2me-tooltip{
@@ -151,5 +152,11 @@ body {
 .required{
   color: red;
   font-size: 12px;
+}
+
+.semo-btn{
+  background-color: #C8102E;
+  border-radius: 31.25rem;
+  color: #fff
 }
 

@@ -28,8 +28,8 @@
       <span class="help-block mb-2" style="color:red" *ngIf="!validForm">{{errorMsg}}</span>
 
       <div id="main-auth-container">
-        <button class="new2me-btn-nonfilled" type="button">Login</button>
-        <button class="new2me-btn" type="submit"  [disabled]="!signUpForm.valid">SignUp</button>
+        <button class="new2me-btn-t2 new2me-btn" type="button" (click)="onSwitchToLogin()">Login</button>
+        <button class="new2me-btn-t1 new2me-btn" type="submit"  [disabled]="!signUpForm.valid">SignUp</button>
       </div>
 
     </div>

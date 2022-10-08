@@ -1,0 +1,54 @@
+label{
+  color: black;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.profile-wrapper{
+  width: 60%;
+  margin: 40px auto;
+}
+
+.flex-row-start-center{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center
+}
+
+.input-edit-wrapper{
+  display: flex;
+  justify-content: space-between;
+}
+
+input{
+  width: 50%;
+  border: none;
+}
+
+.form-control:disabled{
+  background-color: white;
+}
+
+.edit-btn{
+  background-color: white;
+  border: 1px solid rgba(0,0,0,.15);
+  padding: 0 16px;
+  border-radius: 99em;
+  transition: .1s background-color,.1s border-color,.1s color,.1s fill
+}
+
+.edit-btn:hover{
+  border-color: rgba(0,0,0,.54);
+}
+
+.edit button{
+  border-color: #0f730c;
+  color: #0f730c;
+}
+
+.edit input{
+  border: 1px solid rgba(0,0,0,.15);
+}
+
+

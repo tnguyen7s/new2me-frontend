@@ -15,11 +15,11 @@
       <span class="help-block mb-2" style="color:red" *ngIf="!validLogin">Password or username is invalid.</span>
 
       <div id="main-auth-container">
-        <button class="new2me-btn-nonfilled" type="button" (click)="onSwitchSignUp()">Sign Up</button>
-        <button class="new2me-btn" type="submit"  [disabled]="!loginForm.valid">Login </button>
+        <button class="new2me-btn-t2 new2me-btn" type="button" (click)="onSwitchSignUp()">Sign Up</button>
+        <button class="new2me-btn-t1 new2me-btn" type="submit"  [disabled]="!loginForm.valid">Login </button>
       </div>
 
-      <button class="new2me-btn-nonfilled" type="button" (click)="onSwitchResetPassword()">Reset Password</button>
+      <button class="new2me-btn-t2 new2me-btn" type="button" (click)="onSwitchResetPassword()">Reset Password</button>
 
     </div>
   </form>
