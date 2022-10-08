@@ -12,6 +12,7 @@ export class PostPicturesComponent implements OnInit {
                     'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/gettyimages-1660671720.jpg?crop=0.668xw:1.00xh;0.167xw,0&resize=640:*']
 
   curInx = 0;
+  @Input() inEdit = true;
   constructor() { }
 
   ngOnInit(): void {
@@ -36,7 +37,7 @@ export class PostPicturesComponent implements OnInit {
   }
 
   /*
-  *remove picture 
+  *remove picture
   */
   onRemovePic(){
     // remove the image from the component

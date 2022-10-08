@@ -1,1 +1,37 @@
-<p>post-detail works!</p>
+
+<div class="new2me-appname-heading"><span class="semo-color">New-2-Me!</span></div>
+
+<div class="row">
+  <div class="col-md-8 mx-auto">
+    <div class="row new2me-container">
+
+      <div class="col-md-6 ml-2 mr-4 new2me-bottom-gradient">
+        <app-post-pictures [images]="post.PostPictures" [inEdit]="false"></app-post-pictures>
+
+      </div>
+
+
+      <div class="col-md-5 ml-4 mr-2 new2me-bottom-gradient" style="position: relative;">
+        <button class="new2me-btn new2me-btn-t1 reply-btn" (click)="onOpenDialog()">Reply</button>
+
+        <h2>{{post.PostTitle}}</h2>
+        <div class="info-box">
+          <span class="secondary-text">Location: </span>
+          <span class="primary-text">{{post.PostLocation}}</span>
+        </div>
+
+        <div class="info-box">
+          <span class="secondary-text">Condition: </span>
+          <span class="primary-text">{{conditionDict[post.PostCondition]}}</span>
+        </div>
+
+        <div class="info-box">
+          <div class="secondary-text">Description: </div>
+          <div class="primary-text">{{post.PostDescription}}</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>

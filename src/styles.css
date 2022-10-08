@@ -54,7 +54,7 @@ body {
   background-color: #3A3B3C;
 }
 
-.new2me-form-container{
+.new2me-container{
   padding: 2%;
   margin: 0 auto;
   border-radius: 28px;
@@ -168,4 +168,24 @@ body {
   padding: 0px !important;
 }
 
+.new2me-bottom-gradient{
+  background-color: #282828;
+  padding: 20px 0px;
+  border-radius: 28px;
+}
+
+.primary-text{
+  color: white;
+  font-size: 14px;
+}
+
+.secondary-text{
+  color: #B3B3B3;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.info-box{
+  margin-top: 14px;
+}
 

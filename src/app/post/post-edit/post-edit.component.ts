@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PostStatusEnum } from 'src/app/shared/enums/PostStatusEnum';
+import { UserPost } from 'src/app/shared/models/user-post.model';
 import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/shared/services/posts.service';
 
@@ -12,7 +14,7 @@ import { PostService } from 'src/app/shared/services/posts.service';
 })
 export class PostEditComponent implements OnInit {
   @ViewChild('postForm') postForm: NgForm;
-  private postValue: any;
+  private post: UserPost;
   public uploadedImages: (string|ArrayBuffer)[] = [];
 
   private mode = "create";
@@ -79,21 +81,23 @@ export class PostEditComponent implements OnInit {
    * 2. navigate to home
    */
   onPublishPost(){
-    console.log('on publish post', this.postValue);
+    console.log('on publish post', this.post);
 
-    const {title, location, condition, tag, email, phone, description} = this.postValue;
-
-    this.postsService.publishPost(title, location, condition, description, tag, this.uploadedImages as string[], email, phone);
+    this.postsService.publishPost(this.post);
 
     this.router.navigate([''])
   }
 
   /**
    * 1. Change the preview flag to be true
+   * 2. Create a post
    */
    onPreviewPost(){
     console.log('on preview post', this.postForm.value);
-    this.postValue = this.postForm.value;
+
+    const {title, location, condition, tag, email, phone, description} = this.postForm.value;
+    this.post = new UserPost(title, location, condition,  description, tag,  this.uploadedImages as string[], email, phone, PostStatusEnum.Active);
+
     this.previewed = true;
    }
 
@@ -103,5 +107,14 @@ export class PostEditComponent implements OnInit {
    onBackToHome(){
     this.router.navigate(['/'])
    }
+
+   /***
+    * 1. set previewed to be false
+    */
+   onBackToPostEdit(){
+    this.previewed = false;
+   }
+
+
 
 }

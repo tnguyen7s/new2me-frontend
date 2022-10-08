@@ -25,6 +25,8 @@ import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
+import {MatDialogModule} from '@angular/material/dialog';
+import { PostContactDialog } from './post/post-detail/post-contact-dialog/post-contact-dialog.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +43,8 @@ import {MatInputModule} from '@angular/material/input';
     PostDetailComponent,
     UserComponent,
     UserProfileComponent,
-    UserPostsComponent
+    UserPostsComponent,
+    PostContactDialog
   ],
   imports: [
     BrowserModule,
@@ -51,7 +54,8 @@ import {MatInputModule} from '@angular/material/input';
     MatSelectModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

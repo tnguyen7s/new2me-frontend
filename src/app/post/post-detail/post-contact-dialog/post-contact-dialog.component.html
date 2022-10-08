@@ -1,0 +1,20 @@
+<div>
+  <h1 mat-dialog-title>Owner's Contact Information</h1>
+
+  <div mat-dialog-content>
+    <div class="info-box">
+      <span class="secondary-text">Email: </span>
+      <span class="primary-text">{{data.email}}</span>
+    </div>
+
+    <div class="info-box">
+      <span class="secondary-text">Phone Number: </span>
+      <span class="primary-text">{{data.phone}}</span>
+    </div>
+  </div>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onCloseDialog()" class="new2me-btn new2me-btn-t2">Thanks</button>
+  </div>
+
+</div>

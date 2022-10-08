@@ -1,30 +1,30 @@
 
-<div class="new2me-appname-heading"><span class="semo-color">New-2-Me!</span></div>
+<div *ngIf="!previewed" class="new2me-appname-heading"><span class="semo-color">New-2-Me!</span></div>
 
 
 <!--Show this on not previewed-->
-<div *ngIf="!previewed" class="new2me-form-container" style="width: 80%; background-color: #282828" >
+<div *ngIf="!previewed" class="new2me-container new2me-bottom-gradient" style="width: 80%;" >
   <form class="two-sided-pane" #postForm="ngForm">
     <!--LEFT-->
     <div class="left-pane">
       <div class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput name="title" ngModel required>
+          <input matInput name="title" [ngModel]="post? post.PostTitle:''" required>
         </mat-form-field>
       </div>
 
       <div class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Location</mat-label>
-          <input matInput placeholder="Ex. apt|building|etc.,street address,city,state,zipcode" name="location" ngModel required>
+          <input matInput placeholder="Ex. apt|building|etc.,street address,city,state,zipcode" name="location" [ngModel]="post? post.PostLocation:''" required>
         </mat-form-field>
       </div>
 
       <div style="display: flex; justify-content:space-between" class="form-group">
         <mat-form-field>
           <mat-label>Condition</mat-label>
-          <mat-select [ngModel]="conditionDict[conditionList[0]]" required name="condition">
+          <mat-select [ngModel]="post? post.PostCondition:conditionDict[conditionList[0]]" required name="condition">
             <mat-option *ngFor="let condition of conditionList" [value]="conditionDict[condition]">
               {{condition}}
             </mat-option>
@@ -33,7 +33,7 @@
 
         <mat-form-field>
           <mat-label>Tag</mat-label>
-          <mat-select [ngModel]="tagDict[tagList[0]]" required name="tag">
+          <mat-select [ngModel]="post? post.PostTag:tagDict[tagList[0]]" required name="tag">
             <mat-option *ngFor="let tag of tagList" [value]="tagDict[tag]">
               {{tag}}
             </mat-option>
@@ -44,12 +44,12 @@
       <div style="display: flex; justify-content:space-between" class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Ex. myemail@gmail.com" name="email" ngModel required>
+          <input matInput placeholder="Ex. myemail@gmail.com" name="email" [ngModel]="post? post.PostContactEmail:''" required>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Phone Number</mat-label>
-          <input matInput placeholder="Ex. 123-456-7890" name="phone" ngModel required>
+          <input matInput placeholder="Ex. 123-456-7890" name="phone" [ngModel]="post? post.PostContactPhone:''" required>
         </mat-form-field>
       </div>
 
@@ -62,7 +62,7 @@
       <div class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Description</mat-label>
-          <textarea matInput cols="40" rows="4" name="description" ngModel></textarea>
+          <textarea matInput cols="40" rows="4" name="description" [ngModel]="post? post.PostDescription:''"></textarea>
         </mat-form-field>
       </div>
 
@@ -94,8 +94,16 @@
 
 <!--Show this on previewed-->
 <div *ngIf="previewed">
-  <app-post-detail></app-post-detail>
-  <button type="button" (click)="onPublishPost()" class="new2me-btn new2me-btn-t1">Publish</button>
+  <app-post-detail [post]="post"></app-post-detail>
+
+
+  <div class="row mt-4">
+    <div class="col-md-8 mx-auto" style="display: flex; justify-content: space-evenly; ">
+      <button type="button" class="mr-5" (click)="onBackToPostEdit()" class="new2me-btn new2me-btn-t2">Back</button>
+      <button type="button" (click)="onPublishPost()" class="new2me-btn new2me-btn-t1">Publish</button>
+    </div>
+  </div>
+
 </div>
 
 
