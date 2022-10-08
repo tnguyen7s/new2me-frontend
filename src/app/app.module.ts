@@ -9,7 +9,6 @@ import { AuthComponent } from './auth/auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { FormsModule } from '@angular/forms';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import { PostEditComponent } from './post/post-edit/post-edit.component';
 import { PostPicturesComponent } from './post/post-pictures/post-pictures.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
@@ -20,7 +19,12 @@ import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { UserComponent } from './user/user.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { UserPostsComponent } from './user/user-posts/user-posts.component';
+
+import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatInputModule} from '@angular/material/input';
 
 @NgModule({
   declarations: [
@@ -44,7 +48,10 @@ import {MatTabsModule} from '@angular/material/tabs';
     FormsModule,
     MatTooltipModule,
     MatTabsModule,
-    AppRoutingModule
+    MatSelectModule,
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

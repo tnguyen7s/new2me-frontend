@@ -149,14 +149,23 @@ body {
   overflow: hidden;
 }
 
-.required{
-  color: red;
-  font-size: 12px;
-}
-
 .semo-btn{
   background-color: #C8102E;
   border-radius: 31.25rem;
   color: #fff
 }
+
+.mat-form-field{
+  background: White;
+  padding: .1em 0.5em 0 0.5em;
+  /* border-radius: 20px; */
+  width: 100%;
+}
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+  padding-bottom: 1.5em;
+}
+.mat-form-field-appearance-fill .mat-form-field-flex {
+  padding: 0px !important;
+}
+
 

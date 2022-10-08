@@ -7,40 +7,66 @@
   <form class="two-sided-pane" #postForm="ngForm">
     <!--LEFT-->
     <div class="left-pane">
-      <div class="form-group form-inline">
-        <label for="title">Title <span class="required">&ast;</span></label>
-        <input type="text" class="form-control ml-2" id="title" name="title" ngModel required>
-      </div>
-
-      <div class="form-group form-inline">
-        <label for="location">Location <span class="required">&ast;</span></label>
-        <input type="text" class="form-control ml-2" id="location" name="location" ngModel required>
-      </div>
-
-      <div class="form-group form-inline">
-        <label for="condition">Condition<span class="required">&ast;</span></label>
-        <input type="text" class="form-control ml-2" id="condition" name="condition" ngModel required>
-      </div>
-
-      <div class="form-group form-inline">
-        <label for="email">Email <span class="required">&ast;</span></label>
-        <input type="text" class="form-control ml-2" id="email" name="email" ngModel required email>
-      </div>
-
-      <div class="form-group form-inline">
-        <label for="phone">Phone Number <span class="required"> &ast;</span></label>
-        <input type="text" class="form-control ml-2" id="phone" name="phone" ngModel required>
-      </div>
-
-      <div class="form-group form-inline">
-        <label for="tag">Tag <span class="required">&ast;</span></label>
-        <input type="text" class="form-control ml-2" id="tag" name="tag" ngModel required>
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Title</mat-label>
+          <input matInput name="title" ngModel required>
+        </mat-form-field>
       </div>
 
       <div class="form-group">
-
-        <textarea name="description" id="description" cols="38" rows="4" placeholder="Description"></textarea>
+        <mat-form-field appearance="fill">
+          <mat-label>Location</mat-label>
+          <input matInput placeholder="Ex. apt|building|etc.,street address,city,state,zipcode" name="location" ngModel required>
+        </mat-form-field>
       </div>
+
+      <div style="display: flex; justify-content:space-between" class="form-group">
+        <mat-form-field>
+          <mat-label>Condition</mat-label>
+          <mat-select [ngModel]="conditionValues[conditions[0]]" required name="condition">
+            <mat-option *ngFor="let condition of conditions" [value]="conditionValues[condition]">
+              {{condition}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Tag</mat-label>
+          <mat-select [ngModel]="tagValues[tags[0]]" required name="tag">
+            <mat-option *ngFor="let tag of tags" [value]="tagValues[tag]">
+              {{tag}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <div style="display: flex; justify-content:space-between" class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="Ex. myemail@gmail.com" name="email" ngModel required>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Phone Number</mat-label>
+          <input matInput placeholder="Ex. 123-456-7890" name="phone" ngModel required>
+        </mat-form-field>
+      </div>
+
+      <!-- <div class="form-group form-inline">
+        <label for="tag">Tag <span class="required">&ast;</span></label>
+        <input type="text" class="form-control ml-2" id="tag" name="tag" ngModel required>
+      </div> -->
+
+
+      <div class="form-group">
+        <mat-form-field appearance="fill">
+          <mat-label>Description</mat-label>
+          <textarea matInput cols="40" rows="4" name="description" ngModel></textarea>
+        </mat-form-field>
+      </div>
+
+
     </div>
 
     <!--RIGHT-->
@@ -56,7 +82,7 @@
         <div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%;">
           <button type="button" class="new2me-btn-t2 new2me-btn" (click)="onBackToHome()">Back</button>
           <button type="button" class="new2me-btn-t1 new2me-btn" [disabled]="!postForm.valid || uploadedImages.length<3"
-          [matTooltip]="!postForm.valid && uploadedImages.length<3? 'Please enter all information and upload at least 3 item pictures': ''" matTooltipPosition="above"  matTooltipClass="new2me-tooltip" (click)="onPreviewPost()">
+          [matTooltip]="!postForm.valid || uploadedImages.length<3? 'Please enter all information and upload at least 3 item pictures': ''" matTooltipPosition="above"  matTooltipClass="new2me-tooltip" (click)="onPreviewPost()">
           Preview
           </button>
         </div>

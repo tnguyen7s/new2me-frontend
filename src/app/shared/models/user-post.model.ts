@@ -11,13 +11,14 @@ export class UserPost extends Post
               PostLocation: string,
               PostCondition: PostConditionEnum,
               PostDescription: string,
-              PostTags: TagEnum[],
+              PostTag: TagEnum,
               PostPictures: string[],
               PostContactEmail: string,
               PostContactPhone: string,
-              PostStatus: PostStatusEnum)
+              PostStatus: PostStatusEnum,
+              PostId: Number=-1)
   {
-              super(PostTitle, PostLocation, PostCondition, PostDescription, PostTags, PostPictures, PostContactEmail, PostContactPhone);
+              super(PostTitle, PostLocation, PostCondition, PostDescription, PostTag, PostPictures, PostContactEmail, PostContactPhone, PostId);
               this.PostStatus = PostStatus;
   }
 }

@@ -2,11 +2,12 @@ import { PostConditionEnum } from "../enums/PostConditionEnum";
 import { TagEnum } from "../enums/TagEnum";
 
 export class Post{
+  public PostId: Number;
   public PostTitle: string;
   public PostLocation: string;
   public PostCondition: PostConditionEnum;
   public PostDescription: string;
-  public PostTags: TagEnum[];
+  public PostTag: TagEnum;
   public PostPictures: string[];
   public PostContactEmail: string;
   public PostContactPhone: string;
@@ -15,18 +16,20 @@ export class Post{
               PostLocation: string,
               PostCondition: PostConditionEnum,
               PostDescription: string,
-              PostTags: TagEnum[],
+              PostTag: TagEnum,
               PostPictures: string[],
               PostContactEmail: string,
-              PostContactPhone: string)
+              PostContactPhone: string,
+              PostId: Number = -1)
   {
                 this.PostTitle = PostTitle;
                 this.PostLocation = PostLocation;
                 this.PostCondition = PostCondition;
                 this.PostDescription = PostDescription;
-                this.PostTags = PostTags;
+                this.PostTag = PostTag;
                 this.PostPictures = PostPictures;
                 this.PostContactEmail = PostContactEmail;
                 this.PostContactPhone = PostContactPhone;
+                this.PostId = PostId;
   }
 }

@@ -1,20 +1,44 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PostConditionEnum } from 'src/app/shared/enums/PostConditionEnum';
+import { TagEnum } from 'src/app/shared/enums/TagEnum';
+import { Post } from 'src/app/shared/models/post.model';
+import { PostService } from 'src/app/shared/services/posts.service';
 
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
-  styleUrls: ['./post-edit.component.css']
+  styleUrls: ['./post-edit.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class PostEditComponent implements OnInit {
   @ViewChild('postForm') postForm: NgForm;
+  private postValue: any;
   public uploadedImages: (string|ArrayBuffer)[] = [];
 
   private mode = "create";
   public previewed = false;
 
-  constructor(public route: ActivatedRoute, public router: Router) { }
+  // TO DO: get this from the BACKEND
+  public conditions: string[] = ['New', 'Like New', 'Good', 'Quite Good'];
+  public conditionValues = {
+    'New': PostConditionEnum.New,
+    'Like New': PostConditionEnum.LikeNew,
+    'Good': PostConditionEnum.Good,
+    'Quite Good': PostConditionEnum.QuiteGood
+  }
+
+  public tagValues = {'🛋️Furniture': TagEnum.Furniture,
+  '👕Apparel': TagEnum.Apparel,
+  '📱Electronics': TagEnum.Electronics,
+  '⛰️Outdoor': TagEnum.Outdoor,
+  '🎮Gaming': TagEnum.Gaming,
+  '🏃‍♂️Sports': TagEnum.Sports,
+  '🐾Pet Supplies': TagEnum.PetSupplies}
+  public tags: string [] = ['🛋️Furniture', '👕Apparel', '📱Electronics', '⛰️Outdoor', '🎮Gaming', '🏃‍♂️Sports', '🐾Pet Supplies']
+
+  constructor(public route: ActivatedRoute, public router: Router, public postsService: PostService) { }
 
   /**
    * 1. Detect if we are in the create mode or edit mode and set the mode
@@ -49,21 +73,31 @@ export class PostEditComponent implements OnInit {
     // set onload
     reader.onload = (_event) => {
       this.uploadedImages.push(reader.result);
+      this.uploadedImages.reverse();
       console.log("on upload image", this.uploadedImages)
     }
   }
 
   /**
-   * save the post information and images to the db
+   * 1. save the post information and images to the db
+   * 2. navigate to home
    */
   onPublishPost(){
-    console.log('on publish post', this.postForm);
+    console.log('on publish post', this.postValue);
+
+    const {title, location, condition, tag, email, phone, description} = this.postValue;
+
+    this.postsService.publishPost(title, location, condition, description, tag, this.uploadedImages as string[], email, phone);
+
+    this.router.navigate([''])
   }
 
   /**
    * 1. Change the preview flag to be true
    */
    onPreviewPost(){
+    console.log('on preview post', this.postForm.value);
+    this.postValue = this.postForm.value;
     this.previewed = true;
    }
 
