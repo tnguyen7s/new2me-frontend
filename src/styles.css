@@ -8,10 +8,14 @@ body {
 
 .new2me-appname-heading{
   text-align: center;
-  margin: 4% auto;
+  margin: 40px auto;
   font-size: 38px;
   font-weight: 700;
   font-family: 'Signika Negative', sans-serif;;
+}
+.new2me-appname-heading:hover{
+  text-decoration: underline white 4px;
+  cursor: pointer;
 }
 
 .semo-color{
@@ -170,19 +174,19 @@ body {
 
 .new2me-bottom-gradient{
   background-color: #282828;
-  padding: 20px 0px;
+  padding: 20px;
   border-radius: 28px;
 }
 
 .primary-text{
   color: white;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .secondary-text{
   color: #B3B3B3;
   font-size: 16px;
-  font-weight: 500;
 }
 
 .info-box{

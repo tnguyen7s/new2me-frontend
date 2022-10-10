@@ -1,1 +1,18 @@
-<p>home works!</p>
+<div class="new2me-appname-heading"><span class="semo-color">New-2-Me!</span></div>
+<div class="row-flex">
+  <app-post-card *ngFor="let post of posts.slice(this.pageIndex*8, this.pageIndex*8+4); let i=index" [post]="post" [routerLink]="['post', this.pageIndex*8+i]"></app-post-card>
+</div>
+
+<div class="row-flex">
+  <app-post-card *ngFor="let post of posts.slice(this.pageIndex*8+4, this.pageIndex*8+8); let i=index;" [post]="post" [routerLink]="['post', this.pageIndex*8+i+4]"></app-post-card>
+</div>
+
+<div class="row">
+  <div class="col-md-4 mx-auto">
+    <mat-paginator [length]="posts.length"
+    [pageSize]="pageSize"
+    (page)="pageIndex = $event.pageIndex">
+    </mat-paginator>
+  </div>
+</div>
+

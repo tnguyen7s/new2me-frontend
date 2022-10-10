@@ -1,0 +1,10 @@
+.row-flex{
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.mat-paginator{
+  font-size: 15px;
+}
+

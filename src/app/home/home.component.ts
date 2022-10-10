@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
+import { Post } from '../shared/models/post.model';
+import { PostService } from '../shared/services/posts.service';
 
 @Component({
   selector: 'app-home',
@@ -7,8 +10,18 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  // all posts
+  public posts: Post[];
 
-  constructor(public route: ActivatedRoute) { }
+  // how many to display per page
+  public pageSize = 8;
+
+  // current page index
+  public pageIndex = 0;
+
+
+  constructor(public route: ActivatedRoute, public postService: PostService) {
+  }
 
   /**
    * 1. Listen to any change in the route's query params
@@ -30,7 +43,8 @@ export class HomeComponent implements OnInit {
       }
     });
 
-
+    // get all posts from postService
+    this.posts = this.postService.getHomePosts();
   }
 
 }

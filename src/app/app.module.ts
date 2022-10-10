@@ -19,6 +19,9 @@ import { PostDetailComponent } from './post/post-detail/post-detail.component';
 import { UserComponent } from './user/user.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { UserPostsComponent } from './user/user-posts/user-posts.component';
+import { PostContactDialog } from './post/post-detail/post-contact-dialog/post-contact-dialog.component';
+import { PostCardComponent } from './shared/post-card/post-card.component';
+
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -26,7 +29,11 @@ import {MatSelectModule} from '@angular/material/select';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
-import { PostContactDialog } from './post/post-detail/post-contact-dialog/post-contact-dialog.component';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { NotFoundComponent } from './shared/not-found/not-found.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -44,7 +51,9 @@ import { PostContactDialog } from './post/post-detail/post-contact-dialog/post-c
     UserComponent,
     UserProfileComponent,
     UserPostsComponent,
-    PostContactDialog
+    PostContactDialog,
+    PostCardComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +64,8 @@ import { PostContactDialog } from './post/post-detail/post-contact-dialog/post-c
     AppRoutingModule,
     BrowserAnimationsModule,
     MatInputModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

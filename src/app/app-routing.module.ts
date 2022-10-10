@@ -8,6 +8,7 @@ import { HomeComponent } from "./home/home.component";
 import { PostDetailComponent } from "./post/post-detail/post-detail.component";
 import { PostEditComponent } from "./post/post-edit/post-edit.component";
 import { PostComponent } from "./post/post.component";
+import { NotFoundComponent } from "./shared/not-found/not-found.component";
 import { UserPostsComponent } from "./user/user-posts/user-posts.component";
 import { UserProfileComponent } from "./user/user-profile/user-profile.component";
 import { UserComponent } from "./user/user.component";
@@ -18,7 +19,7 @@ const routes: Routes = [
   {path: "post", component: PostComponent, children: [
     {path: "create", component: PostEditComponent}, // implement canActivate and canDeactivate
     {path: ":id/edit", component: PostEditComponent},
-    {path: ":id", component: PostDetailComponent},
+    {path: ":idx", component: PostDetailComponent},
   ]},
   {path: "auth", component: AuthComponent, children: [
     {path: "", redirectTo: "login", pathMatch: "full"},
@@ -30,7 +31,9 @@ const routes: Routes = [
     {path: "", redirectTo: "profile", pathMatch: "full"},
     {path: "profile", component: UserProfileComponent}, // implement canActivate
     {path: "posts", component: UserPostsComponent} // implement canActivate
-  ]}
+  ]},
+  {path: "not-found", component: NotFoundComponent},
+  {path: "**", redirectTo: "not-found"}
 ]
 
 @NgModule({

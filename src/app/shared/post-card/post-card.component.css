@@ -1,0 +1,33 @@
+img{
+  width: 150px;
+  height: 150px;
+
+  border-radius: 8px;
+}
+
+.card-wrapper{
+  background-color: #282828;
+
+  padding: 16px;
+  width: 210px;
+
+  border-radius: 14px;
+}
+
+.card-wrapper:hover{
+  background-color: #3A3B3C;
+  cursor: pointer;
+}
+
+h2:hover{
+  text-decoration: underline;
+}
+
+h2{
+  margin-bottom: 0px;
+}
+
+.secondary-text{
+  font-size: 14px;
+}
+
