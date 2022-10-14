@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { PostConditionEnum } from "../enums/PostConditionEnum";
-import { TagEnum } from "../enums/TagEnum";
+import { PostTagEnum } from "../enums/PostTagEnum";
 
 @Injectable({
   providedIn: "root"
@@ -53,13 +53,13 @@ export class EnumService{
   // TAGS
   private tagList: string[] = [];
   private tagDict = {
-    '🛋️Furniture': TagEnum.Furniture,
-    '👕Apparel': TagEnum.Apparel,
-    '📱Electronics': TagEnum.Electronics,
-    '⛰️Outdoor': TagEnum.Outdoor,
-    '🎮Gaming': TagEnum.Gaming,
-    '🏃‍♂️Sports': TagEnum.Sports,
-    '🐾Pet Supplies': TagEnum.PetSupplies
+    '🛋️Furniture': PostTagEnum.Furniture,
+    '👕Apparel': PostTagEnum.Apparel,
+    '📱Electronics': PostTagEnum.Electronics,
+    '⛰️Outdoor': PostTagEnum.Outdoor,
+    '🎮Gaming': PostTagEnum.Gaming,
+    '🏃‍♂️Sports': PostTagEnum.Sports,
+    '🐾Pet Supplies': PostTagEnum.PetSupplies
   }
 
 
@@ -81,7 +81,7 @@ export class EnumService{
    * 1. If the tagDict is empty, send a request to backend to get the list
    * 2. Return a copy of the "tagDict"
    */
-  public getTagDict(): {string: TagEnum}{
+  public getTagDict(): {string: PostTagEnum}{
     if (!this.tagDict){
       this.readTags();
     }

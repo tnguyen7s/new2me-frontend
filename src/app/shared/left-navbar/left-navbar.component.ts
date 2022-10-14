@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { TagEnum } from '../enums/TagEnum';
+import { PostTagEnum } from '../enums/PostTagEnum';
 import { EnumService } from '../services/enum.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { EnumService } from '../services/enum.service';
 })
 export class LeftNavbarComponent implements OnInit {
   public searchBarInput = "";
-  private tagDict: {string: TagEnum};
+  private tagDict: {string: PostTagEnum};
   public tagList: string[];
 
   constructor(public router: Router, public route: ActivatedRoute, public enumService: EnumService) { }

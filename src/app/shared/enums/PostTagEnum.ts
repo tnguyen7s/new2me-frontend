@@ -1,4 +1,4 @@
-export enum TagEnum{
+export enum PostTagEnum{
   Furniture = 0,
   Apparel = 1,
   Electronics = 2,

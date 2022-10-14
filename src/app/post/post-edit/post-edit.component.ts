@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostStatusEnum } from 'src/app/shared/enums/PostStatusEnum';
-import { UserPost } from 'src/app/shared/models/user-post.model';
+import { Post } from 'src/app/shared/models/post.model';
 import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/shared/services/posts.service';
 
@@ -14,7 +14,7 @@ import { PostService } from 'src/app/shared/services/posts.service';
 })
 export class PostEditComponent implements OnInit {
   @ViewChild('postForm') postForm: NgForm;
-  private post: UserPost;
+  private post: Post;
   public uploadedImages: (string|ArrayBuffer)[] = [];
 
   private mode = "create";
@@ -96,7 +96,7 @@ export class PostEditComponent implements OnInit {
     console.log('on preview post', this.postForm.value);
 
     const {title, location, condition, tag, email, phone, description} = this.postForm.value;
-    this.post = new UserPost(title, location, condition,  description, tag,  this.uploadedImages as string[], email, phone, PostStatusEnum.Active);
+    this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages as string[], email, phone, -1, PostStatusEnum.Active);
 
     this.previewed = true;
    }
