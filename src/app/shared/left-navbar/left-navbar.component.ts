@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 import { PostTagEnum } from '../enums/PostTagEnum';
 import { EnumService } from '../services/enum.service';
 
@@ -13,7 +14,7 @@ export class LeftNavbarComponent implements OnInit {
   private tagDict: {string: PostTagEnum};
   public tagList: string[];
 
-  constructor(public router: Router, public route: ActivatedRoute, public enumService: EnumService) { }
+  constructor(public router: Router, public route: ActivatedRoute, public enumService: EnumService, public authService: AuthService) { }
 
   ngOnInit(): void {
     this.tagDict = this.enumService.getTagDict();
@@ -52,6 +53,9 @@ export class LeftNavbarComponent implements OnInit {
    * 1. Change to the route post/create
    */
   onCreatePost(){
+    // in case cannot pass the guard, need to define the route to navigate to after authentication
+    this.authService.afterAuthRoute = ["/post", "create"];
+
     this.router.navigate(['/post', 'create']);
   }
 }

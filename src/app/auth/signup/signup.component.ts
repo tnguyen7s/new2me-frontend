@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ErrorMessageEnum } from 'src/app/shared/enums/ErrorMessageEnum';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -10,14 +11,13 @@ import { ErrorMessageEnum } from 'src/app/shared/enums/ErrorMessageEnum';
 })
 export class SignupComponent implements OnInit {
   @ViewChild('signUpForm') signUpForm: NgForm;
-  dummyExistingUserName = "tnguyen7s";
 
   validForm = true;
   errorMsg = "";
   strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
   strongPassRequirements = "Your password must have at least: *8 characters \ *1 uppercase letter \ *1 lowercase letter \ *1 digit"
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public authService: AuthService) {
 
   }
 
@@ -25,17 +25,33 @@ export class SignupComponent implements OnInit {
 
   }
 
+  /**
+   * 1. validate password: password matched and password secure
+   * 2. send an http request to the server to sign up
+   * 3. Allow access if signup succeeds
+   */
   onSignUp(){
     console.log("onSignUp", this.signUpForm);
 
     const {username, password, repassword, email} = this.signUpForm.value;
 
     // validate the form value
-    this.validForm = this.validatePassword(password, repassword) && this.validateUsername(username);
+    this.validForm = this.validatePassword(password, repassword)
 
     // sign up in action
     if (this.validForm){
-      console.log('Signup succeed!')
+      this.authService.signup(username, password, email)
+                      .subscribe(
+                        (resData) =>{
+                          console.log("onSignup", resData)
+                          this.router.navigate(this.authService.afterAuthRoute);
+                        },
+                        (error) => {
+                          console.log("onSignup", error['error'])
+                          this.validForm = false;
+                          this.errorMsg = error['error'];
+                        }
+                      )
     }
   }
 
@@ -54,20 +70,6 @@ export class SignupComponent implements OnInit {
 
     if (!this.strongRegex.test(password)){
       this.errorMsg = ErrorMessageEnum.InsecurePass;
-      return false;
-    }
-
-    return true;
-  }
-
-  /**
-   *validate usernam and set error msg if any
-   * @param username
-   * @returns true for unique username, and false for existing username
-   */
-  validateUsername(username: string): boolean{
-    if (username==this.dummyExistingUserName){
-      this.errorMsg = ErrorMessageEnum.NonuniqueUsername;
       return false;
     }
 

@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AuthGuard } from "./auth/auth.guard";
 import { AuthComponent } from "./auth/auth/auth.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { ResetPasswordComponent } from "./auth/reset-password/reset-password.component";
@@ -17,8 +18,8 @@ import { UserComponent } from "./user/user.component";
 const routes: Routes = [
   {path: "", component: HomeComponent}, // need to implement resolver
   {path: "post", component: PostComponent, children: [
-    {path: "create", component: PostEditComponent}, // implement canActivate and canDeactivate
-    {path: ":id/edit", component: PostEditComponent},
+    {path: "create", component: PostEditComponent, canActivate: [AuthGuard]}, // implement canActivate and canDeactivate
+    {path: ":id/edit", component: PostEditComponent, canActivate: [AuthGuard]},
     {path: ":idx", component: PostDetailComponent},
   ]},
   {path: "auth", component: AuthComponent, children: [
@@ -27,7 +28,7 @@ const routes: Routes = [
     {path: "signup", component: SignupComponent},
     {path: "reset-password", component: ResetPasswordComponent}
   ]},
-  {path: "user", component: UserComponent, children: [
+  {path: "user", component: UserComponent, canActivate: [AuthGuard], children: [
     {path: "", redirectTo: "profile", pathMatch: "full"},
     {path: "profile", component: UserProfileComponent}, // implement canActivate
     {path: "posts", component: UserPostsComponent} // implement canActivate

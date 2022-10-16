@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -16,7 +17,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     'phone': false,
     'address': false
   }
-  constructor() { }
+  constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -38,5 +39,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.onSaveProfile();
+  }
+
+  onLogout(){
+    this.authService.logout();
   }
 }

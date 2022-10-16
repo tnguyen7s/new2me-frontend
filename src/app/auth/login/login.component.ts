@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserLoginModel } from 'src/app/shared/models/user-login.model';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-login',
@@ -11,43 +11,34 @@ import { UserLoginModel } from 'src/app/shared/models/user-login.model';
 export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
 
-  dummy_user = {
-    username: "tnguyen7s",
-    password: "hanh312$"
-  }
-
-  userLoginData: UserLoginModel;
   validLogin = true;
 
-  constructor(public router: Router) { }
+  constructor(public router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
+  /**
+   * 1. Request AuthService to send login POST httprequest
+   * 2. set this.validLogin = false if login fails
+   * 3. Allow access after login succeeds
+   */
   onLogin(){
     console.log('onLogin', this.loginForm);
 
-    // validate login
     const {username, password} = this.loginForm.value;
 
-    if (this.validateLogin(username, password)){
-      this.validLogin = false;
-    }
-    else{
-
-    }
-
+    this.authService.login(username, password)
+                    .subscribe(resData => {
+                      console.log("onLogin", resData);
+                      this.router.navigate(this.authService.afterAuthRoute);
+                    },
+                    (error) => {
+                      console.log("onLogin", error);
+                      this.validLogin = false;
+                    });
   }
 
-  /**
-   *
-   * @param username
-   * @param password
-   * @returns true if login succeeds and false if login fails
-   */
-  validateLogin(username: string, password: string){
-    return username!=this.dummy_user.username || password!=this.dummy_user.password
-  }
 
   /**
    * 1. Switch the route to auth/signup

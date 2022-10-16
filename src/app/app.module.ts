@@ -31,6 +31,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 
@@ -65,7 +66,8 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     BrowserAnimationsModule,
     MatInputModule,
     MatDialogModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
