@@ -9,7 +9,7 @@ import { HomeComponent } from "./home/home.component";
 import { PostDetailComponent } from "./post/post-detail/post-detail.component";
 import { PostEditComponent } from "./post/post-edit/post-edit.component";
 import { PostComponent } from "./post/post.component";
-import { NotFoundComponent } from "./shared/not-found/not-found.component";
+import { NotFoundComponent } from "./not-found/not-found.component";
 import { UserPostsComponent } from "./user/user-posts/user-posts.component";
 import { UserProfileComponent } from "./user/user-profile/user-profile.component";
 import { UserComponent } from "./user/user.component";
