@@ -13,6 +13,7 @@ img{
   height: 240px;
 
   border-radius: 14px;
+  transition: all 1s ease-out;
 }
 
 .card-wrapper:hover{

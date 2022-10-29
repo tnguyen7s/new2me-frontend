@@ -10,6 +10,7 @@ import { Post } from '../../shared/models/post.model';
 export class PostCardComponent implements OnInit {
   @Input() post: Post;
   @Input() idx: Number;
+  imageShown = true;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -18,5 +19,13 @@ export class PostCardComponent implements OnInit {
 
   onOpenPost(){
     this.router.navigate(["post", this.idx])
+  }
+
+  onShowImage(){
+    this.imageShown = true;
+  }
+
+  onShowDetail(){
+    this.imageShown = false;
   }
 }
