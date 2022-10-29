@@ -33,6 +33,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './auth/interceptor.auth';
+import { AppDialogComponent } from './shared/app-dialog/app-dialog.component';
 
 
 
@@ -55,7 +56,8 @@ import { InterceptorService } from './auth/interceptor.auth';
     UserPostsComponent,
     PostContactDialog,
     PostCardComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    AppDialogComponent
   ],
   imports: [
     BrowserModule,

@@ -25,17 +25,7 @@ export class PostService{
 
     // send the post to back end
     console.log('send post to backend', newPost);
-    this.http.post("http://localhost:5024/api/post", newPost)
-              .subscribe(resData=>{
-                console.log("publishPost to db", resData);
-              },
-              error => {
-                console.error("publishPost to db", error);
-
-                if (error.headers.status==401){
-                  this.router.navigate(["auth"]);
-                }
-              })
+    return this.http.post("http://localhost:5024/api/post", newPost);
   }
 
   public updatePost(post: Post){

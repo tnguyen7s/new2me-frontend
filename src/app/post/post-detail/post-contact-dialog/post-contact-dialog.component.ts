@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
-export interface DialogData {
+export interface ContactDialogData {
   phone: string;
   email: string;
 }
@@ -13,7 +13,7 @@ export interface DialogData {
 })
 
 export class PostContactDialog{
-  constructor(public DialogRef: MatDialogRef<PostContactDialog>, @Inject(MAT_DIALOG_DATA) public data: DialogData){}
+  constructor(public DialogRef: MatDialogRef<PostContactDialog>, @Inject(MAT_DIALOG_DATA) public data: ContactDialogData){}
 
   onCloseDialog(){
     this.DialogRef.close();

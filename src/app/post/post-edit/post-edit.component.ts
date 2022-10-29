@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AppDialogComponent } from 'src/app/shared/app-dialog/app-dialog.component';
 import { PostStatusEnum } from 'src/app/shared/enums/PostStatusEnum';
 import { Post } from 'src/app/shared/models/post.model';
 import { EnumService } from 'src/app/shared/services/enum.service';
@@ -26,10 +28,11 @@ export class PostEditComponent implements OnInit {
   public tagDict = {}
   public tagList: string [];
 
-  constructor(public route: ActivatedRoute,
-              public router: Router,
-              public postsService: PostService,
-              public enumService: EnumService)
+  constructor(private route: ActivatedRoute,
+              private router: Router,
+              private postsService: PostService,
+              private enumService: EnumService,
+              private dialog: MatDialog)
   {
     this.conditionList = this.enumService.getConditionList();
     this.conditionDict = this.enumService.getConditionDict();
@@ -76,21 +79,46 @@ export class PostEditComponent implements OnInit {
     }
   }
 
+
+  onOpenDialog(msg){
+    // open the dialog
+    const dialogRef = this.dialog.open(AppDialogComponent, {
+      data: {
+        message: msg
+      }
+    });
+
+  }
+
   /**
    * 1. save the post information and images to the db
    * 2. navigate to home
+   * 3. Display app mesg
    */
   onPublishPost(){
     console.log('on publish post', this.post);
 
     if (this.mode=="create"){
-      this.postsService.publishPost(this.post);
+      this.postsService.publishPost(this.post)
+        .subscribe(
+          resData=>{
+            console.log("publishPost to db", resData);
+            this.onOpenDialog("Your post is uploaded successfully.");
+            this.router.navigate([''])
+          },
+          error => {
+            console.error("publishPost to db", error);
+
+            if (error.status==401){
+              this.onOpenDialog("We're sorry, please login again.");
+              this.router.navigate(["auth"]);
+            }
+          }
+        );
     }
     else{
       this.postsService.updatePost(this.post);
     }
-
-    this.router.navigate([''])
   }
 
   /**
