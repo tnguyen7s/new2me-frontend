@@ -3,7 +3,7 @@ import { Injectable } from "@angular/core";
 import { Route, Router } from "@angular/router";
 import { BehaviorSubject, Subject, take, tap } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
-import { Post } from "../models/post.model";
+import { Post } from "../shared/models/post.model";
 
 @Injectable({
   providedIn: 'root'

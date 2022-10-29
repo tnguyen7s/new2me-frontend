@@ -22,9 +22,21 @@ export class User{
     return this._username
   }
 
+
+  public set username(v : string) {
+    this.username = v;
+  }
+
+
   public get email() : string {
     return this.email;
   }
+
+
+  public set email(v : string) {
+    this.email = v;
+  }
+
 
 
   public get phoneNum() : string {
@@ -32,9 +44,21 @@ export class User{
   }
 
 
+  public set phoneNum(v : string) {
+    this.phoneNum = v;
+  }
+
+
+
   public get address() : string {
     return this.address;
   }
+
+
+  public set address(v : string) {
+    this.address = v;
+  }
+
 
 
   public get nameOfUser() : string {
@@ -42,11 +66,17 @@ export class User{
   }
 
 
+  public set nameOfUser(v : string) {
+    this.nameOfUser = v;
+  }
+
+
+
   public get token() : string {
     if (this.expires<Date.now()){
       return null;
     }
-    
+
     return this.token;
   }
 

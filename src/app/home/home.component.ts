@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { Post } from '../shared/models/post.model';
-import { PostService } from '../shared/services/posts.service';
+import { PostService } from '../post/posts.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   // all posts
   public posts: Post[];
 
@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
   // current page index
   public pageIndex = 0;
 
+  sub1: Subscription;
+  sub2: Subscription;
 
   constructor(public route: ActivatedRoute, public postService: PostService) {
   }
@@ -28,7 +30,7 @@ export class HomeComponent implements OnInit {
    * 1. Listen to any change in the route's query params
    */
   ngOnInit(): void {
-    this.route.queryParams.subscribe((param)=>{
+    this.sub1 = this.route.queryParams.subscribe((param)=>{
       // filter the list of item posts in the Home page
 
       const by = Object.keys(param);
@@ -45,9 +47,14 @@ export class HomeComponent implements OnInit {
     });
 
     // get all posts from postService
-    this.postService.homePosts.subscribe(data => {
+    this.sub2 = this.postService.homePosts.subscribe(data => {
       this.posts = data;
     })
+  }
+
+  ngOnDestroy(): void {
+    this.sub1.unsubscribe();
+    this.sub2.unsubscribe();
   }
 
 }

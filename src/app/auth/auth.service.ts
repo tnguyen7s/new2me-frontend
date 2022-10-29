@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import {HttpClient} from "@angular/common/http"
 import { User } from "../shared/models/user.model";
-import { BehaviorSubject, Observable, tap } from "rxjs";
+import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 
 @Injectable({
   providedIn: "root"
@@ -91,5 +91,16 @@ export class AuthService
                     .pipe(
                       tap(user => this.user.next(user))
                     );
+  }
+
+  public updateAccount(user: User){
+    return this.http.put("http://localhost:5024/api/account", user).subscribe(
+      resData =>{
+        console.log("OnSaveProfile", resData);
+      },
+      error => {
+        console.error("OnSaveProfile", error);
+      }
+    );
   }
 }

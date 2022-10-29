@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from '../auth.service';
 
 @Component({
@@ -8,12 +9,12 @@ import { AuthService } from '../auth.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('loginForm') loginForm: NgForm;
 
   validLogin = true;
   loading = false;
-
+  sub: Subscription;
   constructor(public router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -30,7 +31,7 @@ export class LoginComponent implements OnInit {
 
     const {username, password} = this.loginForm.value;
 
-    this.authService.login(username, password)
+    this.sub = this.authService.login(username, password)
                     .subscribe(resData => {
                       console.log("onLogin", resData);
                       this.router.navigate(this.authService.afterAuthRoute);
@@ -56,5 +57,9 @@ export class LoginComponent implements OnInit {
    */
   onSwitchResetPassword(){
     this.router.navigate(['auth', 'reset-password'])
+  }
+
+  ngOnDestroy(){
+    this.sub.unsubscribe();
   }
 }

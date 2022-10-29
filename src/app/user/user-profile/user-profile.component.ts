@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/shared/models/user.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -9,6 +11,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
   @ViewChild('userForm') userForm: NgForm;
+  userProfile: User;
 
   public editMode = {
     'username': false,
@@ -17,16 +20,22 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     'phone': false,
     'address': false
   }
+
+  sub1: Subscription;
+  sub2: Subscription;
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
+    this.sub1 = this.authService.user.subscribe(user=>{
+      this.userProfile = user;
+    });
   }
 
   /**
    * 1. Save user's profile
    */
   onSaveProfile(){
-    console.log('onSaveProfile', this.userForm);
+    this.authService.updateAccount(this.userProfile);
   }
 
   /**
@@ -39,6 +48,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.onSaveProfile();
+      this.sub1.unsubscribe();
   }
 
   onLogout(){

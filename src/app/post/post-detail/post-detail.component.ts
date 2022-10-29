@@ -1,9 +1,10 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute, Router} from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Post } from 'src/app/shared/models/post.model';
-import { EnumService } from 'src/app/shared/services/enum.service';
-import { PostService } from 'src/app/shared/services/posts.service';
+import { EnumService } from 'src/app/shared/shared-services/enum.service';
+import { PostService } from 'src/app/post/posts.service';
 import { PostContactDialog } from './post-contact-dialog/post-contact-dialog.component';
 
 
@@ -12,11 +13,13 @@ import { PostContactDialog } from './post-contact-dialog/post-contact-dialog.com
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.css']
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent implements OnInit, OnDestroy {
   // Source 1 to determine the post: from input, no routing
   @Input() post: Post;
 
   public conditionDict = {};
+
+  sub: Subscription;
   constructor(public enumService: EnumService,
               public dialog: MatDialog,
               public route: ActivatedRoute,
@@ -51,7 +54,7 @@ export class PostDetailComponent implements OnInit {
     }
 
     // source 2 to determine the post: from route
-    this.route.params.subscribe((param)=>{
+    this.sub = this.route.params.subscribe((param)=>{
       if (param.idx!=null){
         this.post = this.postService.getPostByIndex(param.idx);
 
@@ -60,6 +63,10 @@ export class PostDetailComponent implements OnInit {
         }
       }
     })
+  }
+
+  ngOnDestroy(): void {
+      this.sub.unsubscribe();
   }
 }
 

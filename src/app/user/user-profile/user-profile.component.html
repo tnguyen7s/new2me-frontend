@@ -4,11 +4,11 @@
   <a mat-tab-link routerLink="/auth" (click)="onLogout()">Log Out</a>
 </nav>
 
-<form #userForm="ngForm" class="profile-wrapper">
+<form #userForm="ngForm" class="profile-wrapper" *ngIf="userProfile">
   <div class="form-group">
     <label for="username">Username</label>
     <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['username']}">
-      <input type="text" id="username" name="username" class="form-control" ngModel required [disabled]="!editMode['username']">
+      <input type="text" id="username" name="username" class="form-control" [(ngModel)]="userProfile.username" required [disabled]="!editMode['username']">
       <button type="button" class="edit-btn" (click)="onEdit('username')">{{!editMode['username']? "Edit":"Finish"}}</button>
     </div>
   </div>
@@ -16,7 +16,7 @@
   <div class="form-group">
     <label for="email">Email</label>
     <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['email']}">
-      <input type="text" id="email" name="email" class="form-control" ngModel required email [disabled]="!editMode['email']">
+      <input type="text" id="email" name="email" class="form-control" [(ngModel)]="userProfile.email" required email [disabled]="!editMode['email']">
       <button type="button" class="edit-btn" (click)="onEdit('email')" >{{!editMode['email']? "Edit":"Finish"}}</button>
     </div>
   </div>
@@ -34,7 +34,7 @@
   <div class="form-group">
     <label for="name">Name</label>
     <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['name']}">
-      <input type="text" id="name" name="id" class="form-control" ngModel [disabled]="!editMode['name']">
+      <input type="text" id="name" name="id" class="form-control" [(ngModel)]="userProfile.nameOfUser" [disabled]="!editMode['name']">
       <button type="button" class="edit-btn" (click)="onEdit('name')" >{{!editMode['name']? "Edit":"Finish"}}</button>
     </div>
   </div>
@@ -42,7 +42,7 @@
   <div class="form-group">
     <label for="phone">Phone Number</label>
     <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['phone']}">
-      <input type="text" id="phone" name="phone" class="form-control" ngModel [disabled]="!editMode['phone']" >
+      <input type="text" id="phone" name="phone" class="form-control" [(ngModel)]="userProfile.phoneNum" [disabled]="!editMode['phone']" >
       <button type="button" class="edit-btn" (click)="onEdit('phone')" >{{!editMode['phone']? "Edit":"Finish"}}</button>
     </div>
   </div>
@@ -50,7 +50,7 @@
   <div class="form-group">
     <label for="address" >Address</label>
     <div class="input-edit-wrapper" [ngClass]="{'edit': editMode['address']}">
-      <input type="text" id="address" name="address" class="form-control" ngModel [disabled]="!editMode['address']">
+      <input type="text" id="address" name="address" class="form-control" [(ngModel)]="userProfile.address" [disabled]="!editMode['address']">
       <button type="button" class="edit-btn" (click)="onEdit('address')" >{{!editMode['address']? "Edit":"Finish"}}</button>
     </div>
   </div>

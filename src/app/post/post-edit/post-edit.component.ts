@@ -1,12 +1,13 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AppDialogComponent } from 'src/app/shared/app-dialog/app-dialog.component';
 import { PostStatusEnum } from 'src/app/shared/enums/PostStatusEnum';
 import { Post } from 'src/app/shared/models/post.model';
-import { EnumService } from 'src/app/shared/services/enum.service';
-import { PostService } from 'src/app/shared/services/posts.service';
+import { EnumService } from 'src/app/shared/shared-services/enum.service';
+import { PostService } from 'src/app/post/posts.service';
 
 @Component({
   selector: 'app-post-edit',
@@ -14,7 +15,7 @@ import { PostService } from 'src/app/shared/services/posts.service';
   styleUrls: ['./post-edit.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class PostEditComponent implements OnInit {
+export class PostEditComponent implements OnInit, OnDestroy {
   @ViewChild('postForm') postForm: NgForm;
   private post: Post;
   public uploadedImages: (string|ArrayBuffer)[] = [];
@@ -27,6 +28,8 @@ export class PostEditComponent implements OnInit {
 
   public tagDict = {}
   public tagList: string [];
+
+  sub: Subscription;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -150,5 +153,7 @@ export class PostEditComponent implements OnInit {
    }
 
 
-
+   ngOnDestroy(): void {
+       this.sub.unsubscribe();
+   }
 }

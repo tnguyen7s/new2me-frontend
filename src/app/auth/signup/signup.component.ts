@@ -1,6 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { ErrorMessageEnum } from 'src/app/shared/enums/ErrorMessageEnum';
 import { AuthService } from '../auth.service';
 
@@ -9,7 +10,7 @@ import { AuthService } from '../auth.service';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
   @ViewChild('signUpForm') signUpForm: NgForm;
 
   loading = false;
@@ -17,6 +18,7 @@ export class SignupComponent implements OnInit {
   errorMsg = "";
   strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
   strongPassRequirements = "Your password must have at least: *8 characters \ *1 uppercase letter \ *1 lowercase letter \ *1 digit"
+  sub: Subscription;
 
   constructor(public router: Router, public authService: AuthService) {
 
@@ -42,7 +44,7 @@ export class SignupComponent implements OnInit {
 
     // sign up in action
     if (this.validForm){
-      this.authService.signup(username, password, email)
+      this.sub = this.authService.signup(username, password, email)
                       .subscribe(
                         (resData) =>{
                           console.log("onSignup", resData)
@@ -85,6 +87,10 @@ export class SignupComponent implements OnInit {
    */
   onSwitchToLogin(){
     this.router.navigate(['auth']);
+  }
+
+  ngOnDestroy(): void {
+      this.sub.unsubscribe();
   }
 
 }
