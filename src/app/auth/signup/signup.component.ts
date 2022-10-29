@@ -90,7 +90,9 @@ export class SignupComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.sub){
       this.sub.unsubscribe();
+    }
   }
 
 }

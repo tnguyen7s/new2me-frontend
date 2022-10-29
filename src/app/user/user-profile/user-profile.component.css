@@ -22,7 +22,8 @@ label{
 }
 
 input{
-  width: 50%;
+  padding-left: 0px;
+  width: 80%;
   border: none;
 }
 
@@ -49,6 +50,15 @@ input{
 
 .edit input{
   border: 1px solid rgba(0,0,0,.15);
+}
+
+.mat-tab-label, .mat-tab-link{
+  color: #5B6670;
+  opacity: 1;
+}
+
+.mat-tab-link:hover{
+  color:  #C8102E ;
 }
 
 

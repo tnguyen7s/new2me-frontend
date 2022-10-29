@@ -12,7 +12,7 @@ export class PostService{
   public homePosts: BehaviorSubject<Post[]> = new BehaviorSubject(null);
   public homePostsLength: Number;
 
-  private userCreatedPosts: Post[] = [];
+  public userCreatedPosts: BehaviorSubject<Post[]> = new BehaviorSubject(null);
 
   constructor(private http: HttpClient, private authService: AuthService, private router: Router){
   }
@@ -50,6 +50,23 @@ export class PostService{
             console.error("fetch posts", error);
           }
         );
+  }
+
+  /**
+   * Fetch user created posts
+   */
+  public fetchUserPosts(){
+    this.http.get<Post[]>("http://localhost:5024/api/post/user")
+    .subscribe(
+      resData=> {
+        console.log("fetch posts", resData);
+
+        this.userCreatedPosts.next(resData);
+      },
+      error=> {
+        console.error("fetch posts", error);
+      }
+    );
   }
 
   /**

@@ -8,7 +8,7 @@
 </div>
 
 <div class="row" *ngIf="this.posts">
-  <div class="col-md-4 mx-auto">
+  <div class="mx-auto">
     <mat-paginator [length]="posts.length"
     [pageSize]="pageSize"
     (page)="pageIndex = $event.pageIndex">

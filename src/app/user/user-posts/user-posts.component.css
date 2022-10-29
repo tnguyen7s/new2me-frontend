@@ -1,0 +1,26 @@
+.row-flex{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.mat-paginator{
+  font-size: 15px;
+}
+
+.post-cat-title{
+  color: #5B6670;
+  font-size: 20px;
+  padding-bottom: 4px;
+  border-bottom: 0.01px solid rgb(223, 221, 221);
+}
+
+.mat-tab-label, .mat-tab-link{
+  color: #5B6670;
+  opacity: 1;
+}
+
+.mat-tab-link:hover{
+  color:  #C8102E ;
+}

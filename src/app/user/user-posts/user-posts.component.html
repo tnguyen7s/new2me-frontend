@@ -3,3 +3,61 @@
   <a mat-tab-link routerLink="/user/posts" routerLinkActive="active">Your Posts</a>
   <a mat-tab-link routerLink="/auth" (click)="onLogout()">Log Out</a>
 </nav>
+
+<div class="new2me-appname-heading"><span class="semo-color">My posts</span></div>
+
+<div class="user-posts-container">
+  <div class="editting"  *ngIf="this.edittingPosts.length>0">
+    <div class="post-cat-title">In-progress posts</div>
+    <div class="row-flex">
+      <app-post-card *ngFor="let post of edittingPosts.slice(this.pageIndexForEditting*4, this.pageIndexForEditting*4+4); let i=index" [post]="post"></app-post-card>
+    </div>
+
+
+    <div class="row">
+      <div class="mx-auto">
+        <mat-paginator [length]="edittingPosts.length"
+        [pageSize]="pageSize"
+        (page)="pageIndexForEditting = $event.pageIndex">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+
+  <div class="active"  *ngIf="this.activePosts.length>0">
+    <div class="post-cat-title">Active posts</div>
+    <div class="row-flex">
+      <app-post-card *ngFor="let post of activePosts.slice(this.pageIndexForActive*4, this.pageIndexForActive*4+4); let i=index" [post]="post"></app-post-card>
+    </div>
+
+
+    <div class="row">
+      <div class="mx-auto">
+        <mat-paginator [length]="activePosts.length"
+        [pageSize]="pageSize"
+        (page)="pageIndexForActive = $event.pageIndex">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+
+  <div class="done"  *ngIf="this.donePosts.length>0">
+    <div class="post-cat-title">Done posts</div>
+    <div class="row-flex">
+      <app-post-card *ngFor="let post of donePosts.slice(this.pageIndexForDone*4, this.pageIndexForDone*4+4); let i=index" [post]="post"></app-post-card>
+    </div>
+
+
+    <div class="row">
+      <div class="mx-auto">
+        <mat-paginator [length]="donePosts.length"
+        [pageSize]="pageSize"
+        (page)="pageIndexForDone = $event.pageIndex">
+        </mat-paginator>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+

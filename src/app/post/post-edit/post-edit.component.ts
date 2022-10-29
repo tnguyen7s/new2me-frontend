@@ -102,7 +102,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     console.log('on publish post', this.post);
 
     if (this.mode=="create"){
-      this.postsService.publishPost(this.post)
+      this.sub = this.postsService.publishPost(this.post)
         .subscribe(
           resData=>{
             console.log("publishPost to db", resData);
@@ -154,6 +154,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
 
 
    ngOnDestroy(): void {
-       this.sub.unsubscribe();
+    if (this.sub){
+      this.sub.unsubscribe();
+    }
    }
 }
