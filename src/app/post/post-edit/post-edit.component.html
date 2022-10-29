@@ -10,21 +10,21 @@
       <div class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput name="title" [ngModel]="post? post.PostTitle:''" required>
+          <input matInput name="title" [ngModel]="post? post.title:''" required>
         </mat-form-field>
       </div>
 
       <div class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Location</mat-label>
-          <input matInput placeholder="Ex. apt|building|etc.,street address,city,state,zipcode" name="location" [ngModel]="post? post.PostLocation:''" required>
+          <input matInput placeholder="Ex. apt|building|etc.,street address,city,state,zipcode" name="location" [ngModel]="post? post.location:''" required>
         </mat-form-field>
       </div>
 
       <div style="display: flex; justify-content:space-between" class="form-group">
         <mat-form-field>
           <mat-label>Condition</mat-label>
-          <mat-select [ngModel]="post? post.PostCondition:conditionDict[conditionList[0]]" required name="condition">
+          <mat-select [ngModel]="post? post.condition:conditionDict[conditionList[0]]" required name="condition">
             <mat-option *ngFor="let condition of conditionList" [value]="conditionDict[condition]">
               {{condition}}
             </mat-option>
@@ -33,7 +33,7 @@
 
         <mat-form-field>
           <mat-label>Tag</mat-label>
-          <mat-select [ngModel]="post? post.PostTag:tagDict[tagList[0]]" required name="tag">
+          <mat-select [ngModel]="post? post.tag:tagDict[tagList[0]]" required name="tag">
             <mat-option *ngFor="let tag of tagList" [value]="tagDict[tag]">
               {{tag}}
             </mat-option>
@@ -44,12 +44,12 @@
       <div style="display: flex; justify-content:space-between" class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Ex. myemail@gmail.com" name="email" [ngModel]="post? post.PostContactEmail:''" required email>
+          <input matInput placeholder="Ex. myemail@gmail.com" name="email" [ngModel]="post? post.contactEmail:''" required email>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Phone Number</mat-label>
-          <input matInput placeholder="Ex. 123-456-7890" name="phone" [ngModel]="post? post.PostContactPhone:''" required pattern="\d{3}-\d{3}-\d{4}">
+          <input matInput placeholder="Ex. 123-456-7890" name="phone" [ngModel]="post? post.contactPhone:''" required pattern="\d{3}-\d{3}-\d{4}">
         </mat-form-field>
       </div>
 
@@ -62,7 +62,7 @@
       <div class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Description</mat-label>
-          <textarea matInput cols="40" rows="4" name="description" [ngModel]="post? post.PostDescription:''"></textarea>
+          <textarea matInput cols="40" rows="4" name="description" [ngModel]="post? post.description:''"></textarea>
         </mat-form-field>
       </div>
 
