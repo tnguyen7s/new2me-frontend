@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Post } from '../../shared/models/post.model';
 
 @Component({
@@ -8,10 +9,14 @@ import { Post } from '../../shared/models/post.model';
 })
 export class PostCardComponent implements OnInit {
   @Input() post: Post;
-  constructor() { }
+  @Input() idx: Number;
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.post);
   }
 
+  onOpenPost(){
+    this.router.navigate(["post", this.idx])
+  }
 }

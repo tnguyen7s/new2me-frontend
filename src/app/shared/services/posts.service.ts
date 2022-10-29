@@ -9,7 +9,7 @@ import { Post } from "../models/post.model";
   providedIn: 'root'
 })
 export class PostService{
-  public homePosts: Subject<Post[]> = new BehaviorSubject(null);
+  public homePosts: BehaviorSubject<Post[]> = new BehaviorSubject(null);
   public homePostsLength: Number;
 
   private userCreatedPosts: Post[] = [];
@@ -57,8 +57,7 @@ export class PostService{
    */
   public getPostByIndex(idx): Post{
     if (+idx<this.homePostsLength){
-      return this.homePosts.pipe(take(1)
-      )[+idx];
+      return this.homePosts.getValue()[+idx];
     }
     else
     {
