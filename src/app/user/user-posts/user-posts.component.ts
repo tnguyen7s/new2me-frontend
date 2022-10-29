@@ -25,6 +25,9 @@ export class UserPostsComponent implements OnInit, OnDestroy {
   public pageIndexForDone = 0;
   public pageIndexForEditting = 0;
 
+  public spinner = false;
+  public spinnerType = 0;
+
   constructor(private authService: AuthService, private postService: PostService) { }
 
   ngOnInit(): void {
@@ -46,6 +49,8 @@ export class UserPostsComponent implements OnInit, OnDestroy {
               this.edittingPosts.push(post);
           }
         });
+
+        this.spinner = false;
       }
     );
 
@@ -54,6 +59,11 @@ export class UserPostsComponent implements OnInit, OnDestroy {
 
   onLogout(){
     this.authService.logout();
+  }
+
+  onTurnOnSpinner(spinnerType){
+    this.spinner = true;
+    this.spinnerType = spinnerType;
   }
 
   ngOnDestroy(): void {

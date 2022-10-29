@@ -85,6 +85,21 @@ export class PostService{
   }
 
   /**
+   * Update the user's post in db
+   */
+  public updateUserPostInDb(post: Post){
+    this.http.put("http://localhost:5024/api/post/"+post.id, post)
+    .subscribe(
+      (resData) =>{
+        console.log("updateUserPostInDb", post.id, resData)
+      },
+      (error) => {
+        console.error("updateUserPostInDb", error);
+      }
+    )
+  }
+
+  /**
    * 1. return post given its index
    */
   public getPostByIndex(idx): Post{

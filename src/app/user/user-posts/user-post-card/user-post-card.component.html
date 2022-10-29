@@ -8,7 +8,7 @@
 
     <div *ngIf="!imageShown" class="crud">
       <a *ngIf="post.status==0 || post.status==2">View/Update Post</a>
-      <a *ngIf="post.status==0">Mark post as Done</a>
+      <a (click)="onMarkPostDone()" *ngIf="post.status==0">Mark post as Done</a>
       <a (click)="onDeletePost()">Delete Post</a>
 
     </div>

@@ -9,8 +9,9 @@
 <div class="user-posts-container">
   <div class="editting"  *ngIf="this.edittingPosts.length>0">
     <div class="post-cat-title">In-progress posts</div>
+    <app-loading-spinner *ngIf="spinner && spinnerType==2"></app-loading-spinner>
     <div class="row-flex">
-      <app-user-post-card *ngFor="let post of edittingPosts.slice(this.pageIndexForEditting*4, this.pageIndexForEditting*4+4); let i=index" [post]="post"></app-user-post-card>
+      <app-user-post-card *ngFor="let post of edittingPosts.slice(this.pageIndexForEditting*4, this.pageIndexForEditting*4+4); let i=index" [post]="post" (loading)="onTurnOnSpinner($event)"></app-user-post-card>
     </div>
 
 
@@ -26,8 +27,9 @@
 
   <div class="active"  *ngIf="this.activePosts.length>0">
     <div class="post-cat-title">Active posts</div>
+    <app-loading-spinner *ngIf="spinner && spinnerType==0"></app-loading-spinner>
     <div class="row-flex">
-      <app-user-post-card *ngFor="let post of activePosts.slice(this.pageIndexForActive*4, this.pageIndexForActive*4+4); let i=index" [post]="post"></app-user-post-card>
+      <app-user-post-card *ngFor="let post of activePosts.slice(this.pageIndexForActive*4, this.pageIndexForActive*4+4); let i=index" [post]="post" (loading)="onTurnOnSpinner($event)"></app-user-post-card>
     </div>
 
 
@@ -43,8 +45,9 @@
 
   <div class="done"  *ngIf="this.donePosts.length>0">
     <div class="post-cat-title">Done posts</div>
+    <app-loading-spinner *ngIf="spinner && spinnerType==1"></app-loading-spinner>
     <div class="row-flex">
-      <app-user-post-card *ngFor="let post of donePosts.slice(this.pageIndexForDone*4, this.pageIndexForDone*4+4); let i=index" [post]="post"></app-user-post-card>
+      <app-user-post-card *ngFor="let post of donePosts.slice(this.pageIndexForDone*4, this.pageIndexForDone*4+4); let i=index" [post]="post" (loading)="onTurnOnSpinner($event)"></app-user-post-card>
     </div>
 
 
