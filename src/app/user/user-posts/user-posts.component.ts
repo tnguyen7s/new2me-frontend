@@ -30,6 +30,10 @@ export class UserPostsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.sub = this.postService.userCreatedPosts.subscribe(
       userPosts => {
+        this.activePosts.splice(0, this.activePosts.length);
+        this.donePosts.splice(0, this.donePosts.length);
+        this.edittingPosts.splice(0, this.edittingPosts.length);
+
         userPosts.forEach(post=> {
           switch(post.status){
             case PostStatusEnum.Active:

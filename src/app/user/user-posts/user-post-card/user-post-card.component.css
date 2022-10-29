@@ -1,0 +1,48 @@
+img{
+  width: 150px;
+  height: 150px;
+
+  border-radius: 8px;
+}
+
+.card-wrapper{
+  position: relative;
+  background-color: #282828;
+
+  padding: 16px;
+  width: 210px;
+  height: 240px;
+  margin-right: 28px;
+
+  border-radius: 14px;
+  transition: all 1s ease-out;
+}
+
+.card-wrapper:hover{
+  background-color: #3A3B3C;
+  cursor: pointer;
+}
+
+
+h2{
+  margin-bottom: 0px;
+  margin-top: 8px;
+  line-height: 20px;
+  font-size: .9375rem;
+  font-weight: 400;
+}
+
+.secondary-text{
+  font-size: .8125rem;
+}
+
+.crud a{
+  color: #fff;
+  font-size: 14px;
+  display: block;
+  padding: 10px 0px;
+}
+
+.crud a:hover{
+  color:  #DBE442 ;
+}

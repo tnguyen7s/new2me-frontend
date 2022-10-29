@@ -70,6 +70,21 @@ export class PostService{
   }
 
   /**
+   * Delete the user's post from db
+   */
+  public deleteUserPostFromDb(postId: Number){
+    this.http.delete("http://localhost:5024/api/post/"+postId)
+      .subscribe(
+        (resData) =>{
+          console.log("deleteUserPostFromDb", postId, resData)
+        },
+        (error) => {
+          console.error("deleteUserPostFromDb", error);
+        }
+      )
+  }
+
+  /**
    * 1. return post given its index
    */
   public getPostByIndex(idx): Post{

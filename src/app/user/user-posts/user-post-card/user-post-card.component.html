@@ -1,0 +1,15 @@
+<div class="card-wrapper"
+    (mouseenter)="onShowDetail()"
+    (mouseleave)="onShowImage()"
+>
+    <img [src]="post.pictures[0]" alt="The item's image" *ngIf="imageShown">
+
+    <h2 class="primary-text" *ngIf="imageShown">{{post.title}}</h2>
+
+    <div *ngIf="!imageShown" class="crud">
+      <a *ngIf="post.status==0 || post.status==2">View/Update Post</a>
+      <a *ngIf="post.status==0">Mark post as Done</a>
+      <a (click)="onDeletePost()">Delete Post</a>
+
+    </div>
+</div>
