@@ -3,16 +3,16 @@ import { PostStatusEnum } from "../enums/PostStatusEnum";
 import { PostTagEnum } from "../enums/PostTagEnum";
 
 export class Post{
-  public Id: Number;
-  public Title: string;
-  public Location: string;
-  public Condition: PostConditionEnum;
-  public Description: string;
-  public Tag: PostTagEnum;
-  public Pictures: string[];
-  public ContactEmail: string;
-  public ContactPhone: string;
-  public Status: PostStatusEnum;
+  public id: Number;
+  public title: string;
+  public location: string;
+  public condition: PostConditionEnum;
+  public description: string;
+  public tag: PostTagEnum;
+  public pictures: string[];
+  public contactEmail: string;
+  public contactPhone: string;
+  public status: PostStatusEnum;
 
   constructor(PostTitle: string,
               PostLocation: string,
@@ -25,15 +25,15 @@ export class Post{
               PostId: Number = -1,
               PostStatus: PostStatusEnum)
   {
-                this.Title = PostTitle;
-                this.Location = PostLocation;
-                this.Condition = PostCondition;
-                this.Description = PostDescription;
-                this.Tag = PostTag;
-                this.Pictures = PostPictures;
-                this.ContactEmail = PostContactEmail;
-                this.ContactPhone = PostContactPhone;
-                this.Id = PostId;
-                this.Status = PostStatus;
+                this.title = PostTitle;
+                this.location = PostLocation;
+                this.condition = PostCondition;
+                this.description = PostDescription;
+                this.tag = PostTag;
+                this.pictures = PostPictures;
+                this.contactEmail = PostContactEmail;
+                this.contactPhone = PostContactPhone;
+                this.id = PostId;
+                this.status = PostStatus;
   }
 }

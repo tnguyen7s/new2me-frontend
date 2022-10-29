@@ -20,7 +20,7 @@ import { UserComponent } from './user/user.component';
 import { UserProfileComponent } from './user/user-profile/user-profile.component';
 import { UserPostsComponent } from './user/user-posts/user-posts.component';
 import { PostContactDialog } from './post/post-detail/post-contact-dialog/post-contact-dialog.component';
-import { PostCardComponent } from './shared/post-card/post-card.component';
+import { PostCardComponent } from './home/post-card/post-card.component';
 
 
 import {MatTooltipModule} from '@angular/material/tooltip';

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PageEvent } from '@angular/material/paginator';
 import { ActivatedRoute } from '@angular/router';
+import { take } from 'rxjs';
 import { Post } from '../shared/models/post.model';
 import { PostService } from '../shared/services/posts.service';
 
@@ -44,7 +45,9 @@ export class HomeComponent implements OnInit {
     });
 
     // get all posts from postService
-    this.posts = this.postService.getHomePosts();
+    this.postService.homePosts.subscribe(data => {
+      this.posts = data;
+    })
   }
 
 }

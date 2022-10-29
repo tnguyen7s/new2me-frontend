@@ -1,6 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Route, Router } from "@angular/router";
+import { BehaviorSubject, Subject, take, tap } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
 import { Post } from "../models/post.model";
 
@@ -8,8 +9,8 @@ import { Post } from "../models/post.model";
   providedIn: 'root'
 })
 export class PostService{
-  private homePosts: Post[] = [
-  ];
+  public homePosts: Subject<Post[]> = new BehaviorSubject(null);
+  public homePostsLength: Number;
 
   private userCreatedPosts: Post[] = [];
 
@@ -34,18 +35,30 @@ export class PostService{
 
 
   /**
-   * 1. return active posts
+   * Fetch new posts from the database
    */
-  public getHomePosts(){
-    return this.homePosts.slice();
+  public fetchUptodateActivePosts(){
+    this.http.get<Post[]>("http://localhost:5024/api/post")
+        .subscribe(
+          resData=> {
+            console.log("fetch posts", resData);
+
+            this.homePosts.next(resData);
+            this.homePostsLength = resData.length;
+          },
+          error=> {
+            console.error("fetch posts", error);
+          }
+        );
   }
 
   /**
    * 1. return post given its index
    */
   public getPostByIndex(idx): Post{
-    if (+idx<this.homePosts.length){
-      return this.homePosts[+idx];
+    if (+idx<this.homePostsLength){
+      return this.homePosts.pipe(take(1)
+      )[+idx];
     }
     else
     {

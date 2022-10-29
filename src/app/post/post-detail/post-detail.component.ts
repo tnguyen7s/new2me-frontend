@@ -35,8 +35,8 @@ export class PostDetailComponent implements OnInit {
     // open the dialog
     const dialogRef = this.dialog.open(PostContactDialog, {
       data: {
-        email: this.post.ContactEmail,
-        phone: this.post.ContactPhone
+        email: this.post.contactEmail,
+        phone: this.post.contactPhone
       }
     });
 

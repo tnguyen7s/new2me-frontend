@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Post } from '../models/post.model';
+import { Post } from '../../shared/models/post.model';
 
 @Component({
   selector: 'app-post-card',
@@ -11,6 +11,7 @@ export class PostCardComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.post);
   }
 
 }

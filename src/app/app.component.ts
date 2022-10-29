@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from './auth/auth.service';
+import { PostService } from './shared/services/posts.service';
 
 @Component({
   selector: 'app-root',
@@ -10,11 +11,14 @@ import { AuthService } from './auth/auth.service';
 export class AppComponent implements OnInit{
   title = 'new2me-ui';
 
-  constructor(private authService: AuthService, private router: Router){
+  constructor(private authService: AuthService, private router: Router, private postService: PostService){
   }
 
   ngOnInit(): void {
       this.authService.autoLogin();
+
+      // when the user refreshes the page, fetch up to date posts
+      this.postService.fetchUptodateActivePosts();
   }
 
   onOpenAccount(){
