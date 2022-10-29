@@ -10,6 +10,7 @@ img{
 
   padding: 16px;
   width: 210px;
+  height: 240px;
 
   border-radius: 14px;
 }
@@ -25,9 +26,13 @@ h2:hover{
 
 h2{
   margin-bottom: 0px;
+  margin-top: 8px;
+  line-height: 20px;
+  font-size: .9375rem;
+  font-weight: 400;
 }
 
 .secondary-text{
-  font-size: 14px;
+  font-size: .8125rem;
 }
 
