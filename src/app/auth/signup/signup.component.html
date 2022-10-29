@@ -1,4 +1,7 @@
-<div class="new2me-appname-heading">Welcome to <span class="semo-color">New-2-Me!</span></div>
+<div class="new2me-appname-heading">
+  <div>Welcome to <span class="semo-color">New-2-Me!</span></div>
+  <app-loading-spinner *ngIf="loading"></app-loading-spinner>
+</div>
 
 <div class="new2me-container" style="width: 34%;">
   <form class="new2me-form" #signUpForm="ngForm" (ngSubmit)="onSignUp()">

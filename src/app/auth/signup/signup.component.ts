@@ -12,6 +12,7 @@ import { AuthService } from '../auth.service';
 export class SignupComponent implements OnInit {
   @ViewChild('signUpForm') signUpForm: NgForm;
 
+  loading = false;
   validForm = true;
   errorMsg = "";
   strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
@@ -31,6 +32,7 @@ export class SignupComponent implements OnInit {
    * 3. Allow access if signup succeeds
    */
   onSignUp(){
+    this.loading = true;
     console.log("onSignUp", this.signUpForm);
 
     const {username, password, repassword, email} = this.signUpForm.value;
@@ -45,11 +47,13 @@ export class SignupComponent implements OnInit {
                         (resData) =>{
                           console.log("onSignup", resData)
                           this.router.navigate(this.authService.afterAuthRoute);
+                          this.loading = false;
                         },
                         (error) => {
                           console.log("onSignup", error['error'])
                           this.validForm = false;
                           this.errorMsg = error['error'];
+                          this.loading = false;
                         }
                       )
     }

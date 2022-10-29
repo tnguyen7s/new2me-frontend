@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   @ViewChild('loginForm') loginForm: NgForm;
 
   validLogin = true;
+  loading = false;
 
   constructor(public router: Router, public authService: AuthService) { }
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
    * 3. Allow access after login succeeds
    */
   onLogin(){
+    this.loading = true;
     console.log('onLogin', this.loginForm);
 
     const {username, password} = this.loginForm.value;
@@ -32,10 +34,12 @@ export class LoginComponent implements OnInit {
                     .subscribe(resData => {
                       console.log("onLogin", resData);
                       this.router.navigate(this.authService.afterAuthRoute);
+                      this.loading = false;
                     },
                     (error) => {
                       console.log("onLogin", error);
                       this.validLogin = false;
+                      this.loading = false;
                     });
   }
 

@@ -34,6 +34,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './auth/interceptor.auth';
 import { AppDialogComponent } from './shared/app-dialog/app-dialog.component';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 
 
@@ -57,7 +58,8 @@ import { AppDialogComponent } from './shared/app-dialog/app-dialog.component';
     PostContactDialog,
     PostCardComponent,
     NotFoundComponent,
-    AppDialogComponent
+    AppDialogComponent,
+    LoadingSpinnerComponent
   ],
   imports: [
     BrowserModule,
