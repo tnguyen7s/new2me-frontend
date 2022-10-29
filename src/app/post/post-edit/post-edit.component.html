@@ -44,12 +44,12 @@
       <div style="display: flex; justify-content:space-between" class="form-group">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="Ex. myemail@gmail.com" name="email" [ngModel]="post? post.PostContactEmail:''" required>
+          <input matInput placeholder="Ex. myemail@gmail.com" name="email" [ngModel]="post? post.PostContactEmail:''" required email>
         </mat-form-field>
 
         <mat-form-field appearance="fill">
           <mat-label>Phone Number</mat-label>
-          <input matInput placeholder="Ex. 123-456-7890" name="phone" [ngModel]="post? post.PostContactPhone:''" required>
+          <input matInput placeholder="Ex. 123-456-7890" name="phone" [ngModel]="post? post.PostContactPhone:''" required pattern="\d{3}-\d{3}-\d{4}">
         </mat-form-field>
       </div>
 

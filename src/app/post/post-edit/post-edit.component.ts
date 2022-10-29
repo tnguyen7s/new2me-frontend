@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostStatusEnum } from 'src/app/shared/enums/PostStatusEnum';
 import { Post } from 'src/app/shared/models/post.model';
@@ -83,7 +83,12 @@ export class PostEditComponent implements OnInit {
   onPublishPost(){
     console.log('on publish post', this.post);
 
-    this.postsService.publishPost(this.post);
+    if (this.mode=="create"){
+      this.postsService.publishPost(this.post);
+    }
+    else{
+      this.postsService.updatePost(this.post);
+    }
 
     this.router.navigate([''])
   }
@@ -96,7 +101,8 @@ export class PostEditComponent implements OnInit {
     console.log('on preview post', this.postForm.value);
 
     const {title, location, condition, tag, email, phone, description} = this.postForm.value;
-    this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages as string[], email, phone, -1, PostStatusEnum.Active);
+
+    this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, 0, PostStatusEnum.Active);
 
     this.previewed = true;
    }

@@ -43,6 +43,10 @@ export class User{
 
 
   public get token() : string {
+    if (this.expires<Date.now()){
+      return null;
+    }
+    
     return this.token;
   }
 
