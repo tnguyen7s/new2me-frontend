@@ -91,8 +91,8 @@ body {
 }
 
 
-.form-group label{
-  color: #B0B3B8;;
+.form-group label, .post-detail-label{
+  color: rgb(127, 135, 142);
   font-weight: 600;
   font-size: 16px;
 }
@@ -185,9 +185,10 @@ body {
 }
 
 .secondary-text{
-  color: #B3B3B3;
+  color: #5B6670;
   font-size: 16px;
 }
+
 
 .info-box{
   margin-top: 14px;

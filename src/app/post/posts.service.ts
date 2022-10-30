@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Route, Router } from "@angular/router";
 import { BehaviorSubject, Subject, take, tap } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
+import { Contact } from "../shared/models/contact.model";
 import { Post } from "../shared/models/post.model";
 
 @Injectable({
@@ -107,6 +108,10 @@ export class PostService{
         console.error("updateUserPostInDb", error);
       }
     )
+  }
+
+  public getPostContact(postId){
+    return this.http.get<Contact>("http://localhost:5024/api/post/contact/"+postId);
   }
 
   /**

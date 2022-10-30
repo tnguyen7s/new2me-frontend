@@ -36,13 +36,17 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     // implement capcha
 
     // open the dialog
-    const dialogRef = this.dialog.open(PostContactDialog, {
-      data: {
-        email: this.post.contactEmail,
-        phone: this.post.contactPhone
-      }
-    });
-
+    this.postService.getPostContact(this.post.id)
+                    .subscribe(
+                      resData =>{
+                        const dialogRef = this.dialog.open(PostContactDialog, {
+                          data: {
+                            email: resData.contactEmail,
+                            phone: resData.contactPhone
+                          }
+                        });
+                      }
+                    );
   }
 
   ngOnInit(): void {
