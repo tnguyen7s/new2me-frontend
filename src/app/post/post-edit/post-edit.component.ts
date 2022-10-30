@@ -3,10 +3,10 @@ import { NgForm, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AppDialogComponent } from 'src/app/shared/app-dialog/app-dialog.component';
+import { AppDialogComponent } from 'src/app/shared/dialogs/app-dialog/app-dialog.component';
 import { PostStatusEnum } from 'src/app/shared/enums/PostStatusEnum';
 import { Post } from 'src/app/shared/models/post.model';
-import { EnumService } from 'src/app/shared/shared-services/enum.service';
+import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/post/posts.service';
 
 @Component({
@@ -90,7 +90,6 @@ export class PostEditComponent implements OnInit, OnDestroy {
         message: msg
       }
     });
-
   }
 
   /**

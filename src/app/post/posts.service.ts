@@ -76,7 +76,11 @@ export class PostService{
     this.http.delete("http://localhost:5024/api/post/"+postId)
       .subscribe(
         (resData) =>{
-          console.log("deleteUserPostFromDb", postId, resData)
+          console.log("deleteUserPostFromDb", postId, resData);
+
+          this.fetchUserPosts();
+
+          this.fetchUptodateActivePosts();
         },
         (error) => {
           console.error("deleteUserPostFromDb", error);
@@ -86,12 +90,18 @@ export class PostService{
 
   /**
    * Update the user's post in db
+   * Refetch the user list of posts
+   * Refetch the active posts
    */
   public updateUserPostInDb(post: Post){
     this.http.put("http://localhost:5024/api/post/"+post.id, post)
     .subscribe(
       (resData) =>{
         console.log("updateUserPostInDb", post.id, resData)
+
+        this.fetchUserPosts();
+
+        this.fetchUptodateActivePosts();
       },
       (error) => {
         console.error("updateUserPostInDb", error);

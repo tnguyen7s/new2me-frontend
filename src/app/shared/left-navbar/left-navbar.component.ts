@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { PostTagEnum } from '../enums/PostTagEnum';
-import { EnumService } from '../shared-services/enum.service';
+import { EnumService } from '../services/enum.service';
 
 @Component({
   selector: 'app-left-navbar',

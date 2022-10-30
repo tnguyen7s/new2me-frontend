@@ -3,7 +3,7 @@ import { MatDialog} from '@angular/material/dialog';
 import { ActivatedRoute, Router} from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from 'src/app/shared/models/post.model';
-import { EnumService } from 'src/app/shared/shared-services/enum.service';
+import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/post/posts.service';
 import { PostContactDialog } from './post-contact-dialog/post-contact-dialog.component';
 

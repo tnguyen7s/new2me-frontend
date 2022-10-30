@@ -33,9 +33,10 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './auth/interceptor.auth';
-import { AppDialogComponent } from './shared/app-dialog/app-dialog.component';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { UserPostCardComponent } from './user/user-posts/user-post-card/user-post-card.component';
+import { AppDialogComponent } from './shared/dialogs/app-dialog/app-dialog.component';
+import { AppYesNoDialogComponent } from './shared/dialogs/app-yes-no-dialog/app-yes-no-dialog.component';
 
 
 
@@ -61,7 +62,8 @@ import { UserPostCardComponent } from './user/user-posts/user-post-card/user-pos
     NotFoundComponent,
     AppDialogComponent,
     LoadingSpinnerComponent,
-    UserPostCardComponent
+    UserPostCardComponent,
+    AppYesNoDialogComponent
   ],
   imports: [
     BrowserModule,
