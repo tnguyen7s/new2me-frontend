@@ -83,4 +83,11 @@ export class UserPostCardComponent implements OnInit {
         }
       })
   }
+
+  /**
+   * Navigate to the post-edit
+   */
+  onUpdatePost(){
+    this.router.navigate(["post", this.post.id, "edit"]);
+  }
 }

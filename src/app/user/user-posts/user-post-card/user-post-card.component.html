@@ -7,7 +7,7 @@
     <h2 class="primary-text" *ngIf="imageShown">{{post.title}}</h2>
 
     <div *ngIf="!imageShown" class="crud">
-      <a *ngIf="post.status==0 || post.status==2">View/Update Post</a>
+      <a *ngIf="post.status==0 || post.status==2" (click)="onUpdatePost()">View/Update Post</a>
       <a (click)="onMarkPostDone()" *ngIf="post.status==0">Mark post as Done</a>
       <a (click)="onDeletePost()">Delete Post</a>
 

@@ -18,6 +18,7 @@ import { PostService } from 'src/app/post/posts.service';
 export class PostEditComponent implements OnInit, OnDestroy {
   @ViewChild('postForm') postForm: NgForm;
   private post: Post;
+  private postId: Number = 0;
   public uploadedImages: (string|ArrayBuffer)[] = [];
 
   private mode = "create";
@@ -50,12 +51,30 @@ export class PostEditComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     this.route.params.subscribe((params)=>{
-      const postId = params['id'];
+      this.postId = +params['id'];
 
-      if (postId!=undefined){
+      if (this.postId!=undefined){
         this.mode = "edit";
-        console.log('load existing post content', postId);
-        // set values for the form
+        console.log('load existing post content', this.postId);
+
+        this.postsService.fetchUserPosts();
+        this.postsService.userCreatedPosts.subscribe(
+          userPosts => {
+            userPosts.forEach(post=>{
+              if (post.id==this.postId){
+                this.post = post;
+                this.uploadedImages = this.post.pictures;
+              }
+            });
+
+            if (this.post==undefined){
+              this.router.navigate(["not-found"]);
+            }
+          }
+        )
+      }
+      else{
+        this.postId = 0;
       }
     })
   }
@@ -119,7 +138,9 @@ export class PostEditComponent implements OnInit, OnDestroy {
         );
     }
     else{
-      this.postsService.updatePost(this.post);
+      this.postsService.updateUserPostInDb(this.post);
+      this.onOpenDialog("Your post has been updated!");
+      this.router.navigate(["user", "posts"])
     }
   }
 
@@ -132,7 +153,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
 
     const {title, location, condition, tag, email, phone, description} = this.postForm.value;
 
-    this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, 0, PostStatusEnum.Active);
+    this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, this.postId, PostStatusEnum.Active);
 
     this.previewed = true;
    }

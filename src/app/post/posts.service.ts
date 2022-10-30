@@ -30,10 +30,6 @@ export class PostService{
     return this.http.post("http://localhost:5024/api/post", newPost);
   }
 
-  public updatePost(post: Post){
-
-  }
-
 
   /**
    * Fetch new posts from the database
