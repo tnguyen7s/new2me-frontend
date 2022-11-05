@@ -52,7 +52,6 @@ export class LeftNavbarComponent implements OnInit {
     if (e.keyCode===13){
       console.log("on search", this.searchBarInput);
 
-      this.searchBarInput = "";
       this.router.navigate(['/'], {queryParams: {'keyword': this.searchBarInput}})
     }
   }

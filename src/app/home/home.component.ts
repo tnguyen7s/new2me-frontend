@@ -31,6 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   public loading = false;
 
+  public noPostMessage = "";
+
   constructor(private route: ActivatedRoute, private postService: PostService, private phoneService: PhoneService) {
   }
 
@@ -48,14 +50,21 @@ export class HomeComponent implements OnInit, OnDestroy {
       const by = Object.keys(param);
       if (by.includes('keyword')){
         console.log('on filter by keyword', param);
+        this.noPostMessage = "It looks like there is no give-away item matching with your search."
+
         // filter by keyword
 
       }
       else if (by.includes('tag')){
         console.log('on filter by tag', param);
+        this.noPostMessage = "It looks like there is no give-away item of this tag."
 
         // filter by tag
         this.postService.fetchUptodateActivePostsByTag(+param['tag']);
+      }
+      else{
+        this.noPostMessage = "It looks like there is no give-away item posted at this time. Please check out New2Me later."
+
       }
     });
 

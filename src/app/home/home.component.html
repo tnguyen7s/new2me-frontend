@@ -2,6 +2,9 @@
   <div class="semo-color">New-2-Me!</div>
   <app-loading-spinner *ngIf="this.loading"></app-loading-spinner>
 </div>
+
+<app-no-posts [msg]="noPostMessage" *ngIf="posts.length==0"></app-no-posts>
+
 <div class="desktop" *ngIf="!phoneOrIpadDevice">
   <div class="row-flex" *ngIf="this.posts">
     <app-post-card *ngFor="let post of posts.slice(this.pageIndex*8, this.pageIndex*8+4); let i=index" [post]="post" [idx]="this.pageIndex*8+i"></app-post-card>

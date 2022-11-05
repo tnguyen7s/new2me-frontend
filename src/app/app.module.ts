@@ -37,6 +37,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
 import { UserPostCardComponent } from './user/user-posts/user-post-card/user-post-card.component';
 import { AppDialogComponent } from './shared/dialogs/app-dialog/app-dialog.component';
 import { AppYesNoDialogComponent } from './shared/dialogs/app-yes-no-dialog/app-yes-no-dialog.component';
+import { NoPostsComponent } from './shared/no-posts/no-posts.component';
 
 
 
@@ -63,7 +64,8 @@ import { AppYesNoDialogComponent } from './shared/dialogs/app-yes-no-dialog/app-
     AppDialogComponent,
     LoadingSpinnerComponent,
     UserPostCardComponent,
-    AppYesNoDialogComponent
+    AppYesNoDialogComponent,
+    NoPostsComponent
   ],
   imports: [
     BrowserModule,
