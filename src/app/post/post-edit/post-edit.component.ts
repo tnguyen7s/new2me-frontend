@@ -191,10 +191,15 @@ export class PostEditComponent implements OnInit, OnDestroy {
    }
 
    /**
-    * 1. Change route to home
+    * 1. Change route to home or user
     */
-   onBackToHome(){
-    this.router.navigate(['/'])
+   onBackToPreviousPage(){
+    if (this.mode=='create'){
+      this.router.navigate(['/'])
+    }
+    else{
+      this.router.navigate(['/user', 'posts'])
+    }
    }
 
    /***

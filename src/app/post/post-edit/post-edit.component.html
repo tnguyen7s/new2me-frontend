@@ -80,7 +80,7 @@
 
 
         <div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%;">
-          <button type="button" class="new2me-btn-t2 new2me-btn" (click)="onBackToHome()">Back</button>
+          <button type="button" class="new2me-btn-t2 new2me-btn" (click)="onBackToPreviousPage()">Back</button>
           <button type="button" class="new2me-btn-t1 new2me-btn" [disabled]="!postForm.valid || uploadedImages.length<2"
           [matTooltip]="!postForm.valid || uploadedImages.length<3? 'Please enter all information and upload at least 2 item pictures': ''" matTooltipPosition="above"  matTooltipClass="new2me-tooltip" (click)="onPreviewPost()">
           Preview
