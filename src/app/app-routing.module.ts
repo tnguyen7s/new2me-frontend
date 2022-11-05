@@ -30,8 +30,8 @@ const routes: Routes = [
   ]},
   {path: "user", component: UserComponent, canActivate: [AuthGuard], children: [
     {path: "", redirectTo: "profile", pathMatch: "full"},
-    {path: "profile", component: UserProfileComponent}, // implement canActivate
-    {path: "posts", component: UserPostsComponent} // implement canActivate
+    {path: "profile", component: UserProfileComponent, canActivate: [AuthGuard]}, // implement canActivate
+    {path: "posts", component: UserPostsComponent, canActivate: [AuthGuard]} // implement canActivate
   ]},
   {path: "not-found", component: NotFoundComponent},
   {path: "**", redirectTo: "not-found"}

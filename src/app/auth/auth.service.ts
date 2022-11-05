@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import {HttpClient} from "@angular/common/http"
 import { User } from "../shared/models/user.model";
 import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
+import { Router } from "@angular/router";
 
 @Injectable({
   providedIn: "root"
@@ -14,9 +15,10 @@ export class AuthService
   public user: BehaviorSubject<User> = new BehaviorSubject(null);
   public afterAuthRoute: string[] = ["/"];
 
+
   private timeout: any;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private router: Router){
     // once login or sign up, save new user to the local storage and call auto logout
     this.user.subscribe(user => {
       if (user){
@@ -48,6 +50,8 @@ export class AuthService
     if (this.timeout){
       clearTimeout(this.timeout);
     }
+
+    this.router.navigate(['auth']);
   }
 
 

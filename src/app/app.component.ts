@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './auth/auth.service';
 import { PostService } from './post/posts.service';
 
@@ -11,7 +11,7 @@ import { PostService } from './post/posts.service';
 export class AppComponent implements OnInit{
   title = 'new2me-ui';
 
-  constructor(private authService: AuthService, private router: Router, private postService: PostService){
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, private postService: PostService){
   }
 
   ngOnInit(): void {

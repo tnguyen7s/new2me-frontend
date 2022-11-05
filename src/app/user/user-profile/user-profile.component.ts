@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/shared/models/user.model';
@@ -23,12 +24,13 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   sub1: Subscription;
   sub2: Subscription;
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.sub1 = this.authService.user.subscribe(user=>{
       this.userProfile = user;
     });
+
   }
 
   /**

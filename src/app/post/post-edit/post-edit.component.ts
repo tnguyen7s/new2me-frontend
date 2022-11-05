@@ -199,7 +199,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
       this.sub.unsubscribe();
     }
 
-    if (this.mode=="create" && !this.postSaved){
+    if (this.mode=="create" && !this.postSaved && this.postForm.value.title){
       this.mode = "editting";
 
       const {title, location, condition, tag, email, phone, description} = this.postForm.value;

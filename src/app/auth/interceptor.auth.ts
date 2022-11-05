@@ -8,7 +8,7 @@ import { AuthService } from "src/app/auth/auth.service";
   providedIn: "root"
 })
 export class InterceptorService implements HttpInterceptor{
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute){
+  constructor(private authService: AuthService){
   }
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
