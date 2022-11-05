@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { PhoneService } from 'src/app/shared/services/phone.service';
 import { Post } from '../../shared/models/post.model';
 
 @Component({
@@ -12,6 +13,9 @@ export class PostCardComponent implements OnInit {
   @Input() idx: Number;
   imageShown = true;
   date: Date;
+
+
+  phoneOrIpadDevice = false;
   constructor(private router: Router) { }
 
   ngOnInit(): void {

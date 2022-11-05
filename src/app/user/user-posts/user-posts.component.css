@@ -16,3 +16,12 @@
   border-bottom: 0.01px solid rgb(223, 221, 221);
 }
 
+@media only screen and (max-width: 1080px){
+  .row-flex{
+    justify-content: space-evenly;
+  }
+
+  .post-cat-title{
+    margin-left: 16px;
+  }
+}

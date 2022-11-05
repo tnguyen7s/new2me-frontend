@@ -1,0 +1,37 @@
+.right-pane{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.form-input-flex{
+  display: flex;
+  justify-content:space-between
+}
+
+@media only screen and (max-width: 1080px){
+  .form-input-flex{
+    flex-direction: column;
+  }
+
+  .new2me-container{
+    border-radius: 0px;
+    width: 100vw;
+    padding: 0px;
+  }
+
+  .two-sided-pane{
+    flex-direction: column;
+    justify-content: space-around;
+    height: 740px;
+    width: 100vw;
+  }
+  .left-pane{
+    width: 350px;
+  }
+
+  .right-pane{
+    flex-direction: row;
+  }
+}

@@ -1,18 +1,48 @@
-<div class="new2me-appname-heading"><span class="semo-color">New-2-Me!</span></div>
-<div class="row-flex" *ngIf="this.posts">
-  <app-post-card *ngFor="let post of posts.slice(this.pageIndex*8, this.pageIndex*8+4); let i=index" [post]="post" [idx]="this.pageIndex*8+i"></app-post-card>
+<div class="new2me-appname-heading">
+  <div class="semo-color">New-2-Me!</div>
+  <app-loading-spinner *ngIf="this.loading"></app-loading-spinner>
+</div>
+<div class="desktop" *ngIf="!phoneOrIpadDevice">
+  <div class="row-flex" *ngIf="this.posts">
+    <app-post-card *ngFor="let post of posts.slice(this.pageIndex*8, this.pageIndex*8+4); let i=index" [post]="post" [idx]="this.pageIndex*8+i"></app-post-card>
+  </div>
+
+  <div class="row-flex" *ngIf="this.posts">
+    <app-post-card *ngFor="let post of posts.slice(this.pageIndex*8+4, this.pageIndex*8+8); let i=index;" [post]="post" [idx]="this.pageIndex*8+i+4"></app-post-card>
+  </div>
+
+  <div class="row" *ngIf="this.posts">
+    <div class="mx-auto">
+      <mat-paginator [length]="posts.length"
+      [pageSize]="pageSize"
+      (page)="pageIndex = $event.pageIndex"
+      #paginator>
+      </mat-paginator>
+    </div>
+  </div>
+
+
 </div>
 
-<div class="row-flex" *ngIf="this.posts">
-  <app-post-card *ngFor="let post of posts.slice(this.pageIndex*8+4, this.pageIndex*8+8); let i=index;" [post]="post" [idx]="this.pageIndex*8+i+4"></app-post-card>
-</div>
+<div class="phoneDevice" *ngIf="phoneOrIpadDevice">
+  <div class="row-flex" *ngIf="this.posts">
+    <app-post-card *ngFor="let post of posts.slice(this.pageIndex*4, this.pageIndex*4+2); let i=index" [post]="post" [idx]="this.pageIndex*4+i"></app-post-card>
+  </div>
 
-<div class="row" *ngIf="this.posts">
-  <div class="mx-auto">
-    <mat-paginator [length]="posts.length"
-    [pageSize]="pageSize"
-    (page)="pageIndex = $event.pageIndex">
-    </mat-paginator>
+  <div class="row-flex" *ngIf="this.posts">
+    <app-post-card *ngFor="let post of posts.slice(this.pageIndex*4+2, this.pageIndex*4+4); let i=index;" [post]="post" [idx]="this.pageIndex*4+i+2"></app-post-card>
+  </div>
+
+  <div class="row" *ngIf="this.posts">
+    <div class="mx-auto">
+      <mat-paginator [length]="posts.length"
+      [pageSize]="pageSize"
+      (page)="pageIndex = $event.pageIndex">
+      </mat-paginator>
+    </div>
   </div>
 </div>
+
+
+
 

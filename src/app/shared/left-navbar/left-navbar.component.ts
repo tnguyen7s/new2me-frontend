@@ -70,6 +70,7 @@ export class LeftNavbarComponent implements OnInit {
   onResetHome(){
     this.postService.fetchUptodateActivePosts();
 
+    this.ithButton = -1;
     this.router.navigate(['']);
   }
 }

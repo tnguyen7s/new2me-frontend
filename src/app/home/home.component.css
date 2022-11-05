@@ -8,3 +8,13 @@
   font-size: 15px;
 }
 
+.col-flex{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.phoneDevice .row-flex{
+  justify-content: space-around;
+}

@@ -9,12 +9,20 @@ img{
   background-color: #282828;
 
   padding: 16px;
-  width: 210px;
-  height: 240px;
-  margin-right: 28px;
+  width: 220px;
+  height: 220px;
+  margin-right: 24px;
 
   border-radius: 14px;
   transition: all 0.5s ease-out;
+}
+
+@media only screen and (max-width: 1080px){
+  .card-wrapper{
+    margin-right: 0px;
+    width: 180px;
+    height: 200px;
+  }
 }
 
 .card-wrapper:hover{
@@ -41,3 +49,5 @@ h2, div{
 .secondary-text{
   color: #DBE442;
 }
+
+

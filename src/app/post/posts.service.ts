@@ -15,6 +15,8 @@ export class PostService{
 
   public userCreatedPosts: BehaviorSubject<Post[]> = new BehaviorSubject(null);
 
+  public fetching: BehaviorSubject<boolean> = new BehaviorSubject(null);
+
   constructor(private http: HttpClient, private authService: AuthService, private router: Router){
   }
 
@@ -35,6 +37,8 @@ export class PostService{
    * Fetch new posts from the database
    */
   public fetchUptodateActivePosts(){
+    this.fetching.next(true);
+
     this.http.get<Post[]>("http://localhost:5024/api/post")
         .subscribe(
           resData=> {
@@ -42,6 +46,8 @@ export class PostService{
 
             this.homePosts.next(resData);
             this.homePostsLength = resData.length;
+
+            this.fetching.next(false);
           },
           error=> {
             console.error("fetch posts", error);
@@ -51,6 +57,8 @@ export class PostService{
 
 
   public fetchUptodateActivePostsByTag(tag: number){
+    this.fetching.next(true);
+
     this.http.get<Post[]>("http://localhost:5024/api/post/filter?tag=" + tag)
       .subscribe(
         resData => {
@@ -58,6 +66,8 @@ export class PostService{
 
           this.homePosts.next(resData);
           this.homePostsLength = resData.length
+
+          this.fetching.next(false);
         },
         error=> {
           console.error("fetch posts", error);
@@ -69,12 +79,15 @@ export class PostService{
    * Fetch user created posts
    */
   public fetchUserPosts(){
+    this.fetching.next(true);
+
     this.http.get<Post[]>("http://localhost:5024/api/post/user")
     .subscribe(
       resData=> {
         console.log("fetch posts", resData);
 
         this.userCreatedPosts.next(resData);
+        this.fetching.next(false);
       },
       error=> {
         console.error("fetch posts", error);
@@ -94,6 +107,7 @@ export class PostService{
           this.fetchUserPosts();
 
           this.fetchUptodateActivePosts();
+
         },
         (error) => {
           console.error("deleteUserPostFromDb", error);

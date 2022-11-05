@@ -23,6 +23,14 @@ img{
   cursor: pointer;
 }
 
+@media only screen and (max-width: 1080px){
+  .card-wrapper{
+    width: 180px;
+    height: 200px;
+    margin: 0px;
+  }
+}
+
 
 h2{
   margin-bottom: 0px;

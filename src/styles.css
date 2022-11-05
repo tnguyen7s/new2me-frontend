@@ -121,15 +121,8 @@ body {
 .two-sided-pane{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-}
-
-.left-pane{
-  width: 50%;
-}
-
-.right-pane{
-  width: 50%;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .realupload {

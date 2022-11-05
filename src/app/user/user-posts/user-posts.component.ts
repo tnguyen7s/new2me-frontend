@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { PostService } from 'src/app/post/posts.service';
 import { PostStatusEnum } from 'src/app/shared/enums/PostStatusEnum';
 import { Post } from 'src/app/shared/models/post.model';
+import { PhoneService } from 'src/app/shared/services/phone.service';
 
 @Component({
   selector: 'app-user-posts',
@@ -16,9 +17,11 @@ export class UserPostsComponent implements OnInit, OnDestroy {
   public edittingPosts: Post[] = [];
 
   private sub: Subscription;
+  private sub2: Subscription;
 
   // how many to display per page
   public pageSize = 4;
+  public constant = 4;
 
   // current page index
   public pageIndexForActive = 0;
@@ -27,8 +30,11 @@ export class UserPostsComponent implements OnInit, OnDestroy {
 
   public spinner = false;
   public spinnerType = 0;
+  public loading = false;
 
-  constructor(private authService: AuthService, private postService: PostService) { }
+  public isPhoneOrIpadDevice = false;
+
+  constructor(private authService: AuthService, private postService: PostService, private phoneService: PhoneService) { }
 
   ngOnInit(): void {
     this.sub = this.postService.userCreatedPosts.subscribe(
@@ -54,9 +60,19 @@ export class UserPostsComponent implements OnInit, OnDestroy {
       }
     );
 
+    this.sub2 = this.postService.fetching.subscribe(state=>{
+      this.loading = state;
+    });
+
     this.postService.fetchUserPosts();
+
+    this.isPhoneOrIpadDevice = this.phoneService.isPhoneOrIpad();
+    if (this.isPhoneOrIpadDevice){
+      this.pageSize = 2;
+      this.constant = 2;
+    }
   }
-  
+
   onTurnOnSpinner(spinnerType){
     this.spinner = true;
     this.spinnerType = spinnerType;
@@ -64,6 +80,7 @@ export class UserPostsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.sub.unsubscribe();
+      this.sub2.unsubscribe();
   }
 
 }

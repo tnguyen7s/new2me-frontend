@@ -21,7 +21,7 @@
         </mat-form-field>
       </div>
 
-      <div style="display: flex; justify-content:space-between" >
+      <div class="form-input-flex" >
         <mat-form-field>
           <mat-label>Condition</mat-label>
           <mat-select [ngModel]="post? post.condition:conditionDict[conditionList[0]]" required name="condition">
@@ -41,7 +41,7 @@
         </mat-form-field>
       </div>
 
-      <div style="display: flex; justify-content:space-between" >
+      <div class="form-input-flex">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Ex. myemail@gmail.com" name="email" [ngModel]="post? post.contactEmail:''" required email>
@@ -70,9 +70,9 @@
     </div>
 
     <!--RIGHT-->
-    <div class="right-pane" style="display: flex; flex-direction: column; justify-content: space-between; align-items: center;">
+    <div class="right-pane">
       <app-post-pictures [images]="uploadedImages"></app-post-pictures>
-      <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center; height: 26%; width: 90%;">
+      <div style="display: flex; flex-direction: column; justify-content: space-between; align-items: center;  width: 90%;">
           <div class="upload">
             <button type="button" class="new2me-btn new2me-btn-t2">Upload image</button>
             <input type="file" name="image" id="image" class="realupload" (change)="onUploadImage($event)"/>
@@ -95,7 +95,6 @@
 <!--Show this on previewed-->
 <div *ngIf="previewed">
   <app-post-detail [post]="post"></app-post-detail>
-
 
   <div class="row mt-4">
     <div class="col-md-8 mx-auto" style="display: flex; justify-content: space-evenly; ">

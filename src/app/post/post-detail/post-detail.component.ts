@@ -6,6 +6,7 @@ import { Post } from 'src/app/shared/models/post.model';
 import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/post/posts.service';
 import { PostContactDialog } from './post-contact-dialog/post-contact-dialog.component';
+import { PhoneService } from 'src/app/shared/services/phone.service';
 
 
 @Component({
@@ -20,11 +21,13 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   public conditionDict = {};
 
   sub: Subscription;
-  constructor(public enumService: EnumService,
-              public dialog: MatDialog,
-              public route: ActivatedRoute,
-              public router: Router,
-              public postService: PostService)
+  isPhone = false;
+  constructor(private enumService: EnumService,
+              private dialog: MatDialog,
+              private route: ActivatedRoute,
+              private router: Router,
+              private postService: PostService
+              )
   {}
 
   /**
@@ -75,6 +78,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
         this.post = this.postService.getPostByIndex(param.idx);
       }
     })
+
+
   }
 
   ngOnDestroy(): void {

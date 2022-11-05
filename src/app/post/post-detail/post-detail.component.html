@@ -1,15 +1,15 @@
 
 <div class="new2me-appname-heading"><div class="semo-color">New-2-Me!</div></div>
 
-    <div class="row new2me-container">
+    <div class="flex new2me-container" >
 
-      <div class="col-md-6 ml-2 mr-4 new2me-bottom-gradient">
+      <div class=" new2me-bottom-gradient">
         <app-post-pictures [images]="post.pictures" [inEdit]="false"></app-post-pictures>
 
       </div>
 
 
-      <div class="col-md-5 ml-4 mr-2 new2me-bottom-gradient" style="position: relative;">
+      <div class="new2me-bottom-gradient" style="position: relative;">
         <button class="new2me-btn new2me-btn-t1 reply-btn" (click)="onOpenDialog()">Reply</button>
 
         <h2>{{post.title}}</h2>
