@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export interface ContactDialogData {
   phone: string;
   email: string;
+  nameOfUser: string;
 }
 
 @Component({

@@ -39,10 +39,12 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.postService.getPostContact(this.post.id)
                     .subscribe(
                       resData =>{
+                        console.log('On Get post Contact', resData);
                         const dialogRef = this.dialog.open(PostContactDialog, {
                           data: {
                             email: resData.contactEmail,
-                            phone: resData.contactPhone
+                            phone: resData.contactPhone,
+                            nameOfUser: resData.nameOfUser
                           }
                         });
                       },

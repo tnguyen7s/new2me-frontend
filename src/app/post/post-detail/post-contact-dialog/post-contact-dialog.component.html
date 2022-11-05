@@ -2,6 +2,11 @@
   <div mat-dialog-title class="dialog-header">Owner's Contact Information</div>
 
   <div mat-dialog-content>
+    <div *ngIf="data.nameOfUser" class="info-box">
+      <span>Name: </span>
+      <span>{{data.nameOfUser}}</span>
+    </div>
+
     <div class="info-box">
       <span>Email: </span>
       <span>{{data.email}}</span>

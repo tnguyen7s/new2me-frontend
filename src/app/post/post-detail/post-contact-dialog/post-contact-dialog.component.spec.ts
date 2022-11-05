@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PostContactDialogComponent } from './post-contact-dialog.component';
+import { PostContactDialog } from './post-contact-dialog.component';
 
-describe('PostContactDialogComponent', () => {
-  let component: PostContactDialogComponent;
-  let fixture: ComponentFixture<PostContactDialogComponent>;
+describe('PostContactDialog', () => {
+  let component: PostContactDialog;
+  let fixture: ComponentFixture<PostContactDialog>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PostContactDialogComponent ]
+      declarations: [ PostContactDialog ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(PostContactDialogComponent);
+    fixture = TestBed.createComponent(PostContactDialog);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
