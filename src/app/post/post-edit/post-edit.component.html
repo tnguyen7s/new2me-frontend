@@ -7,21 +7,21 @@
   <form class="two-sided-pane" #postForm="ngForm">
     <!--LEFT-->
     <div class="left-pane">
-      <div class="form-group">
+      <div >
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
           <input matInput name="title" [ngModel]="post? post.title:''" required>
         </mat-form-field>
       </div>
 
-      <div class="form-group">
+      <div >
         <mat-form-field appearance="fill">
           <mat-label>Location</mat-label>
           <input matInput placeholder="Ex. apt|building|etc.,street address,city,state,zipcode" name="location" [ngModel]="post? post.location:''" required>
         </mat-form-field>
       </div>
 
-      <div style="display: flex; justify-content:space-between" class="form-group">
+      <div style="display: flex; justify-content:space-between" >
         <mat-form-field>
           <mat-label>Condition</mat-label>
           <mat-select [ngModel]="post? post.condition:conditionDict[conditionList[0]]" required name="condition">
@@ -41,7 +41,7 @@
         </mat-form-field>
       </div>
 
-      <div style="display: flex; justify-content:space-between" class="form-group">
+      <div style="display: flex; justify-content:space-between" >
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
           <input matInput placeholder="Ex. myemail@gmail.com" name="email" [ngModel]="post? post.contactEmail:''" required email>
@@ -59,7 +59,7 @@
       </div> -->
 
 
-      <div class="form-group">
+      <div >
         <mat-form-field appearance="fill">
           <mat-label>Description</mat-label>
           <textarea matInput cols="40" rows="4" name="description" [ngModel]="post? post.description:''"></textarea>
@@ -81,8 +81,8 @@
 
         <div style="display: flex; flex-direction: row; justify-content: space-around; width: 100%;">
           <button type="button" class="new2me-btn-t2 new2me-btn" (click)="onBackToHome()">Back</button>
-          <button type="button" class="new2me-btn-t1 new2me-btn" [disabled]="!postForm.valid || uploadedImages.length<3"
-          [matTooltip]="!postForm.valid || uploadedImages.length<3? 'Please enter all information and upload at least 3 item pictures': ''" matTooltipPosition="above"  matTooltipClass="new2me-tooltip" (click)="onPreviewPost()">
+          <button type="button" class="new2me-btn-t1 new2me-btn" [disabled]="!postForm.valid || uploadedImages.length<2"
+          [matTooltip]="!postForm.valid || uploadedImages.length<3? 'Please enter all information and upload at least 2 item pictures': ''" matTooltipPosition="above"  matTooltipClass="new2me-tooltip" (click)="onPreviewPost()">
           Preview
           </button>
         </div>

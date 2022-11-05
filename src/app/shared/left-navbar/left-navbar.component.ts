@@ -13,6 +13,7 @@ export class LeftNavbarComponent implements OnInit {
   public searchBarInput = "";
   private tagDict: {string: PostTagEnum};
   public tagList: string[];
+  public ithButton: Number;
 
   constructor(public router: Router, public route: ActivatedRoute, public enumService: EnumService, public authService: AuthService) { }
 
@@ -24,13 +25,15 @@ export class LeftNavbarComponent implements OnInit {
   /**
    * 1. Change the route to Home
    * 2. Associates the route with the tag number
+   * 3. Update the ith button that is clicked
    * @param tag: the tag key
    */
-  public onFilterByTag(tag){
+  public onFilterByTag(tag, i){
     console.log('onFilterByTag', tag, this.tagDict[tag])
 
     // change the route, associate with the tag
     this.router.navigate(['/'], {queryParams: {'tag': this.tagDict[tag]}})
+    this.ithButton = i;
   }
 
 

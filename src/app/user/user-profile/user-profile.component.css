@@ -1,7 +1,7 @@
 label{
   color: black;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .profile-wrapper{
@@ -25,6 +25,8 @@ input{
   padding-left: 0px;
   width: 80%;
   border: none;
+  height: 34px;
+  color: black;
 }
 
 .form-control:disabled{
@@ -49,16 +51,8 @@ input{
 }
 
 .edit input{
-  border: 1px solid rgba(0,0,0,.15);
-}
-
-.mat-tab-label, .mat-tab-link{
-  color: #5B6670;
-  opacity: 1;
-}
-
-.mat-tab-link:hover{
-  color:  #C8102E ;
+  border: 2px solid rgba(0,0,0,.15);
+  border-radius: 4px;
 }
 
 

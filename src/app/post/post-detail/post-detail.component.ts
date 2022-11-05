@@ -45,6 +45,16 @@ export class PostDetailComponent implements OnInit, OnDestroy {
                             phone: resData.contactPhone
                           }
                         });
+                      },
+                      error => {
+                        if (error.status==404){
+                          const dialogRef = this.dialog.open(PostContactDialog, {
+                            data: {
+                              email: this.post.contactEmail,
+                              phone: this.post.contactPhone
+                            }
+                          });
+                        }
                       }
                     );
   }
@@ -61,10 +71,6 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     this.sub = this.route.params.subscribe((param)=>{
       if (param.idx!=null){
         this.post = this.postService.getPostByIndex(param.idx);
-
-        if (!this.post){
-          this.router.navigate(['not-found']);
-        }
       }
     })
   }

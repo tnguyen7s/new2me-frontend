@@ -1,5 +1,5 @@
 .top-nav{
-  background-color:  #3A3B3C;
+  background-color:  rgb(38, 38, 38);;
   height: 56px;
   position: relative;
 }
@@ -9,4 +9,6 @@
   top: 6px;
   right: 24px;
   cursor: pointer;
+  height: 40px;
+  width: 40px;
 }

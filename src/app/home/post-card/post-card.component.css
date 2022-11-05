@@ -14,16 +14,12 @@ img{
   margin-right: 28px;
 
   border-radius: 14px;
-  transition: all 1s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .card-wrapper:hover{
   background-color: #3A3B3C;
   cursor: pointer;
-}
-
-h2:hover{
-  text-decoration: underline;
 }
 
 h2{
@@ -36,6 +32,5 @@ h2{
 
 .secondary-text{
   font-size: .8125rem;
-  color: #A2AAAD;
 }
 

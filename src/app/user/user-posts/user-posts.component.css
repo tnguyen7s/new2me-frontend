@@ -16,12 +16,3 @@
   border-bottom: 0.01px solid rgb(223, 221, 221);
 }
 
-.mat-tab-label, .mat-tab-link{
-  color: #5B6670;
-  opacity: 1;
-}
-
-.mat-tab-link:hover{
-  color:  #C8102E ;
-}
-

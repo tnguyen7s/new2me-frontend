@@ -53,7 +53,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     this.route.params.subscribe((params)=>{
       this.postId = +params['id'];
 
-      if (this.postId!=undefined){
+      if (!Number.isNaN(this.postId)){
         this.mode = "edit";
         console.log('load existing post content', this.postId);
 

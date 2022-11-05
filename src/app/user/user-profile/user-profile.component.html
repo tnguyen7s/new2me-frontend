@@ -1,9 +1,3 @@
-<nav mat-tab-nav-bar >
-  <a mat-tab-link routerLink="/user/profile" routerLinkActive="active">Your Profile</a>
-  <a mat-tab-link routerLink="/user/posts" routerLinkActive="active">Your Posts</a>
-  <a mat-tab-link routerLink="/auth" (click)="onLogout()">Log Out</a>
-</nav>
-
 <form #userForm="ngForm" class="profile-wrapper" *ngIf="userProfile">
   <div class="form-group">
     <label for="username">Username</label>
@@ -24,7 +18,7 @@
   <hr>
 
   <div class="flex-row-start-center">
-    <h2 style="margin: 10px 0px;">Optional</h2>
+    <h2 style="margin: 10px 0px; font-size: 16px;">Optional</h2>
     <button type="button" class="new2me-quesmark"
     matTooltip="Information provided here can facilitate you when creating a post." matTooltipPosition="above"  matTooltipClass="new2me-tooltip" >
     &quest;

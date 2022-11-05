@@ -91,18 +91,20 @@ body {
 }
 
 
-.form-group label, .post-detail-label{
-  color: rgb(127, 135, 142);
+.form-group label{
+  color: white;
   font-weight: 600;
   font-size: 16px;
 }
 
 .new2me-quesmark{
   background: none;
-  border: red solid 2px;
+  border: rgb(240, 55, 22) solid 2px;
   border-radius: 50%;
-  color: red;
-  font-size: 14px;
+  color: rgb(240, 55, 22);
+  font-size: 12px;
+  width: 20px;
+  height: 22px;
   margin-left: 2px;
 }
 
@@ -180,12 +182,12 @@ body {
 
 .primary-text{
   color: white;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 500;
 }
 
 .secondary-text{
-  color: #5B6670;
+  color: #A2AAAD;
   font-size: 16px;
 }
 
@@ -194,12 +196,18 @@ body {
   margin-top: 14px;
 }
 
-a{
-  transition: box-shadow .25s,color .25s;
+a, button{
+  transition: all 0.4s ease-out;
 }
 
-button{
-  transition: cubic-bezier(0.215, 0.610, 0.355, 1)
+.dialog-header{
+  color: rgb(240, 55, 22);
+  font-size: 20px;
+  font-weight: 600;
+}
+
+a:hover{
+  text-decoration: none;
 }
 
 

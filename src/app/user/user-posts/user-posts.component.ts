@@ -56,11 +56,7 @@ export class UserPostsComponent implements OnInit, OnDestroy {
 
     this.postService.fetchUserPosts();
   }
-
-  onLogout(){
-    this.authService.logout();
-  }
-
+  
   onTurnOnSpinner(spinnerType){
     this.spinner = true;
     this.spinnerType = spinnerType;

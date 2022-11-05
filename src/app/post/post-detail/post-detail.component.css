@@ -1,12 +1,12 @@
 h2{
-  text-decoration: underline 2px #C8102E;
+  color:white;
 }
 
 .reply-btn{
   float: right;
 }
 
-h2{
-  color: white;
+.post-detail-label{
+  color: #A2AAAD;
+  font-size: 14px;
 }
-

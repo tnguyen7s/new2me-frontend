@@ -1,9 +1,9 @@
 @import "../node_modules/@angular/material/theming";
 @include mat-core();
 
-$new2me-theme-primary: mat-palette($mat-pink, 700);
-$new2me-theme-accent: mat-palette($mat-pink, 700);
-$new2me-theme-warn: mat-palette($mat-red, 700);
+$new2me-theme-primary: mat-palette($mat-red, 800);
+$new2me-theme-accent: mat-palette($mat-red, 800);
+$new2me-theme-warn: mat-palette($mat-red, 500);
 
 $new2me-theme: mat-light-theme($new2me-theme-primary, $new2me-theme-accent, $new2me-theme-warn);
 
