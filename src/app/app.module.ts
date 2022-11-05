@@ -76,7 +76,8 @@ import { AppYesNoDialogComponent } from './shared/dialogs/app-yes-no-dialog/app-
     MatInputModule,
     MatDialogModule,
     MatPaginatorModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

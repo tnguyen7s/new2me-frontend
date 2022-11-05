@@ -15,7 +15,7 @@
     flex-direction: column;
   }
 
-  .new2me-container{
+  .new2me-bottom-gradient{
     border-radius: 0px;
     width: 100vw;
     padding: 0px;
@@ -34,4 +34,9 @@
   .right-pane{
     flex-direction: row;
   }
+}
+
+.left-pane {
+  width: 480px;
+
 }

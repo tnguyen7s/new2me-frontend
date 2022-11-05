@@ -9,7 +9,10 @@ import { DialogData } from '../dialog-message.interface';
 })
 export class AppYesNoDialogComponent{
 
-  constructor(public DialogRef: MatDialogRef<AppYesNoDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData){}
+  constructor(public DialogRef: MatDialogRef<AppYesNoDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData){
+    this.DialogRef.addPanelClass('animated');
+    this.DialogRef.addPanelClass('bounceInUp');
+  }
 
   onCloseDialog(yes: boolean){
     this.DialogRef.close(yes);

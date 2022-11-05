@@ -1,3 +1,4 @@
+import { trigger } from '@angular/animations';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { PhoneService } from 'src/app/shared/services/phone.service';

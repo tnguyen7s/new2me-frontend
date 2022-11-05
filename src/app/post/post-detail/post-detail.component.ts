@@ -6,13 +6,29 @@ import { Post } from 'src/app/shared/models/post.model';
 import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/post/posts.service';
 import { PostContactDialog } from './post-contact-dialog/post-contact-dialog.component';
-import { PhoneService } from 'src/app/shared/services/phone.service';
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { bounceIn, bounceOut } from 'src/app/shared/animations/bounce.animation';
 
 
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
-  styleUrls: ['./post-detail.component.css']
+  styleUrls: ['./post-detail.component.css'],
+  animations: [
+    trigger('bounce',
+    [
+      transition('void => *',
+        useAnimation(bounceIn, {
+          params: {timing: 0.7}
+        })
+      ),
+      transition('* => void',
+        useAnimation(bounceOut,{
+          params: {timing: 0.6}
+        })
+      )
+    ]),
+  ]
 })
 export class PostDetailComponent implements OnInit, OnDestroy {
   // Source 1 to determine the post: from input, no routing
@@ -22,6 +38,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   sub: Subscription;
   isPhone = false;
+
   constructor(private enumService: EnumService,
               private dialog: MatDialog,
               private route: ActivatedRoute,

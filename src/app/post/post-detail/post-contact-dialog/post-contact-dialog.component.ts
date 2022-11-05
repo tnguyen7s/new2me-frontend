@@ -14,10 +14,12 @@ export interface ContactDialogData {
 })
 
 export class PostContactDialog{
-  constructor(public DialogRef: MatDialogRef<PostContactDialog>, @Inject(MAT_DIALOG_DATA) public data: ContactDialogData){}
+  constructor(public DialogRef: MatDialogRef<PostContactDialog>, @Inject(MAT_DIALOG_DATA) public data: ContactDialogData){
+    this.DialogRef.addPanelClass('animated');
+    this.DialogRef.addPanelClass('bounceInUp');
+  }
 
   onCloseDialog(){
     this.DialogRef.close();
-    console.log('Closed dialog');
   }
 }

@@ -10,12 +10,23 @@ import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/post/posts.service';
 import { AuthService } from 'src/app/auth/auth.service';
 import { AppYesNoDialogComponent } from 'src/app/shared/dialogs/app-yes-no-dialog/app-yes-no-dialog.component';
+import { transition, trigger, useAnimation } from '@angular/animations';
+import { bounceIn } from 'src/app/shared/animations/bounce.animation';
 
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
   styleUrls: ['./post-edit.component.css'],
   encapsulation: ViewEncapsulation.None,
+  animations: [
+    trigger('bounce', [
+      transition("void => *",
+        useAnimation(bounceIn, {
+          params: { timing: 0.7}
+        })
+      )
+    ])
+  ]
 })
 export class PostEditComponent implements OnInit, OnDestroy {
   @ViewChild('postForm') postForm: NgForm;
