@@ -13,6 +13,7 @@ export class Post{
   public contactEmail: string;
   public contactPhone: string;
   public status: PostStatusEnum;
+  public lastUpdatedOn: string;
 
   constructor(PostTitle: string,
               PostLocation: string,

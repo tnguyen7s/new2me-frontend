@@ -11,10 +11,12 @@ export class PostCardComponent implements OnInit {
   @Input() post: Post;
   @Input() idx: Number;
   imageShown = true;
+  date: Date;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
     console.log(this.post);
+    this.date = new Date(this.post.lastUpdatedOn);
   }
 
   onOpenPost(){

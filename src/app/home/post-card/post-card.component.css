@@ -34,3 +34,10 @@ h2{
   font-size: .8125rem;
 }
 
+h2, div{
+  margin-bottom: 8px;
+}
+
+.secondary-text{
+  color: #DBE442;
+}
