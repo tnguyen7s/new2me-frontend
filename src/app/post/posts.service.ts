@@ -49,6 +49,22 @@ export class PostService{
         );
   }
 
+
+  public fetchUptodateActivePostsByTag(tag: number){
+    this.http.get<Post[]>("http://localhost:5024/api/post/filter?tag=" + tag)
+      .subscribe(
+        resData => {
+          console.log("fetch posts", resData);
+
+          this.homePosts.next(resData);
+          this.homePostsLength = resData.length
+        },
+        error=> {
+          console.error("fetch posts", error);
+        }
+      )
+  }
+
   /**
    * Fetch user created posts
    */

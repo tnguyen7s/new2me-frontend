@@ -42,7 +42,9 @@ export class HomeComponent implements OnInit, OnDestroy {
       }
       else if (by.includes('tag')){
         console.log('on filter by tag', param);
+
         // filter by tag
+        this.postService.fetchUptodateActivePostsByTag(+param['tag']);
       }
     });
 
