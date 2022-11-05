@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
+import { PostService } from 'src/app/post/posts.service';
 import { PostTagEnum } from '../enums/PostTagEnum';
 import { EnumService } from '../services/enum.service';
 
@@ -15,7 +16,11 @@ export class LeftNavbarComponent implements OnInit {
   public tagList: string[];
   public ithButton: Number;
 
-  constructor(public router: Router, public route: ActivatedRoute, public enumService: EnumService, public authService: AuthService) { }
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              private enumService: EnumService,
+              private authService: AuthService,
+              private postService: PostService ) { }
 
   ngOnInit(): void {
     this.tagDict = this.enumService.getTagDict();
@@ -60,5 +65,11 @@ export class LeftNavbarComponent implements OnInit {
     this.authService.afterAuthRoute = ["/post", "create"];
 
     this.router.navigate(['/post', 'create']);
+  }
+
+  onResetHome(){
+    this.postService.fetchUptodateActivePosts();
+
+    this.router.navigate(['']);
   }
 }

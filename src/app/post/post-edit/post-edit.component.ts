@@ -9,6 +9,7 @@ import { Post } from 'src/app/shared/models/post.model';
 import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/post/posts.service';
 import { AuthService } from 'src/app/auth/auth.service';
+import { AppYesNoDialogComponent } from 'src/app/shared/dialogs/app-yes-no-dialog/app-yes-no-dialog.component';
 
 @Component({
   selector: 'app-post-edit',
@@ -32,6 +33,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
   public tagList: string [];
 
   sub: Subscription;
+
+  public postSaved = false;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -116,20 +119,33 @@ export class PostEditComponent implements OnInit, OnDestroy {
     });
   }
 
+  onOpenConfirmDialog(msg){
+    const dialogRef = this.dialog.open(AppYesNoDialogComponent, {
+      data : {
+        message: msg
+      }
+    });
+
+    return dialogRef;
+  }
+
   /**
    * 1. save the post information and images to the db
    * 2. navigate to home
    * 3. Display app mesg
    */
-  onPublishPost(){
+  onSavePost(){
     console.log('on publish post', this.post);
 
-    if (this.mode=="create"){
+    if (this.mode=="create" || this.mode=="editting"){
       this.sub = this.postsService.publishPost(this.post)
         .subscribe(
           resData=>{
             console.log("publishPost to db", resData);
+            this.postSaved = true;
+
             this.onOpenDialog("Your post is uploaded successfully.");
+
             this.router.navigate([''])
           },
           error => {
@@ -178,9 +194,26 @@ export class PostEditComponent implements OnInit, OnDestroy {
    }
 
 
-   ngOnDestroy(): void {
+   ngOnDestroy() {
     if (this.sub){
       this.sub.unsubscribe();
     }
-   }
+
+    if (this.mode=="create" && !this.postSaved){
+      this.mode = "editting";
+
+      const {title, location, condition, tag, email, phone, description} = this.postForm.value;
+      this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, this.postId, PostStatusEnum.InEditting);
+
+      this.onOpenConfirmDialog("Do you want to save this post to continue editting it later?")
+      .afterClosed()
+      .subscribe((result)=>{
+        if (result==true){
+          console.log("save editting", this.post);
+          this.onSavePost();
+        }
+      })
+    }
+
+  }
 }
