@@ -8,6 +8,7 @@ import { PostStatusEnum } from 'src/app/shared/enums/PostStatusEnum';
 import { Post } from 'src/app/shared/models/post.model';
 import { EnumService } from 'src/app/shared/services/enum.service';
 import { PostService } from 'src/app/post/posts.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-post-edit',
@@ -36,7 +37,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
               private router: Router,
               private postsService: PostService,
               private enumService: EnumService,
-              private dialog: MatDialog)
+              private dialog: MatDialog,
+              private authService: AuthService)
   {
     this.conditionList = this.enumService.getConditionList();
     this.conditionDict = this.enumService.getConditionDict();
@@ -75,6 +77,9 @@ export class PostEditComponent implements OnInit, OnDestroy {
       }
       else{
         this.postId = 0;
+
+        var user = this.authService.user.getValue();
+        this.post = new Post("", user.address, 0, "", 0, [], user.email, user.phoneNum, this.postId, 0);
       }
     })
   }
