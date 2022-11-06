@@ -8,6 +8,7 @@ import { PostService } from 'src/app/post/posts.service';
 import { PostContactDialog } from './post-contact-dialog/post-contact-dialog.component';
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { bounceIn, bounceOut } from 'src/app/shared/animations/bounce.animation';
+import { RecapchaDialogComponent } from 'src/app/shared/dialogs/recapcha-dialog/recapcha-dialog.component';
 
 
 @Component({
@@ -54,31 +55,48 @@ export class PostDetailComponent implements OnInit, OnDestroy {
    */
   onOpenDialog(){
     // implement capcha
+    this.openRecapchaDialog()
+        .afterClosed()
+        .subscribe(
+          result =>{
+          if (result == true){
+            // get the post contact
+            this.postService.getPostContact(this.post.id)
+            .subscribe(
+              resData =>{
+                console.log('On Get post Contact', resData);
 
-    // open the dialog
-    this.postService.getPostContact(this.post.id)
-                    .subscribe(
-                      resData =>{
-                        console.log('On Get post Contact', resData);
-                        const dialogRef = this.dialog.open(PostContactDialog, {
-                          data: {
-                            email: resData.contactEmail,
-                            phone: resData.contactPhone,
-                            nameOfUser: resData.nameOfUser
-                          }
-                        });
-                      },
-                      error => {
-                        if (error.status==404){
-                          const dialogRef = this.dialog.open(PostContactDialog, {
-                            data: {
-                              email: this.post.contactEmail,
-                              phone: this.post.contactPhone
-                            }
-                          });
-                        }
-                      }
-                    );
+                // if capcha succeed
+                const dialogRef = this.dialog.open(PostContactDialog, {
+                  data: {
+                    email: resData.contactEmail,
+                    phone: resData.contactPhone,
+                    nameOfUser: resData.nameOfUser
+                  }
+                });
+              },
+              error => {
+                // otherwise
+                if (error.status==404){
+                  const dialogRef = this.dialog.open(PostContactDialog, {
+                    data: {
+                      email: this.post.contactEmail,
+                      phone: this.post.contactPhone
+                    }
+                  });
+                }
+              }
+            );
+          }
+
+        }
+      );
+  }
+
+  openRecapchaDialog(){
+    const dialogRef = this.dialog.open(RecapchaDialogComponent);
+
+    return dialogRef;
   }
 
   ngOnInit(): void {

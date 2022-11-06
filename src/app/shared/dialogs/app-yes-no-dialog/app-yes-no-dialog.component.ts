@@ -18,6 +18,4 @@ export class AppYesNoDialogComponent{
     this.DialogRef.close(yes);
     console.log('Closed dialog');
   }
-
-
 }

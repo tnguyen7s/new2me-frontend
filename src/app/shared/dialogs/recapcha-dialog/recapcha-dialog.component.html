@@ -1,0 +1,11 @@
+<form [formGroup]="formGroup">
+  <ngx-recaptcha2 #captchaElem
+    [siteKey]="siteKey"
+    formControlName="recaptcha"
+    (success)="handleSuccess($event)"
+    >
+  </ngx-recaptcha2>
+</form>
+<div mat-dialog-actions style="justify-content: right;">
+  <button mat-button (click)="onClose()" class="new2me-btn new2me-btn-t2">Next</button>
+</div>

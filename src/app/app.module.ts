@@ -8,7 +8,7 @@ import { LeftNavbarComponent } from './shared/left-navbar/left-navbar.component'
 import { AuthComponent } from './auth/auth/auth.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostEditComponent } from './post/post-edit/post-edit.component';
 import { PostPicturesComponent } from './post/post-pictures/post-pictures.component';
 import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
@@ -38,7 +38,8 @@ import { UserPostCardComponent } from './user/user-posts/user-post-card/user-pos
 import { AppDialogComponent } from './shared/dialogs/app-dialog/app-dialog.component';
 import { AppYesNoDialogComponent } from './shared/dialogs/app-yes-no-dialog/app-yes-no-dialog.component';
 import { NoPostsComponent } from './shared/no-posts/no-posts.component';
-
+import { NgxCaptchaModule } from 'ngx-captcha';
+import { RecapchaDialogComponent } from './shared/dialogs/recapcha-dialog/recapcha-dialog.component';
 
 
 
@@ -65,7 +66,8 @@ import { NoPostsComponent } from './shared/no-posts/no-posts.component';
     LoadingSpinnerComponent,
     UserPostCardComponent,
     AppYesNoDialogComponent,
-    NoPostsComponent
+    NoPostsComponent,
+    RecapchaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -79,7 +81,9 @@ import { NoPostsComponent } from './shared/no-posts/no-posts.component';
     MatDialogModule,
     MatPaginatorModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxCaptchaModule,
+    ReactiveFormsModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
