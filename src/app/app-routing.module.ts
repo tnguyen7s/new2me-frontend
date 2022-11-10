@@ -3,7 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "./auth/auth.guard";
 import { AuthComponent } from "./auth/auth/auth.component";
 import { LoginComponent } from "./auth/login/login.component";
-import { ResetPasswordComponent } from "./auth/reset-password/reset-password.component";
+import { ResetPasswordRequestComponent } from "./auth/reset-password-request/reset-password-request.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { HomeComponent } from "./home/home.component";
 import { PostDetailComponent } from "./post/post-detail/post-detail.component";
@@ -26,7 +26,7 @@ const routes: Routes = [
     {path: "", redirectTo: "login", pathMatch: "full"},
     {path: "login", component: LoginComponent},
     {path: "signup", component: SignupComponent},
-    {path: "reset-password", component: ResetPasswordComponent}
+    {path: "request-reset-password", component: ResetPasswordRequestComponent}
   ]},
   {path: "user", component: UserComponent, canActivate: [AuthGuard], children: [
     {path: "", redirectTo: "profile", pathMatch: "full"},

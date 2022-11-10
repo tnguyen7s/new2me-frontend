@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-
-
 import { AppComponent } from './app.component';
 import { LeftNavbarComponent } from './shared/left-navbar/left-navbar.component';
 import { AuthComponent } from './auth/auth/auth.component';
@@ -11,7 +9,6 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PostEditComponent } from './post/post-edit/post-edit.component';
 import { PostPicturesComponent } from './post/post-pictures/post-pictures.component';
-import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
@@ -21,7 +18,7 @@ import { UserProfileComponent } from './user/user-profile/user-profile.component
 import { UserPostsComponent } from './user/user-posts/user-posts.component';
 import { PostContactDialog } from './post/post-detail/post-contact-dialog/post-contact-dialog.component';
 import { PostCardComponent } from './home/post-card/post-card.component';
-
+import { ResetPasswordRequestComponent} from './auth/reset-password-request/reset-password-request.component';
 
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTabsModule} from '@angular/material/tabs';
@@ -52,7 +49,6 @@ import { RecapchaDialogComponent } from './shared/dialogs/recapcha-dialog/recapc
     SignupComponent,
     PostEditComponent,
     PostPicturesComponent,
-    ResetPasswordComponent,
     HomeComponent,
     PostComponent,
     PostDetailComponent,
@@ -67,7 +63,8 @@ import { RecapchaDialogComponent } from './shared/dialogs/recapcha-dialog/recapc
     UserPostCardComponent,
     AppYesNoDialogComponent,
     NoPostsComponent,
-    RecapchaDialogComponent
+    RecapchaDialogComponent,
+    ResetPasswordRequestComponent
   ],
   imports: [
     BrowserModule,

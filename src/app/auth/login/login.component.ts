@@ -56,7 +56,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    * 1. Switch the route to auth/reset-password
    */
   onSwitchResetPassword(){
-    this.router.navigate(['auth', 'reset-password'])
+    this.router.navigate(['auth', 'request-reset-password'])
   }
 
   ngOnDestroy(){

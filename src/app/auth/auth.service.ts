@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {HttpClient} from "@angular/common/http"
+import {HttpClient, HttpParams} from "@angular/common/http"
 import { User } from "../shared/models/user.model";
 import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 import { Router } from "@angular/router";
@@ -106,5 +106,10 @@ export class AuthService
         console.error("OnSaveProfile", error);
       }
     );
+  }
+
+
+  public requestResetPassword(email: string){
+    return this.http.get("http://localhost:5024/api/account/resetPassRequest?email="+email);
   }
 }
