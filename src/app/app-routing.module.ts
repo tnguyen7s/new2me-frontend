@@ -13,6 +13,7 @@ import { NotFoundComponent } from "./not-found/not-found.component";
 import { UserPostsComponent } from "./user/user-posts/user-posts.component";
 import { UserProfileComponent } from "./user/user-profile/user-profile.component";
 import { UserComponent } from "./user/user.component";
+import { ResetPasswordComponent } from "./auth/reset-password/reset-password.component";
 
 
 const routes: Routes = [
@@ -26,7 +27,8 @@ const routes: Routes = [
     {path: "", redirectTo: "login", pathMatch: "full"},
     {path: "login", component: LoginComponent},
     {path: "signup", component: SignupComponent},
-    {path: "request-reset-password", component: ResetPasswordRequestComponent}
+    {path: "request-reset-password", component: ResetPasswordRequestComponent},
+    {path: "reset-password", component: ResetPasswordComponent}
   ]},
   {path: "user", component: UserComponent, canActivate: [AuthGuard], children: [
     {path: "", redirectTo: "profile", pathMatch: "full"},

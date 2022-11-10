@@ -37,6 +37,7 @@ import { AppYesNoDialogComponent } from './shared/dialogs/app-yes-no-dialog/app-
 import { NoPostsComponent } from './shared/no-posts/no-posts.component';
 import { NgxCaptchaModule } from 'ngx-captcha';
 import { RecapchaDialogComponent } from './shared/dialogs/recapcha-dialog/recapcha-dialog.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
 
 
 
@@ -64,7 +65,8 @@ import { RecapchaDialogComponent } from './shared/dialogs/recapcha-dialog/recapc
     AppYesNoDialogComponent,
     NoPostsComponent,
     RecapchaDialogComponent,
-    ResetPasswordRequestComponent
+    ResetPasswordRequestComponent,
+    ResetPasswordComponent
   ],
   imports: [
     BrowserModule,

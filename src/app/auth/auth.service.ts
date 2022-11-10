@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import {HttpClient, HttpParams} from "@angular/common/http"
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http"
 import { User } from "../shared/models/user.model";
 import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 import { Router } from "@angular/router";
@@ -111,5 +111,11 @@ export class AuthService
 
   public requestResetPassword(email: string){
     return this.http.get("http://localhost:5024/api/account/resetPassRequest?email="+email);
+  }
+
+  public resetPassword(password: string, token: string){
+    return this.http.post<User>("http://localhost:5024/api/account/resetPassword",
+                                {password: password},
+                                {headers: new HttpHeaders().append("Authorization", "Bearer "+token)});
   }
 }
