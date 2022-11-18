@@ -16,7 +16,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   loading = false;
   validForm = true;
   errorMsg = "";
-  strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+  //strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"); potential DOS
   strongPassRequirements = "Your password must have at least: *8 characters \ *1 uppercase letter \ *1 lowercase letter \ *1 digit"
   sub: Subscription;
 
@@ -74,12 +74,43 @@ export class SignupComponent implements OnInit, OnDestroy {
       return false;
     }
 
-    if (!this.strongRegex.test(password)){
+    if (!this.testPasswordSecurity(password)){
       this.errorMsg = ErrorMessageEnum.InsecurePass;
       return false;
     }
 
     return true;
+  }
+
+  /**
+   * 8 characters
+   * 1 uppercase letter
+   * 1 lowercase letter
+   * 1 digit
+   */
+  testPasswordSecurity(password: string): boolean{
+    if (password.length<8){
+      return false;
+    }
+
+    let atLeastOneUpper = false;
+    let atLeastOneLower = false;
+    let atLeastOneDigit = false;
+
+    password.split('').forEach(c => {
+      if (c.charCodeAt(0) >= 'A'.charCodeAt(0) && c.charCodeAt(0)<='Z'.charCodeAt(0)){
+        atLeastOneUpper = true;
+      }
+      else if (c.charCodeAt(0)>='a'.charCodeAt(0) && c.charCodeAt(0)<='z'.charCodeAt(0)){
+        atLeastOneLower = true;
+      }
+      else if (c.charCodeAt(0)>='0'.charCodeAt(0) && c.charCodeAt(0)<='9'.charCodeAt(0)){
+        atLeastOneDigit  = true;
+      }
+
+    });
+
+    return atLeastOneDigit && atLeastOneLower && atLeastOneUpper;
   }
 
   /**
