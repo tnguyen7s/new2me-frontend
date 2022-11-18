@@ -22,6 +22,8 @@
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
     "bootstrap": "^4.6.2",
+    "express": "^4.18.2",
+    "loader-utils": "^3.2.1",
     "ngx-captcha": "^12.0.2",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
