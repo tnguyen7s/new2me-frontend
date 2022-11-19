@@ -1,6 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { environment } from 'src/environments/environment';
 import { DialogData } from '../dialog-message.interface';
 
 @Component({
@@ -10,7 +11,7 @@ import { DialogData } from '../dialog-message.interface';
 })
 export class RecapchaDialogComponent {
   protected formGroup: FormGroup;
-  protected siteKey: string = "6LcL8OEiAAAAALGG0og06qfongqZ_gmC9RbIcR1d";
+  protected siteKey: string = environment.recapchaSiteKey;
   protected capchaSucceeded = false;
 
   constructor(public DialogRef: MatDialogRef<RecapchaDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private formBuilder: FormBuilder){

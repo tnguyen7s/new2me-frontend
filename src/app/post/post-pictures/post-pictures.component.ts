@@ -22,18 +22,14 @@ export class PostPicturesComponent implements OnInit {
    * move to the next picture or stay the same if curInx out of bound
    */
   onNextPic(){
-    if(this.curInx+1<this.images.length){
-      this.curInx++;
-    }
+    this.curInx = (this.curInx+1)%this.images.length;
   }
 
     /**
    * move to the previous picture or stay the same if curInx out of bound
    */
   onPreviousPic(){
-    if (this.curInx-1>0){
-      this.curInx--;
-    }
+    this.curInx = (this.curInx-1)%this.images.length;
   }
 
   /*
@@ -41,7 +37,7 @@ export class PostPicturesComponent implements OnInit {
   */
   onRemovePic(){
     // remove the image from the component
-    this.images.splice(this.curInx);
+    this.images.splice(this.curInx, 1);
     this.curInx = 0;
   }
 }
