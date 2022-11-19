@@ -47,6 +47,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
 
   public postSaved = false;
 
+  private dialogSavedMsg = "Your post is uploaded successfully."
+
   constructor(private route: ActivatedRoute,
               private router: Router,
               private postsService: PostService,
@@ -155,7 +157,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
             console.log("publishPost to db", resData);
             this.postSaved = true;
 
-            this.onOpenDialog("Your post is uploaded successfully.");
+            this.onOpenDialog(this.dialogSavedMsg);
 
             this.router.navigate([''])
           },
@@ -226,6 +228,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
       .subscribe((result)=>{
         if (result==true){
           console.log("save editting", this.post);
+          this.dialogSavedMsg = "Your post has been saved.";
           this.onSavePost();
         }
       })
