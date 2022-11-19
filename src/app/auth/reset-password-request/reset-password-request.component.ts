@@ -13,6 +13,7 @@ export class ResetPasswordRequestComponent implements OnInit, OnDestroy {
   validEmail = true;
   succeeded = false;
 
+  loading = false;
   private sub: Subscription;
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -23,16 +24,19 @@ export class ResetPasswordRequestComponent implements OnInit, OnDestroy {
    * Reset password in action
    */
   onResetPassword(){
+    this.loading =  true;
     this.sub=this.authService.requestResetPassword(this.email)
                     .subscribe(
                         (resData) => {
                           console.log('on reset password', resData);
                           this.succeeded = true;
+                          this.loading = false;
                         },
                         (error) =>{
                           console.error('on reset password', error);
                           if (error.status==404){
                             this.validEmail = false;
+                            this.loading = false;
                           }
                         }
                     )
