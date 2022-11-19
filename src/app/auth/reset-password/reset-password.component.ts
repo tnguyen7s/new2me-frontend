@@ -75,9 +75,12 @@ export class ResetPasswordComponent implements OnInit, OnDestroy{
         this.errorMsg = ErrorMessageEnum.InsecurePass;
         this.validPass = false
       }
-      if (password!=repassword){
+      else if (password!=repassword){
         this.errorMsg = ErrorMessageEnum.UnmatchedPass;
-        this.validPass = false
+        this.validPass = false;
+      }
+      else{
+        this.validPass = true;
       }
     }
 
