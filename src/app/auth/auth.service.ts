@@ -3,6 +3,8 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http"
 import { User } from "../shared/models/user.model";
 import { BehaviorSubject, Observable, Subscription, tap } from "rxjs";
 import { Router } from "@angular/router";
+import { environment } from "src/environments/environment";
+import { ApiEnum } from "../shared/enums/ApiEnum";
 
 @Injectable({
   providedIn: "root"
@@ -11,6 +13,8 @@ import { Router } from "@angular/router";
 
 export class AuthService
 {
+  private baseUrl = environment.baseUrl;
+
   // got user from either login or signup
   public user: BehaviorSubject<User> = new BehaviorSubject(null);
   public afterAuthRoute: string[] = ["/"];
@@ -76,7 +80,7 @@ export class AuthService
    * @returns Observable<User>
    */
   public login(username: string, password: string): Observable<User>{
-    return this.http.post<User>("http://localhost:5024/api/account/login", { username: username, password: password})
+    return this.http.post<User>(this.baseUrl+ApiEnum.Login, { username: username, password: password})
                     .pipe(
                       tap(user => this.user.next(user))
                     );
@@ -91,14 +95,14 @@ export class AuthService
    * @returns Observable<User>
    */
   public signup(username: string, password: string, email: string): Observable<User>{
-    return this.http.post<User>("http://localhost:5024/api/account/signup", { username: username, password: password, email: email})
+    return this.http.post<User>(this.baseUrl + ApiEnum.SignUp, { username: username, password: password, email: email})
                     .pipe(
                       tap(user => this.user.next(user))
                     );
   }
 
   public updateAccount(user: User){
-    return this.http.put("http://localhost:5024/api/account", user).subscribe(
+    return this.http.put(this.baseUrl + ApiEnum.Account, user).subscribe(
       resData =>{
         console.log("OnSaveProfile", resData);
       },
@@ -110,11 +114,11 @@ export class AuthService
 
 
   public requestResetPassword(email: string){
-    return this.http.get("http://localhost:5024/api/account/resetPassRequest?email="+email);
+    return this.http.get(this.baseUrl + ApiEnum.RequestReset + email);
   }
 
   public resetPassword(password: string, token: string){
-    return this.http.post<User>("http://localhost:5024/api/account/resetPassword",
+    return this.http.post<User>(this.baseUrl + ApiEnum.ResetPassword,
                                 {password: password},
                                 {headers: new HttpHeaders().append("Authorization", "Bearer "+token)});
   }

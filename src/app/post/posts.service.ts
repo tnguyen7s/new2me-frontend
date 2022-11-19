@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { Route, Router } from "@angular/router";
 import { BehaviorSubject, Subject, take, tap } from "rxjs";
 import { AuthService } from "src/app/auth/auth.service";
+import { environment } from "src/environments/environment";
+import { ApiEnum } from "../shared/enums/ApiEnum";
 import { Contact } from "../shared/models/contact.model";
 import { Post } from "../shared/models/post.model";
 
@@ -10,6 +12,8 @@ import { Post } from "../shared/models/post.model";
   providedIn: 'root'
 })
 export class PostService{
+  private baseUrl = environment.baseUrl;
+
   public homePosts: BehaviorSubject<Post[]> = new BehaviorSubject(null);
   public homePostsLength: Number;
 
@@ -29,7 +33,7 @@ export class PostService{
 
     // send the post to back end
     console.log('send post to backend', newPost);
-    return this.http.post("http://localhost:5024/api/post", newPost);
+    return this.http.post(this.baseUrl + ApiEnum.Post, newPost);
   }
 
 
@@ -39,7 +43,7 @@ export class PostService{
   public fetchUptodateActivePosts(){
     this.fetching.next(true);
 
-    this.http.get<Post[]>("http://localhost:5024/api/post")
+    this.http.get<Post[]>(this.baseUrl+ApiEnum.Post)
         .subscribe(
           resData=> {
             console.log("fetch posts", resData);
@@ -59,7 +63,7 @@ export class PostService{
   public fetchUptodateActivePostsByTag(tag: number){
     this.fetching.next(true);
 
-    this.http.get<Post[]>("http://localhost:5024/api/post/filter?tag=" + tag)
+    this.http.get<Post[]>(this.baseUrl + ApiEnum.FilterPostByTag + tag)
       .subscribe(
         resData => {
           console.log("fetch posts", resData);
@@ -81,7 +85,7 @@ export class PostService{
   public fetchUserPosts(){
     this.fetching.next(true);
 
-    this.http.get<Post[]>("http://localhost:5024/api/post/user")
+    this.http.get<Post[]>(this.baseUrl + ApiEnum.UsersPosts)
     .subscribe(
       resData=> {
         console.log("fetch posts", resData);
@@ -99,7 +103,7 @@ export class PostService{
    * Delete the user's post from db
    */
   public deleteUserPostFromDb(postId: Number){
-    this.http.delete("http://localhost:5024/api/post/"+postId)
+    this.http.delete(this.baseUrl + ApiEnum.Post +postId)
       .subscribe(
         (resData) =>{
           console.log("deleteUserPostFromDb", postId, resData);
@@ -121,7 +125,7 @@ export class PostService{
    * Refetch the active posts
    */
   public updateUserPostInDb(post: Post){
-    this.http.put("http://localhost:5024/api/post/"+post.id, post)
+    this.http.put(this.baseUrl + ApiEnum.Post + post.id, post)
     .subscribe(
       (resData) =>{
         console.log("updateUserPostInDb", post.id, resData)
@@ -137,7 +141,7 @@ export class PostService{
   }
 
   public getPostContact(postId){
-    return this.http.get<Contact>("http://localhost:5024/api/post/contact/"+postId);
+    return this.http.get<Contact>(this.baseUrl + ApiEnum.PostContacts + postId);
   }
 
   /**
