@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
   baseUrl: 'https://new2me-webapi.herokuapp.com/',
-  recapchaSiteKey: '6LeMzBwjAAAAAC_die3yCnF_4b0e5Q8nrAkKLQ3A'
+  recapchaSiteKey: '6Lcn0hwjAAAAAHk8yGkbzCls0RiBMZkJ2J5FRba4'
 };
