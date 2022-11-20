@@ -102,14 +102,18 @@ export class AuthService
   }
 
   public updateAccount(user: User){
-    return this.http.put(this.baseUrl + ApiEnum.Account, user).subscribe(
-      resData =>{
-        console.log("OnSaveProfile", resData);
-      },
-      error => {
-        console.error("OnSaveProfile", error);
-      }
-    );
+    return this.http.put<User>(this.baseUrl + ApiEnum.Account, user)
+          .pipe(
+            tap(user => this.user.next(user))
+          )
+          .subscribe(
+            resData =>{
+              console.log("OnSaveProfile", resData);
+            },
+            error => {
+              console.error("OnSaveProfile", error);
+            }
+          );
   }
 
 
