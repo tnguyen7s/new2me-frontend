@@ -53,6 +53,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         this.noPostMessage = "It looks like there is no give-away item matching with your search."
 
         // filter by keyword
+        this.postService.fetchUptodateActivePostsByKeywords(param['keyword']);
 
       }
       else if (by.includes('tag')){

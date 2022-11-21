@@ -6,6 +6,7 @@ export enum ApiEnum {
   ResetPassword = 'api/account/resetPassword',
   Post = 'api/post/',
   FilterPostByTag = 'api/post/filter?tag=',
+  FilterPostBySearch = 'api/post/search?keywords=',
   UsersPosts =  'api/post/user',
   PostContacts = 'api/post/contact/'
 }

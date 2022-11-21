@@ -79,6 +79,24 @@ export class PostService{
       )
   }
 
+  public fetchUptodateActivePostsByKeywords(keywords: string){
+    this.fetching.next(true);
+    this.http.get<Post[]>(this.baseUrl + ApiEnum.FilterPostBySearch + keywords)
+      .subscribe(
+        resData => {
+          console.log("fetch posts", this.baseUrl + ApiEnum.FilterPostBySearch + keywords, resData);
+
+          this.homePosts.next(resData);
+          this.homePostsLength = resData.length
+
+          this.fetching.next(false);
+        },
+        error=> {
+          console.error("fetch posts", error);
+        }
+      )
+  }
+
   /**
    * Fetch user created posts
    */
