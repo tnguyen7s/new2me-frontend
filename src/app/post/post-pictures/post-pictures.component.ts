@@ -29,7 +29,7 @@ export class PostPicturesComponent implements OnInit {
    * move to the previous picture or stay the same if curInx out of bound
    */
   onPreviousPic(){
-    this.curInx = (this.curInx-1)%this.images.length;
+    this.curInx = (this.curInx-1+this.images.length)%this.images.length;
   }
 
   /*
