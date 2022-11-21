@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { NgForm, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -211,6 +211,22 @@ export class PostEditComponent implements OnInit, OnDestroy {
     this.previewed = false;
    }
 
+  //  @HostListener('window:beforeunload', ['$event'])
+  //  beforeUnload($event: any) {
+  //     event.preventDefault();
+  //   }
+
+    @HostListener('window:beforeunload', ['$event'])
+    unload($event){
+      if (this.mode=="create" && !this.postSaved && this.postForm.value.title){
+        this.mode = "editting";
+
+        const {title, location, condition, tag, email, phone, description} = this.postForm.value;
+        this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, this.postId, PostStatusEnum.InEditting);
+
+        this.onSavePost();
+      }
+    }
 
    ngOnDestroy() {
     if (this.sub){
