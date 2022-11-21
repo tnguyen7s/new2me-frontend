@@ -5,7 +5,7 @@
 >
     <img [src]="post.pictures[0]" alt="The item's image" *ngIf="imageShown">
 
-    <h2 class="primary-text">{{post.title.length<50? post.title.substring(0, 50):post.title.substring(0, 50)+"..."}}</h2>
+    <h2 class="primary-text">{{post.title.length<40? post.title:post.title.substring(0, 40)+"..."}}</h2>
 
     <div class="secondary-text" *ngIf="!imageShown">{{'☀️' + post.location}}</div>
 
