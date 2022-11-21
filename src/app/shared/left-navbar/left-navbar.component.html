@@ -7,6 +7,7 @@
 
   <div id="tags-container">
     <h2 id="tag-heading">Tags</h2>
+    <a (click)="onResetHome()" class="tag-button" type="button" [ngClass]="{'clicked': ithButton==-1}" style="padding-left: 34px; font-weight:600">All</a>
     <a *ngFor="let tag of tagList; let i=index;" (click)="onFilterByTag(tag, i)" class="tag-button" type="button" [ngClass]="{'clicked': ithButton==i}">{{tag}}</a>
   </div>
 
