@@ -24,6 +24,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   sub1: Subscription;
   sub2: Subscription;
+
+  backendErrorMsg: string;
   constructor(private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -37,7 +39,17 @@ export class UserProfileComponent implements OnInit, OnDestroy {
    * 1. Save user's profile
    */
   onSaveProfile(){
-    this.authService.updateAccount(this.userProfile);
+    this.authService.updateAccount(this.userProfile)
+    .subscribe(
+      resData =>{
+        console.log("OnSaveProfile", resData);
+        this.backendErrorMsg = null;
+      },
+      error => {
+        console.error("OnSaveProfile", error);
+        this.backendErrorMsg = error.error;
+      }
+    );
   }
 
   /**

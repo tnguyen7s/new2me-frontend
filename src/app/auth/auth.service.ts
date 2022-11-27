@@ -105,14 +105,6 @@ export class AuthService
     return this.http.put<User>(this.baseUrl + ApiEnum.Account, user)
           .pipe(
             tap(user => this.user.next(user))
-          )
-          .subscribe(
-            resData =>{
-              console.log("OnSaveProfile", resData);
-            },
-            error => {
-              console.error("OnSaveProfile", error);
-            }
           );
   }
 
