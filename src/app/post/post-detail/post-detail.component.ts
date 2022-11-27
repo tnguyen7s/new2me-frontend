@@ -9,6 +9,7 @@ import { PostContactDialog } from './post-contact-dialog/post-contact-dialog.com
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { bounceIn, bounceOut } from 'src/app/shared/animations/bounce.animation';
 import { RecapchaDialogComponent } from 'src/app/shared/dialogs/recapcha-dialog/recapcha-dialog.component';
+import { AuthService } from 'src/app/auth/auth.service';
 
 
 @Component({
@@ -44,7 +45,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
               private dialog: MatDialog,
               private route: ActivatedRoute,
               private router: Router,
-              private postService: PostService
+              private postService: PostService,
+              private authService: AuthService
               )
   {}
 
@@ -81,7 +83,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
                   const dialogRef = this.dialog.open(PostContactDialog, {
                     data: {
                       email: this.post.contactEmail,
-                      phone: this.post.contactPhone
+                      phone: this.post.contactPhone,
+                      nameOfUser: this.authService.user.getValue().nameOfUser
                     }
                   });
                 }
