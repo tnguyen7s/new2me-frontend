@@ -75,12 +75,12 @@ export class AuthService
   /**
    * 1. Send POST api/account/login
    * 2. Set the user to be the one got from the httpResponse
-   * @param username
+   * @param usernameOrEmail
    * @param password
    * @returns Observable<User>
    */
-  public login(username: string, password: string): Observable<User>{
-    return this.http.post<User>(this.baseUrl+ApiEnum.Login, { username: username, password: password})
+  public login(usernameOrEmail: string, password: string): Observable<User>{
+    return this.http.post<User>(this.baseUrl+ApiEnum.Login, { usernameOrEmail: usernameOrEmail, password: password})
                     .pipe(
                       tap(user => this.user.next(user))
                     );

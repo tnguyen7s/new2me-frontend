@@ -29,9 +29,9 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loading = true;
     console.log('onLogin', this.loginForm);
 
-    const {username, password} = this.loginForm.value;
+    const {usernameOrEmail, password} = this.loginForm.value;
 
-    this.sub = this.authService.login(username, password)
+    this.sub = this.authService.login(usernameOrEmail, password)
                     .subscribe(resData => {
                       console.log("onLogin", resData);
                       this.router.navigate(this.authService.afterAuthRoute);

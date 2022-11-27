@@ -7,8 +7,8 @@
 <div class="new2me-container" style="width: 350px;">
   <form class="new2me-form" #loginForm="ngForm" (ngSubmit)="onLogin()">
     <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control new2me-input" id="Username" ngModel  name="username" required>
+        <label for="usernameOrEmail">Username Or Email</label>
+        <input type="text" class="form-control new2me-input" id="usernameOrEmail" ngModel  name="usernameOrEmail" required>
     </div>
     <div class="form-group">
       <label for="password" ngModel>Password</label>
@@ -16,7 +16,7 @@
     </div>
 
     <div id="auth-container">
-      <span class="help-block mb-2" style="color:red" *ngIf="!validLogin">Password or username is invalid.</span>
+      <span class="help-block mb-2" style="color:red" *ngIf="!validLogin">Password or username/email is invalid.</span>
 
       <div id="main-auth-container">
         <button class="new2me-btn-t2 new2me-btn" type="button" (click)="onSwitchSignUp()">Sign Up</button>
