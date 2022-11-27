@@ -59,6 +59,9 @@ export class ResetPasswordComponent implements OnInit, OnDestroy{
                         },
                         (error)=>{
                           console.log('on reset password', error);
+                          if (error.status==400){
+                            this.errorMsg = error.error;
+                          }
                         }
                       );
     }
@@ -81,6 +84,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy{
       }
       else{
         this.validPass = true;
+        this.errorMsg = null;
       }
     }
 
