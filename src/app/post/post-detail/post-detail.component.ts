@@ -38,7 +38,9 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   public conditionDict = {};
 
-  sub: Subscription;
+  private sub1: Subscription;
+  private sub2; Subscription;
+  private sub3: Subscription;
   isPhone = false;
 
   constructor(private enumService: EnumService,
@@ -57,13 +59,13 @@ export class PostDetailComponent implements OnInit, OnDestroy {
    */
   onOpenDialog(){
     // implement capcha
-    this.openRecapchaDialog()
+    this.sub2 = this.openRecapchaDialog()
         .afterClosed()
         .subscribe(
           result =>{
           if (result == true){
             // get the post contact
-            this.postService.getPostContact(this.post.id)
+            this.sub3 = this.postService.getPostContact(this.post.id)
             .subscribe(
               resData =>{
                 console.log('On Get post Contact', resData);
@@ -111,7 +113,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
     }
 
     // source 2 to determine the post: from route
-    this.sub = this.route.params.subscribe((param)=>{
+    this.sub1 = this.route.params.subscribe((param)=>{
       if (param.idx!=null){
         this.post = this.postService.getPostByIndex(param.idx);
       }
@@ -121,7 +123,15 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      this.sub.unsubscribe();
+      this.sub1.unsubscribe();
+
+      if (this.sub2){
+        this.sub2.unsubscribe();
+      }
+
+      if (this.sub3){
+        this.sub3.unsubscribe();
+      }
   }
 }
 

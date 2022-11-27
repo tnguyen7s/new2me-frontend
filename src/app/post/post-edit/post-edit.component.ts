@@ -43,7 +43,10 @@ export class PostEditComponent implements OnInit, OnDestroy {
   public tagDict = {}
   public tagList: string [];
 
-  sub: Subscription;
+  private sub1: Subscription;
+  private sub2: Subscription;
+  private sub3: Subscription;
+  private sub4: Subscription;
 
   public postSaved = false;
 
@@ -68,7 +71,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
    * 2. Set the form if in edit mode
    */
   ngOnInit(): void {
-    this.route.params.subscribe((params)=>{
+    this.sub2 = this.route.params.subscribe((params)=>{
       this.postId = +params['id'];
 
       if (!Number.isNaN(this.postId)){
@@ -76,7 +79,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
         console.log('load existing post content', this.postId);
 
         this.postsService.fetchUserPosts();
-        this.postsService.userCreatedPosts.subscribe(
+        this.sub3 = this.postsService.userCreatedPosts.subscribe(
           userPosts => {
             userPosts.forEach(post=>{
               if (post.id==this.postId){
@@ -151,7 +154,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     console.log('on publish post', this.post);
 
     if (this.mode=="create" || this.mode=="editting"){
-      this.sub = this.postsService.publishPost(this.post)
+      this.sub1 = this.postsService.publishPost(this.post)
         .subscribe(
           resData=>{
             console.log("publishPost to db", resData);
@@ -229,17 +232,13 @@ export class PostEditComponent implements OnInit, OnDestroy {
     }
 
    ngOnDestroy() {
-    if (this.sub){
-      this.sub.unsubscribe();
-    }
-
     if (this.mode=="create" && !this.postSaved && this.postForm.value.title){
       this.mode = "editting";
 
       const {title, location, condition, tag, email, phone, description} = this.postForm.value;
       this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, this.postId, PostStatusEnum.InEditting);
 
-      this.onOpenConfirmDialog("Do you want to save this post to continue editting it later?")
+      this.sub4 = this.onOpenConfirmDialog("Do you want to save this post to continue editting it later?")
       .afterClosed()
       .subscribe((result)=>{
         if (result==true){
@@ -250,5 +249,17 @@ export class PostEditComponent implements OnInit, OnDestroy {
       })
     }
 
+    if (this.sub1){
+      this.sub1.unsubscribe();
+    }
+    if (this.sub2){
+      this.sub2.unsubscribe();
+    }
+    if (this.sub3){
+      this.sub2.unsubscribe();
+    }
+    if (this.sub4){
+      this.sub2.unsubscribe();
+    }
   }
 }

@@ -39,7 +39,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
    * 1. Save user's profile
    */
   onSaveProfile(){
-    this.authService.updateAccount(this.userProfile)
+    this.sub2 = this.authService.updateAccount(this.userProfile)
     .subscribe(
       resData =>{
         console.log("OnSaveProfile", resData);
@@ -62,5 +62,9 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.sub1.unsubscribe();
+
+      if (this.sub2){
+        this.sub2.unsubscribe();
+      }
   }
 }
