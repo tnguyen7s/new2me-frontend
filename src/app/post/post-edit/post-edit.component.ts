@@ -224,19 +224,36 @@ export class PostEditComponent implements OnInit, OnDestroy {
       if (this.mode=="create" && !this.postSaved && this.postForm.value.title){
         this.mode = "editting";
 
-        const {title, location, condition, tag, email, phone, description} = this.postForm.value;
-        this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, this.postId, PostStatusEnum.InEditting);
+        this.post = this.createEdittingPost();
 
         this.onSavePost();
       }
     }
 
+  // create post whose status=editting
+  createEdittingPost(){
+    let {title, location, condition, tag, email, phone, description} = this.postForm.value;
+
+    if (!location){
+      location = "...";
+    }
+
+    if (!email){
+      email = "@domain.com";
+    }
+
+    if (!phone){
+      phone = "123-456-7890";
+    }
+
+    return new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, this.postId, PostStatusEnum.InEditting);
+  }
+
    ngOnDestroy() {
     if (this.mode=="create" && !this.postSaved && this.postForm.value.title){
       this.mode = "editting";
 
-      const {title, location, condition, tag, email, phone, description} = this.postForm.value;
-      this.post = new Post(title, location, condition,  description, tag,  this.uploadedImages.slice() as string[], email, phone, this.postId, PostStatusEnum.InEditting);
+      this.post = this.createEdittingPost();
 
       this.sub4 = this.onOpenConfirmDialog("Do you want to save this post to continue editting it later?")
       .afterClosed()
