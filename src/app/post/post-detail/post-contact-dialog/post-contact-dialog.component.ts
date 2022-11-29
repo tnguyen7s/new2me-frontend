@@ -19,7 +19,7 @@ export class PostContactDialog{
     this.DialogRef.addPanelClass('bounceInUp');
   }
 
-  onCloseDialog(){
+  protected onCloseDialog(){
     this.DialogRef.close();
   }
 }

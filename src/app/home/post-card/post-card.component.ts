@@ -11,12 +11,12 @@ import { Post } from '../../shared/models/post.model';
 })
 export class PostCardComponent implements OnInit {
   @Input() post: Post;
-  @Input() idx: Number;
-  imageShown = true;
-  date: Date;
+  @Input() idx: number;
+
+  protected imageShown: boolean = true;
+  protected date: Date;
 
 
-  phoneOrIpadDevice = false;
   constructor(private router: Router) { }
 
   ngOnInit(): void {
@@ -24,15 +24,15 @@ export class PostCardComponent implements OnInit {
     this.date = new Date(this.post.lastUpdatedOn);
   }
 
-  onOpenPost(){
+  protected onOpenPost(){
     this.router.navigate(["post", this.idx])
   }
 
-  onShowImage(){
+  protected onShowImage(){
     this.imageShown = true;
   }
 
-  onShowDetail(){
+  protected onShowDetail(){
     this.imageShown = false;
   }
 }

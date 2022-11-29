@@ -15,12 +15,12 @@ import { AuthService } from '../auth.service';
 export class ResetPasswordComponent implements OnInit, OnDestroy{
   @ViewChild('form') form: NgForm;
 
-  strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
-  strongPassRequirements = "Your password must have at least: *8 characters \ *1 uppercase letter \ *1 lowercase letter \ *1 digit"
-  errorMsg: ErrorMessageEnum;
-  validPass = true;
+  private strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})");
+  protected strongPassRequirements:string = "Your password must have at least: *8 characters \ *1 uppercase letter \ *1 lowercase letter \ *1 digit"
+  protected errorMsg: ErrorMessageEnum;
+  protected validPass:boolean = true;
 
-  token: string;
+  private token: string;
 
 
   private sub: Subscription;
@@ -37,7 +37,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy{
   }
 
 
-  openDialog(message){
+  private openDialog(message: string){
     this.dialog.open(AppDialogComponent, {
       data: {
         message: message
@@ -45,7 +45,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy{
     })
   }
 
-  onResetPassword(){
+  protected onResetPassword(){
     const {password, repassword} = this.form.value;
     this.validatePassword(password, repassword);
 
@@ -73,7 +73,7 @@ export class ResetPasswordComponent implements OnInit, OnDestroy{
    * @param repassword
    * @returns true for secure password and false for insecure password
    */
-     validatePassword(password:string, repassword: string){
+    private validatePassword(password:string, repassword: string){
       if (!this.strongRegex.test(password)){
         this.errorMsg = ErrorMessageEnum.InsecurePass;
         this.validPass = false

@@ -9,11 +9,11 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./reset-password-request.component.css']
 })
 export class ResetPasswordRequestComponent implements OnInit, OnDestroy {
-  email: string = "";
-  validEmail = true;
-  succeeded = false;
+  protected email: string = "";
+  protected validEmail:boolean = true;
+  protected succeeded:boolean = false;
 
-  loading = false;
+  protected loading: boolean = false;
   private sub: Subscription;
   constructor(private router: Router, private authService: AuthService) { }
 
@@ -23,7 +23,7 @@ export class ResetPasswordRequestComponent implements OnInit, OnDestroy {
   /**
    * Reset password in action
    */
-  onResetPassword(){
+  protected onResetPassword(){
     this.loading =  true;
     this.sub=this.authService.requestResetPassword(this.email)
                     .subscribe(
@@ -45,7 +45,7 @@ export class ResetPasswordRequestComponent implements OnInit, OnDestroy {
   /**
    * 1. Change the route back to auth/login
    */
-  onBackToLogin(){
+  protected onBackToLogin(){
     this.router.navigate(['auth'])
   }
 

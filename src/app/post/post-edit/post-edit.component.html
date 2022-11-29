@@ -10,7 +10,7 @@
       <div >
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput name="title" [ngModel]="post? post.title:''" required>
+          <input matInput name="title" [ngModel]="post? post.title:''" required maxlength="50">
         </mat-form-field>
       </div>
 
@@ -48,7 +48,7 @@
         </mat-form-field>
 
         <mat-form-field appearance="fill">
-          <mat-label>Phone Number</mat-label>
+          <mat-label>Phone number</mat-label>
           <input matInput placeholder="Ex. 123-456-7890" name="phone" [ngModel]="post? post.contactPhone:''" required pattern="\d{3}-\d{3}-\d{4}">
         </mat-form-field>
       </div>
@@ -62,7 +62,7 @@
       <div >
         <mat-form-field appearance="fill">
           <mat-label>Description</mat-label>
-          <textarea matInput cols="40" rows="4" name="description" [ngModel]="post? post.description:''"></textarea>
+          <textarea matInput cols="40" rows="4" name="description" [ngModel]="post? post.description:''" maxlength="150"></textarea>
         </mat-form-field>
       </div>
 

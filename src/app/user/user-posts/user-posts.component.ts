@@ -12,27 +12,27 @@ import { PhoneService } from 'src/app/shared/services/phone.service';
   styleUrls: ['./user-posts.component.css']
 })
 export class UserPostsComponent implements OnInit, OnDestroy {
-  public activePosts: Post[] = [];
-  public donePosts: Post[] = [];
-  public edittingPosts: Post[] = [];
+  protected activePosts: Post[] = [];
+  protected donePosts: Post[] = [];
+  protected edittingPosts: Post[] = [];
 
   private sub: Subscription;
   private sub2: Subscription;
 
   // how many to display per page
-  public pageSize = 4;
-  public constant = 4;
+  protected pageSize: number = 4;
+  protected constant:number = 4;
 
   // current page index
-  public pageIndexForActive = 0;
-  public pageIndexForDone = 0;
-  public pageIndexForEditting = 0;
+  protected pageIndexForActive:number = 0;
+  protected pageIndexForDone:number = 0;
+  protected pageIndexForEditting:number = 0;
 
-  public spinner = false;
-  public spinnerType = 0;
-  public loading = false;
+  protected spinner:boolean = false;
+  protected spinnerType:number = 0;
+  protected loading:boolean = false;
 
-  public isPhoneOrIpadDevice = false;
+  protected isPhoneOrIpadDevice:boolean = false;
 
   constructor(private authService: AuthService, private postService: PostService, private phoneService: PhoneService) { }
 
@@ -73,7 +73,7 @@ export class UserPostsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onTurnOnSpinner(spinnerType){
+  protected onTurnOnSpinner(spinnerType: number){
     this.spinner = true;
     this.spinnerType = spinnerType;
   }

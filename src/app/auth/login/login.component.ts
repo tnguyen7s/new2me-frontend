@@ -12,9 +12,9 @@ import { AuthService } from '../auth.service';
 export class LoginComponent implements OnInit, OnDestroy {
   @ViewChild('loginForm') loginForm: NgForm;
 
-  validLogin = true;
-  loading = false;
-  sub: Subscription;
+  protected validLogin:boolean = true;
+  protected loading:boolean = false;
+  private sub: Subscription;
   constructor(public router: Router, public authService: AuthService) { }
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit, OnDestroy {
    * 2. set this.validLogin = false if login fails
    * 3. Allow access after login succeeds
    */
-  onLogin(){
+  protected onLogin(){
     this.loading = true;
     console.log('onLogin', this.loginForm);
 
@@ -48,14 +48,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   /**
    * 1. Switch the route to auth/signup
    */
-  onSwitchSignUp(){
+  protected onSwitchSignUp(){
     this.router.navigate(['auth', 'signup']);
   }
 
   /**
    * 1. Switch the route to auth/reset-password
    */
-  onSwitchResetPassword(){
+  protected onSwitchResetPassword(){
     this.router.navigate(['auth', 'request-reset-password'])
   }
 

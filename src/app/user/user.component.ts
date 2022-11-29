@@ -13,7 +13,7 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onLogout(){
+  protected onLogout(){
     this.authService.logout();
   }
 

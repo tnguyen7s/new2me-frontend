@@ -15,23 +15,23 @@ export class HomeComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
   // all posts
-  public posts: Post[];
+  protected posts: Post[];
 
   // how many to display per page
-  public pageSize = 8;
+  protected pageSize: number = 8;
 
   // current page index
-  public pageIndex = 0;
+  protected pageIndex: number = 0;
 
-  sub1: Subscription;
-  sub2: Subscription;
-  sub3: Subscription;
+  private sub1: Subscription;
+  private sub2: Subscription;
+  private sub3: Subscription;
 
-  public phoneOrIpadDevice = false;
+  protected phoneOrIpadDevice: boolean = false;
 
-  public loading = false;
+  protected loading: boolean = false;
 
-  public noPostMessage = "";
+  protected noPostMessage: string = "";
 
   constructor(private route: ActivatedRoute, private postService: PostService, private phoneService: PhoneService) {
   }

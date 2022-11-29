@@ -3,7 +3,7 @@ import { PostStatusEnum } from "../enums/PostStatusEnum";
 import { PostTagEnum } from "../enums/PostTagEnum";
 
 export class Post{
-  public id: Number;
+  public id: number;
   public title: string;
   public location: string;
   public condition: PostConditionEnum;
@@ -23,7 +23,7 @@ export class Post{
               PostPictures: string[],
               PostContactEmail: string,
               PostContactPhone: string,
-              PostId: Number = -1,
+              PostId: number = -1,
               PostStatus: PostStatusEnum)
   {
                 this.title = PostTitle;

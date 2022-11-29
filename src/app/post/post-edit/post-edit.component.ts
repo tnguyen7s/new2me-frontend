@@ -1,5 +1,5 @@
 import { Component, HostListener, OnDestroy, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import { NgForm, Validators } from '@angular/forms';
+import { NgForm} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -30,27 +30,27 @@ import { bounceIn } from 'src/app/shared/animations/bounce.animation';
 })
 export class PostEditComponent implements OnInit, OnDestroy {
   @ViewChild('postForm') postForm: NgForm;
-  private post: Post;
-  private postId: Number = 0;
-  public uploadedImages: (string|ArrayBuffer)[] = [];
+  protected post: Post;
+  protected postId: number = 0;
+  protected uploadedImages: (string|ArrayBuffer)[] = [];
 
-  private mode = "create";
-  public previewed = false;
+  protected mode: string = "create";
+  protected previewed: boolean = false;
 
-  public conditionList: string[];
-  public conditionDict = {};
+  protected conditionList: string[];
+  protected conditionDict = {};
 
-  public tagDict = {}
-  public tagList: string [];
+  protected tagDict = {}
+  protected tagList: string [];
 
   private sub1: Subscription;
   private sub2: Subscription;
   private sub3: Subscription;
   private sub4: Subscription;
 
-  public postSaved = false;
+  protected postSaved: boolean = false;
 
-  private dialogSavedMsg = "Your post is uploaded successfully."
+  protected dialogSavedMsg: string = "Your post is uploaded successfully."
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -107,7 +107,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
    *read image and store it in the uploadedImages array
    * @param event
    */
-  async onUploadImage(event){
+  protected async onUploadImage(event){
     // retrieve from input:img element
     const selectedFile = event.target.files[0];
 
@@ -126,7 +126,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
 
-  onOpenDialog(msg){
+  protected onOpenDialog(msg: string){
     // open the dialog
     const dialogRef = this.dialog.open(AppDialogComponent, {
       data: {
@@ -135,7 +135,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     });
   }
 
-  onOpenConfirmDialog(msg){
+  protected onOpenConfirmDialog(msg){
     const dialogRef = this.dialog.open(AppYesNoDialogComponent, {
       data : {
         message: msg
@@ -150,7 +150,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
    * 2. navigate to home
    * 3. Display app mesg
    */
-  onSavePost(){
+  protected onSavePost(){
     console.log('on publish post', this.post);
 
     if (this.mode=="create" || this.mode=="editting"){
@@ -185,7 +185,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
    * 1. Change the preview flag to be true
    * 2. Create a post
    */
-   onPreviewPost(){
+   protected onPreviewPost(){
     console.log('on preview post', this.postForm.value);
 
     const {title, location, condition, tag, email, phone, description} = this.postForm.value;
@@ -198,7 +198,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
    /**
     * 1. Change route to home or user
     */
-   onBackToPreviousPage(){
+   protected onBackToPreviousPage(){
     if (this.mode=='create'){
       this.router.navigate(['/'])
     }
@@ -210,7 +210,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
    /***
     * 1. set previewed to be false
     */
-   onBackToPostEdit(){
+   protected onBackToPostEdit(){
     this.previewed = false;
    }
 
@@ -220,7 +220,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   //   }
 
     @HostListener('window:beforeunload', ['$event'])
-    unload($event){
+    protected unload($event){
       if (this.mode=="create" && !this.postSaved && this.postForm.value.title){
         this.mode = "editting";
 
@@ -231,7 +231,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     }
 
   // create post whose status=editting
-  createEdittingPost(){
+  protected createEdittingPost(){
     let {title, location, condition, tag, email, phone, description} = this.postForm.value;
 
     if (!location){

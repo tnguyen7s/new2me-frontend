@@ -14,7 +14,7 @@ import { Post } from 'src/app/shared/models/post.model';
 })
 export class UserPostCardComponent implements OnInit ,OnDestroy {
   @Input() post: Post;
-  @Output() loading = new EventEmitter<Number>();
+  @Output() loading = new EventEmitter<number>();
 
 
   private sub1: Subscription;

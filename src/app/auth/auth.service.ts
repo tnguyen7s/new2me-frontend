@@ -13,14 +13,14 @@ import { ApiEnum } from "../shared/enums/ApiEnum";
 
 export class AuthService
 {
-  private baseUrl = environment.baseUrl;
+  private baseUrl: string = environment.baseUrl;
 
   // got user from either login or signup
   public user: BehaviorSubject<User> = new BehaviorSubject(null);
   public afterAuthRoute: string[] = ["/"];
 
 
-  private timeout: any;
+  private timeout: NodeJS.Timeout;
 
   constructor(private http: HttpClient, private router: Router){
     // once login or sign up, save new user to the local storage and call auto logout

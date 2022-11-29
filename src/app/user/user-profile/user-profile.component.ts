@@ -12,9 +12,9 @@ import { User } from 'src/app/shared/models/user.model';
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
   @ViewChild('userForm') userForm: NgForm;
-  userProfile: User;
+  protected userProfile: User;
 
-  public editMode = {
+  protected editMode = {
     'username': false,
     'email': false,
     'name': false,
@@ -22,10 +22,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     'address': false
   }
 
-  sub1: Subscription;
-  sub2: Subscription;
+  private sub1: Subscription;
+  private sub2: Subscription;
 
-  backendErrorMsg: string;
+  protected backendErrorMsg: string;
   constructor(private authService: AuthService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -38,7 +38,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   /**
    * 1. Save user's profile
    */
-  onSaveProfile(){
+  protected onSaveProfile(){
     this.sub2 = this.authService.updateAccount(this.userProfile)
     .subscribe(
       resData =>{
@@ -56,7 +56,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
    *1. toggle the edit mode boolean
    * @param field Field to edit
    */
-  onEdit(field){
+  protected onEdit(field){
     this.editMode[field] = !this.editMode[field];
   }
 

@@ -15,7 +15,7 @@ export class PostService{
   private baseUrl = environment.baseUrl;
 
   public homePosts: BehaviorSubject<Post[]> = new BehaviorSubject(null);
-  public homePostsLength: Number;
+  public homePostsLength: number;
 
   public userCreatedPosts: BehaviorSubject<Post[]> = new BehaviorSubject(null);
 
@@ -120,7 +120,7 @@ export class PostService{
   /**
    * Delete the user's post from db
    */
-  public deleteUserPostFromDb(postId: Number){
+  public deleteUserPostFromDb(postId: number){
     this.http.delete(this.baseUrl + ApiEnum.Post +postId)
       .subscribe(
         (resData) =>{

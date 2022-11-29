@@ -13,12 +13,12 @@ import { AuthService } from '../auth.service';
 export class SignupComponent implements OnInit, OnDestroy {
   @ViewChild('signUpForm') signUpForm: NgForm;
 
-  loading = false;
-  validForm = true;
-  errorMsg = "";
+  protected loading: boolean = false;
+  protected validForm: boolean = true;
+  protected errorMsg: string = "";
   //strongRegex:RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})"); potential DOS
-  strongPassRequirements = "Your password must have at least: *8 characters \ *1 uppercase letter \ *1 lowercase letter \ *1 digit"
-  sub: Subscription;
+  protected strongPassRequirements: string = "Your password must have at least: *8 characters \ *1 uppercase letter \ *1 lowercase letter \ *1 digit"
+  private sub: Subscription;
 
   constructor(public router: Router, public authService: AuthService) {
 
@@ -33,7 +33,7 @@ export class SignupComponent implements OnInit, OnDestroy {
    * 2. send an http request to the server to sign up
    * 3. Allow access if signup succeeds
    */
-  onSignUp(){
+  protected onSignUp(){
     this.loading = true;
     console.log("onSignUp", this.signUpForm);
 
@@ -69,7 +69,7 @@ export class SignupComponent implements OnInit, OnDestroy {
    * @param repassword
    * @returns true for secure password and false for insecure password
    */
-  validatePassword(password:string, repassword: string): boolean{
+  private validatePassword(password:string, repassword: string): boolean{
     if (password!=repassword){
       this.errorMsg = ErrorMessageEnum.UnmatchedPass;
       return false;
@@ -89,7 +89,7 @@ export class SignupComponent implements OnInit, OnDestroy {
    * 1 lowercase letter
    * 1 digit
    */
-  testPasswordSecurity(password: string): boolean{
+  private testPasswordSecurity(password: string): boolean{
     if (password.length<8){
       return false;
     }
@@ -117,7 +117,7 @@ export class SignupComponent implements OnInit, OnDestroy {
   /**
    * 1. switch to login route
    */
-  onSwitchToLogin(){
+  protected onSwitchToLogin(){
     this.router.navigate(['auth']);
   }
 

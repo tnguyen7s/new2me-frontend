@@ -36,17 +36,15 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   // Source 1 to determine the post: from input, no routing
   @Input() post: Post;
 
-  public conditionDict = {};
+  protected conditionDict = {};
 
   private sub1: Subscription;
   private sub2; Subscription;
   private sub3: Subscription;
-  isPhone = false;
 
   constructor(private enumService: EnumService,
               private dialog: MatDialog,
               private route: ActivatedRoute,
-              private router: Router,
               private postService: PostService,
               private authService: AuthService
               )
@@ -57,7 +55,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
    * 1. Implement Capcha
    * 2. Open the Dialog
    */
-  onOpenDialog(){
+  protected onOpenDialog(){
     // implement capcha
     this.sub2 = this.openRecapchaDialog()
         .afterClosed()
@@ -98,7 +96,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       );
   }
 
-  openRecapchaDialog(){
+  private openRecapchaDialog(){
     const dialogRef = this.dialog.open(RecapchaDialogComponent);
 
     return dialogRef;

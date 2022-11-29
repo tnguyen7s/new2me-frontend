@@ -14,7 +14,7 @@ export class AppDialogComponent{
     this.DialogRef.addPanelClass('bounceInUp');
   }
 
-  onCloseDialog(){
+  protected onCloseDialog(){
     this.DialogRef.close();
     console.log('Closed dialog');
   }

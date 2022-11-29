@@ -14,7 +14,7 @@ export class AppYesNoDialogComponent{
     this.DialogRef.addPanelClass('bounceInUp');
   }
 
-  onCloseDialog(yes: boolean){
+  protected onCloseDialog(yes: boolean){
     this.DialogRef.close(yes);
     console.log('Closed dialog');
   }

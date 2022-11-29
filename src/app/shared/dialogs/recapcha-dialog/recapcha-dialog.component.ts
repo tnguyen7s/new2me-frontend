@@ -12,7 +12,7 @@ import { DialogData } from '../dialog-message.interface';
 export class RecapchaDialogComponent {
   protected formGroup: FormGroup;
   protected siteKey: string = environment.recapchaSiteKey;
-  protected capchaSucceeded = false;
+  protected capchaSucceeded: boolean = false;
 
   constructor(public DialogRef: MatDialogRef<RecapchaDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData, private formBuilder: FormBuilder){
     this.DialogRef.addPanelClass('animated');
@@ -23,11 +23,11 @@ export class RecapchaDialogComponent {
     })
   }
 
-  handleSuccess(e){
+  protected handleSuccess(e){
     this.capchaSucceeded = true;
   }
 
-  onClose(){
+  protected onClose(){
     this.DialogRef.close(this.capchaSucceeded);
   }
 }
